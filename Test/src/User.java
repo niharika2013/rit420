@@ -6,64 +6,70 @@ import java.util.*;
 
 public class User
 {
-	//a. Provide	attributes	that	mirror	the	Equipment	table.
-	private String equipID;
-	private String equipmentName;
-	private String equipmentDescription;
-	private String equipmentCapacity;
+	// Provide	attributes	that	mirror	the	User	table.
+	private String userId;
+	private String fName;
+	private String lName;
+	private String email;
+	private String pswd;
+	private string role;
 	
-	//b. Provide	a	default	constructor.
+	// Provide	a	default	constructor.
 	public User()
 	{
 	}
 	
-	//c. Provide	a	constructor	that	accepts	and	sets	the	equipmentId.
-	public User(String equipID)
+	// Provide	a	constructor	that	accepts	and	sets	the	userId.
+	public User(String userId)
 	{
-		this.equipID = equipID;
+		this.userId = userId;
 	}
 	
-	//d. Provide	a	constructor	that	accepts	and	sets	all	attributes.
-	public User(String equipID, String equipmentName, String equipmentDescription, String equipmentCapacity)
+	// Provide	a	constructor	that	accepts	and	sets	all	attributes.
+	public User(String userId, String fName, String lName, String email, String pswd, String role)
 	{
-		this.equipID = equipID;
-		this.equipmentName = equipmentName;
-		this.equipmentDescription = equipmentDescription;
-		this.equipmentCapacity = equipmentCapacity;
+		this.userId = userId;
+		this.fName = fName;
+		this.lName = lName;
+		this.email = email;
+		this.pswd = pswd;
+		this.role = role;
 	}
 	
-	//e. Provide	accessors	and	mutators	for	all	attributes.
-	public void setEquipID(String equipID){this.equipID = equipID;}
-	public String getEquipID(){return equipID;}
+	// Provide	accessors	and	mutators	for	all	attributes.
+	public void setUserId(String userId){this.userId = userId;}
+	public String getUserId(){return userId;}
 	
-	public void setEquipmentName(String equipmentName){this.equipmentName = equipmentName;}
-	public String getEquipmentName(){return equipmentName;}
+	public void setFName(String fName){this.fName = fName;}
+	public String getFName(){return fName;}
 	
-	public void setEquipmentDescription(String equipmentDescription){this.equipmentDescription = equipmentDescription;}
-	public String getEquipmentDescription(){return equipmentDescription;}
+	public void setLName(String lName){this.lName = lName;}
+	public String getLName(){return lName;}
 	
-	public void setEquipmentCapacity(String equipmentCapacity){this.equipmentCapacity = equipmentCapacity;}
-	public String getEquipmentCapacity(){return equipmentCapacity;}
-
-	//f. Provide	a	public	methods	named	“fetch”,	“put”,	“post”,	and	“delete”.	These	methods	will	
-	//interact	between	the	object’s	attributes	and	the	database	values	(using	the	database	class).
-
-	//Change the fetch, put, post, and delete methods to use the new getData() and setData() 
-	//methods of the database class.
+	public void setEmail(String email){this.email = email;}
+	public String getEmail(){return email;}
 	
+	public void setPswd(String pswd){this.pswd = pswd;}
+	public String getPswd(){return pswd;}
+	
+	public void setRole(String role){this.role = role;}
+	public String getRole(){return role;}
+	
+	// fetch	uses	the	object’s	userId	attribute	and	the	Database	class’	
+	//getData	method	to	retrieve	the	database	values	for	that	particular	userId	
+	//and	updates	the	object’s	attributes.
 	public boolean fetch()
 	{
-		//i. fetch	will	that	use	the	object’s	equipmentId	attribute	and	the	Database	class’	
-		//getData	method	to	retrieve	the	database	values	for	that	particular	equipmentId	
-		//and	update	the	object’s	attributes.
 		ArrayList<String> values = new ArrayList<String>(0);
-		values.add(equipID);
-		ArrayList<ArrayList<String>> dataList = JavaConnection.mdb.getData("SELECT * FROM equipment WHERE EquipID = ?", values);
+		values.add(userId);
+		ArrayList<ArrayList<String>> dataList = JavaConnection.mdb.getData("SELECT * FROM users WHERE UserId = ?", values);
 		if(dataList != null)
 		{
-			equipmentName = dataList.get(1).get(1).toString();
-			equipmentDescription = dataList.get(1).get(2).toString();
-			equipmentCapacity = dataList.get(1).get(3).toString();
+			fName = dataList.get(1).get(1).toString();
+			lName = dataList.get(1).get(2).toString();
+			email = dataList.get(1).get(3).toString();
+			pswd = dataList.get(1).get(4).toString();
+			role = dataList.get(1).get(5).toString();
 			return true;
 		}
 		else
@@ -73,77 +79,38 @@ public class User
 		
 	}
 	
+	// post updates the database values, for that object’s userId, using the	
+	//object’s attribute values.
 	public boolean post()
 	{
-		//ii. post will update the database values, for that object’s equipmentId, using the	
-		//object’s attribute values.
 		ArrayList<String> values = new ArrayList<String>(0);
-		values.add(equipID);
-		values.add(equipmentName); 
-		values.add(equipmentDescription);
-		values.add(equipmentCapacity);
-		values.add(equipID);
-		return JavaConnection.mdb.setData("UPDATE equipment SET EquipID = ?, EquipmentName = ?, EquipmentDescription = ?, EquipmentCapacity = ? WHERE EquipID = ?", values);
+		values.add(fName); 
+		values.add(lName);
+		values.add(email);
+		values.add(pswd);
+		values.add(role);
+		values.add(userId)
+		return JavaConnection.mdb.setData("UPDATE users FName = ?, LName = ?, Email = ?, Pswd = ?, Role = ? WHERE UserId = ?", values);
 	}
 	
+	// put	inserts	the	object’s	attribute	values	into	the	database	as	a	new	record.
 	public boolean put()
 	{
-		//iii. put	will	insert	the	object’s	attribute	values	into	the	database	as	a	new	record.
 		ArrayList<String> values = new ArrayList<String>(0);
-		values.add(equipID);
-		values.add(equipmentName);
-		values.add(equipmentDescription);
-		values.add(equipmentCapacity);
-		return JavaConnection.mdb.setData("INSERT INTO equipment (EquipID,EquipmentName,EquipmentDescription,EquipmentCapacity) VALUES(?,?,?,?)", values);
+		values.add(userId);
+		values.add(fName);
+		values.add(lName);
+		values.add(email);
+		values.add(pswd);
+		values.add(role);
+		return JavaConnection.mdb.setData("INSERT INTO users (UserId,FName,LName,Email,Pswd,Role) VALUES(?,?,?,?)", values);
 	}
 	
-	//iv. delete	will	remove	from	the	database	any	data	corresponding	to	the	object’s equipmentId.
+	// delete removes	from	the	database	any	data	corresponding	to	the	object’s userId.
 	public boolean delete()
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
-		values.add(equipID);
-		return JavaConnection.mdb.setData("DELETE FROM equipment WHERE EquipID = ?", values);
-	}
-	
-	//Add a method named “swap” that accepts an integer value.
-	public boolean swap(int id)
-	{
-		//The purpose of this method is to  swap the names of two pieces of equipment
-		//One equipment piece is represented by the  object
-		//the other is identified by the integer value passed in
-		//Because this involves more than one SQL operation it should be done as a transaction
-		try
-		{
-			if(JavaConnection.mdb.startTrans())
-			{
-				//sql
-				String name = equipmentName;
-				Equipment switchEquipment = new Equipment(Integer.toString(id));
-				switchEquipment.fetch();
-				setEquipmentName(switchEquipment.getEquipmentName());
-				switchEquipment.setEquipmentName(name);
-				post();
-				switchEquipment.post();
-				if(JavaConnection.mdb.endTrans())
-				{
-					return true;
-				}
-				else
-				{
-					JavaConnection.mdb.rollbackTrans();
-					return false;
-				}
-			}
-			else
-			{
-				JavaConnection.mdb.rollbackTrans();
-				return false;
-			}
-		}
-		catch(Exception e)
-		{
-			JavaConnection.mdb.rollbackTrans();
-			return false;
-		}
+		values.add(userId);
+		return JavaConnection.mdb.setData("DELETE FROM users WHERE userID = ?", values);
 	}
 }
