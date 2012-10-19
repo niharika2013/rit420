@@ -1,4 +1,3 @@
-
 public class Hello_World {
 
 	/**
@@ -8,5 +7,9 @@ public class Hello_World {
 		System.out.println("Hello World");
 
 	}
+  public Hello_World()
+  {
+    //
+  }
 
 }
