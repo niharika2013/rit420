@@ -76,7 +76,7 @@ public class Kudo
 		values.add(userId); 
 		values.add(year);
 		values.add(kudo);
-		values.add(kudoId)
+		values.add(kudoId);
 		return JavaConnection.mdb.setData("UPDATE kudos UserId = ?, year = ?, Kudo = ? WHERE KudoId = ?", values);
 	}
 	
