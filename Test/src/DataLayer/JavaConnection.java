@@ -41,7 +41,7 @@ public class JavaConnection extends JFrame
       frame.add(oracleButton);*/
 
 		// SQL button event handling
-		sqlButton.addActionListener(new ActionListener()
+		/*sqlButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent ae)
 			{
@@ -49,15 +49,15 @@ public class JavaConnection extends JFrame
 					JOptionPane.showMessageDialog(null,"MySQL Connection Successful");
 					
 					//Repeat the PE3 task: instantiate the equipment data object, set its equipmentId, call the data 
-					//object’s fetch method, and then display the values to the user.
+					//object fetch method, and then display the values to the user.
 					
-					//Write a “main” class that instantiates the equipment data object
+					//Write a main class that instantiates the equipment data object
 					Equipment equipment = new Equipment();
 					
 					//sets	its	equipmentId,
 					equipment.setEquipID("568");
 					
-					//calls the data object’s fetch method
+					//calls the data object fetch method
 					equipment.fetch();
 					
 					//then	displays	the	values	to	the	user.
@@ -108,7 +108,7 @@ public class JavaConnection extends JFrame
 			}
 		}
 		);
-		
+		*/
 		/* Oracle button event handling
 		oracleButton.addActionListener(new ActionListener()
 		{
