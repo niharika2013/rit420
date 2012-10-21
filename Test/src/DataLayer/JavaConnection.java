@@ -12,11 +12,6 @@ import java.util.*;
 public class JavaConnection extends JFrame
 {
 	public static MySQLDatabase mdb = new MySQLDatabase();
-
-	public static void main(String [] args)
-	{
-		new JavaConnection();
-	}
 	
 	public JavaConnection()
 	{
@@ -24,7 +19,7 @@ public class JavaConnection extends JFrame
 		//final OracleDatabase odb = new OracleDatabase();
 		
 		// Basis for GUI here
-		JFrame frame = new JFrame("Server Connection Tester 1.01");
+		/*JFrame frame = new JFrame("Server Connection Tester 1.01");
 		frame.setSize(800, 600);
 		frame.setLocation(100, 100);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,7 +29,7 @@ public class JavaConnection extends JFrame
 		JButton sqlButton = new JButton("Connect to MySQL Database");
 		sqlButton.setAlignmentX(Component.CENTER_ALIGNMENT);
       frame.add(sqlButton);
-		
+		*/
 		/* Oracle Test Button
 		JButton oracleButton = new JButton("Connect to Oracle Database");
 		oracleButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -130,6 +125,6 @@ public class JavaConnection extends JFrame
 		}
 		);*/
 
-		frame.setVisible(true);
+		//frame.setVisible(true);
 	}
 }
