@@ -13,7 +13,7 @@ public class Course
 	private String courseId;
 	private String year;
 	private String courseNumber;
-	private string courseName;
+	private String courseName;
 	
 	// Provide	a	default	constructor.
 	public Course()
@@ -52,7 +52,7 @@ public class Course
 	public void setCourseName(String courseName){this.courseName = courseName;}
 	public String getCourseName(){return courseName;}
 	
-	// fetch	uses	the	object’s	courseId	attribute	and	the	Database	class’	
+	// fetch	uses	the	object’s	courseId	attribute	and	the	Database	class
 	//getData	method	to	retrieve	the	database	values	for	that	particular	courseId	
 	//and	updates	the	object’s	attributes.
 	public boolean fetch()

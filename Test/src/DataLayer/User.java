@@ -14,7 +14,7 @@ public class User
 	private String lName;
 	private String email;
 	private String pswd;
-	private string role;
+	private String role;
 	
 	// Provide	a	default	constructor.
 	public User()
@@ -57,7 +57,7 @@ public class User
 	public void setRole(String role){this.role = role;}
 	public String getRole(){return role;}
 	
-	// fetch	uses	the	object’s	userId	attribute	and	the	Database	class’	
+	// fetch	uses	the	object’s	userId	attribute	and	the	Database	class
 	//getData	method	to	retrieve	the	database	values	for	that	particular	userId	
 	//and	updates	the	object’s	attributes.
 	public boolean fetch()
@@ -91,7 +91,7 @@ public class User
 		values.add(email);
 		values.add(pswd);
 		values.add(role);
-		values.add(userId)
+		values.add(userId);
 		return JavaConnection.mdb.setData("UPDATE users FName = ?, LName = ?, Email = ?, Pswd = ?, Role = ? WHERE UserId = ?", values);
 	}
 	

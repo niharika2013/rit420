@@ -13,7 +13,7 @@ public class Service
 	private String serviceId;
 	private String year;
 	private String description;
-	private string role;
+	private String role;
 	
 	// Provide	a	default	constructor.
 	public Service()
@@ -52,7 +52,7 @@ public class Service
 	public void setRole(String role){this.role = role;}
 	public String getRole(){return role;}
 	
-	// fetch	uses	the	object’s	serviceId	attribute	and	the	Database	class’	
+	// fetch	uses	the	object’s	serviceId	attribute	and	the	Database	class
 	//getData	method	to	retrieve	the	database	values	for	that	particular	serviceId	
 	//and	updates	the	object’s	attributes.
 	public boolean fetch()

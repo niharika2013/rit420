@@ -13,9 +13,9 @@ public class Grant
 	private String grantId;
 	private String year;
 	private String citation;
-	private string tease;
-	private string amount;
-	private string status;
+	private String tease;
+	private String amount;
+	private String status;
 	
 	// Provide	a	default	constructor.
 	public Grant()
@@ -62,7 +62,7 @@ public class Grant
 	public void setStatus(String status){this.status = status;}
 	public String getStatus(){return status;}
 	
-	// fetch	uses	the	object’s	grantId	attribute	and	the	Database	class’	
+	// fetch	uses	the	object’s	grantId	attribute	and	the	Database	class
 	//getData	method	to	retrieve	the	database	values	for	that	particular	grantId	
 	//and	updates	the	object’s	attributes.
 	public boolean fetch()

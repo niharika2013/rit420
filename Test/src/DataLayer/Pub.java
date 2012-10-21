@@ -13,8 +13,8 @@ public class Pub
 	private String pubId;
 	private String year;
 	private String citation;
-	private string tease;
-	private string status;
+	private String tease;
+	private String status;
 	
 	// Provide	a	default	constructor.
 	public Pub()
@@ -57,7 +57,7 @@ public class Pub
 	public void setStatus(String status){this.status = status;}
 	public String getStatus(){return status;}
 	
-	// fetch	uses	the	object’s	pubId	attribute	and	the	Database	class’	
+	// fetch	uses	the	object’s	pubId	attribute	and	the	Database	class
 	//getData	method	to	retrieve	the	database	values	for	that	particular	pubId	
 	//and	updates	the	object’s	attributes.
 	public boolean fetch()
