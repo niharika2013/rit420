@@ -1,9 +1,6 @@
 package DataLayer;
 
-import java.sql.*;
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
+
 import java.util.*;
 
 public class User
@@ -15,6 +12,7 @@ public class User
 	private String email;
 	private String pswd;
 	private String role;
+	private MySQLDatabase myDB;
 	
 	// Provide	a	default	constructor.
 	public User()
@@ -22,13 +20,14 @@ public class User
 	}
 	
 	// Provide	a	constructor	that	accepts	and	sets	the	userId.
-	public User(String userId)
+	public User(String userId, MySQLDatabase myDB)
 	{
 		this.userId = userId;
+		this.myDB = myDB;
 	}
 	
 	// Provide	a	constructor	that	accepts	and	sets	all	attributes.
-	public User(String userId, String fName, String lName, String email, String pswd, String role)
+	public User(String userId, String fName, String lName, String email, String pswd, String role, MySQLDatabase myDB)
 	{
 		this.userId = userId;
 		this.fName = fName;
@@ -36,6 +35,7 @@ public class User
 		this.email = email;
 		this.pswd = pswd;
 		this.role = role;
+		this.myDB = myDB;
 	}
 	
 	// Provide	accessors	and	mutators	for	all	attributes.
@@ -57,14 +57,18 @@ public class User
 	public void setRole(String role){this.role = role;}
 	public String getRole(){return role;}
 	
+	public void setDB(MySQLDatabase myDB){this.myDB = myDB;}
+	public MySQLDatabase getDB(){return myDB;}
+	
 	// fetch	uses	the	object’s	userId	attribute	and	the	Database	class
 	//getData	method	to	retrieve	the	database	values	for	that	particular	userId	
 	//and	updates	the	object’s	attributes.
 	public boolean fetch()
 	{
+		myDB.connect();
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(userId);
-		ArrayList<ArrayList<String>> dataList = JavaConnection.mdb.getData("SELECT * FROM users WHERE UserId = ?", values);
+		ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM users WHERE UserId = ?", values);
 		if(dataList != null)
 		{
 			fName = dataList.get(1).get(1).toString();
@@ -74,6 +78,7 @@ public class User
 			role = dataList.get(1).get(5).toString();
 			return true;
 		}
+		
 		else
 		{
 			return false;
@@ -85,6 +90,7 @@ public class User
 	//object’s attribute values.
 	public boolean post()
 	{
+		myDB.connect();
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(fName); 
 		values.add(lName);
@@ -92,7 +98,7 @@ public class User
 		values.add(pswd);
 		values.add(role);
 		values.add(userId);
-		return JavaConnection.mdb.setData("UPDATE users FName = ?, LName = ?, Email = ?, Pswd = ?, Role = ? WHERE UserId = ?", values);
+		return myDB.setData("UPDATE users FName = ?, LName = ?, Email = ?, Pswd = ?, Role = ? WHERE UserId = ?", values);
 	}
 	
 	// put	inserts	the	object’s	attribute	values	into	the	database	as	a	new	record.
@@ -105,7 +111,7 @@ public class User
 		values.add(email);
 		values.add(pswd);
 		values.add(role);
-		return JavaConnection.mdb.setData("INSERT INTO users (UserId,FName,LName,Email,Pswd,Role) VALUES(?,?,?,?)", values);
+		return myDB.setData("INSERT INTO users (UserId,FName,LName,Email,Pswd,Role) VALUES(?,?,?,?)", values);
 	}
 	
 	// delete removes	from	the	database	any	data	corresponding	to	the	object’s userId.
@@ -113,6 +119,6 @@ public class User
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(userId);
-		return JavaConnection.mdb.setData("DELETE FROM users WHERE userID = ?", values);
+		return myDB.setData("DELETE FROM users WHERE userID = ?", values);
 	}
 }

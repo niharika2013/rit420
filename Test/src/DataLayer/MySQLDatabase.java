@@ -1,35 +1,34 @@
 package DataLayer;
 
 import java.sql.*;
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
 import java.util.*;
 
 public class MySQLDatabase{
 
 	// Connection Data
 	public Connection connection;
-	private final String address = "jdbc:mysql://localhost/pe1";
-	private final String userName = "root";
+	private final String address = "jdbc:mysql://127.0.0.1";
+	private final String userName = "dblab";
 	private final String password = "";
+	private final String driver = "com.mysql.jdbc.Driver";
+	private Connection myConnection;
 	
 	public MySQLDatabase()
 	{
 	}
 	
-	public boolean connect()
-	{
-		try
-		{
-			connection = DriverManager.getConnection(address, userName, password);
+	public boolean connect(){
+		try{
+			Class.forName(driver).newInstance();
+			this.myConnection = DriverManager.getConnection(address, userName, password);
+			System.out.println("Connection sucessful!");
 			return true;
 		}
-		catch (Exception e)
-		{
-			//e.printStackTrace();
+		catch(Exception e) {
+			e.getMessage();
+			System.out.println("Connection failed.");
 			return false;
-		}	
+		}
 	}
 	
 	public boolean close()
@@ -37,38 +36,43 @@ public class MySQLDatabase{
 		try
 		{
 			connection.close();
+			System.out.println("Connection Closed");
 			return true;
 		}
-		catch (Exception e) {
+		catch (SQLException e) {
 			//e.printStackTrace();
+			System.err.println(e.getMessage());
 			return false;
 		}
 	}
 	
 	//Add	a	method	named	getData	that	accepts	an	SQL string	and	returns	a	2-d	ArrayList	(or	List	
 	//if	using	.NET). This	will	be	used	for	doing	“SELECT”	sql	statements.
-	public ArrayList getData(String sql)
+	public ArrayList<String> getData(String sql)
 	{
 		try
 		{
+			connect();
 			//i. getData	should	perform	the	query	that	was	passed	in	
 			Statement getData = connection.createStatement();
 			ResultSet data = getData.executeQuery(sql);
 			//then	convert	the ResultSet	(or	RecordSet)	into	a	simple	2-d	ArrayList	(or	List).
 			ResultSetMetaData rsmd = data.getMetaData();
 			int numCols = rsmd.getColumnCount();
-			ArrayList dataList = new ArrayList();
+			ArrayList<String> dataList = new ArrayList<String>();
 			while (data.next()){
 				//ii. The	first	row	in	the	ArrayList	should	be	the	column	names.	
 				for (int i=1; i<=numCols; i++) {
 					dataList.add(data.getString(i)); 
-   			}
+				}
 			}
+			close();
 			return dataList;
 		}
 		//If the query	fails	to	run, return null.
-		catch(Exception e)
+		catch(SQLException e)
 		{
+			System.err.println(e.getMessage());
 			return null;
 		}
 	}
@@ -80,13 +84,16 @@ public class MySQLDatabase{
 		//i. setData	should	perform	the	query	that	was	passed.
 		try
 		{	
+			connect();
 			Statement statement = connection.createStatement();
 			statement.execute(sql);
+			close();
 			return true;
 		}
 		//ii. If the query runs successfully, it should return true. Otherwise it should return false.
-		catch (Exception e)
+		catch (SQLException e)
 		{
+			System.err.println(e.getMessage());
 			return false;
 		}
 	}
@@ -106,8 +113,9 @@ public class MySQLDatabase{
 			//returns a prepared statement
 			return statement;
 		}
-		catch(Exception e)
+		catch(SQLException e)
 		{
+			System.err.println(e.getMessage());
 			return null;
 		}
 	}
@@ -118,6 +126,7 @@ public class MySQLDatabase{
 	{
 		try
 		{
+			connect();
 			//This method should call the “prepare” method
 			PreparedStatement statement = prepare(sql, values);
 			//execute the statement
@@ -142,10 +151,12 @@ public class MySQLDatabase{
    			}
 				dataList.add(row);
 			}
+			close();
 			return dataList;
 		}
-		catch(Exception e)
+		catch(SQLException e)
 		{
+			System.err.println(e.getMessage());
 			return null;
 		}
 	}
@@ -156,11 +167,13 @@ public class MySQLDatabase{
 	{
 		try
 		{
+			connect();
 			//This method should call the “prepare” method
 			PreparedStatement statement = prepare(sql, values);
 			//execute the statement
 			statement.execute();
 			//return a Boolean indicating success or failure of the query exection.
+			close();
 			return true;
 		}
 		catch(Exception e)
@@ -176,6 +189,7 @@ public class MySQLDatabase{
 	{
 		try
 		{
+			connect();
 			//Write code in executeProc so that the values are bound 
 			CallableStatement statement = connection.prepareCall(storedProcedure);
 			for(int i = 0; i < values.size(); i++)
@@ -184,10 +198,13 @@ public class MySQLDatabase{
 			}
 			//the procedure is executed
 			//Pass back any result from the stored procedure.
-			return statement.executeUpdate();
+			statement.executeUpdate();
+			close();
+			return 1;
 		}
-		catch(Exception e)
+		catch(SQLException e)
 		{
+			System.err.println(e.getMessage());
 			return 0;
 		}
 	}
@@ -200,8 +217,9 @@ public class MySQLDatabase{
 			connection.setAutoCommit(false);
 			return true;
 		}
-		catch(Exception e)
+		catch(SQLException e)
 		{
+			System.err.println(e.getMessage());
 			return false;
 		}
 	}
@@ -214,8 +232,9 @@ public class MySQLDatabase{
 			connection.setAutoCommit(true);
 			return true;
 		}
-		catch(Exception e)
+		catch(SQLException e)
 		{
+			System.err.println(e.getMessage());
 			return false;
 		}
 	}
@@ -227,8 +246,9 @@ public class MySQLDatabase{
 			connection.rollback();
 			return true;
 		}
-		catch(Exception e)
+		catch(SQLException e)
 		{
+			System.err.println(e.getMessage());
 			return false;
 		}
 	}
