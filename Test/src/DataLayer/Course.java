@@ -14,6 +14,7 @@ public class Course
 	private String year;
 	private String courseNumber;
 	private String courseName;
+	private MySQLDatabase myDB;
 	
 	// Provide	a	default	constructor.
 	public Course()
@@ -21,19 +22,21 @@ public class Course
 	}
 	
 	// Provide	a	constructor	that	accepts	and	sets	the	courseId.
-	public Course(String courseId)
+	public Course(String courseId, MySQLDatabase myDB)
 	{
 		this.courseId = courseId;
+		this.myDB = myDB;
 	}
 	
 	// Provide	a	constructor	that	accepts	and	sets	all	attributes.
-	public Course(String userId, String courseId, String year, String courseNumber, String courseName)
+	public Course(String userId, String courseId, String year, String courseNumber, String courseName, MySQLDatabase myDB)
 	{
 		this.userId = userId;
 		this.courseId = courseId;
 		this.year = year;
 		this.courseNumber = courseNumber;
 		this.courseName = courseName;
+		this.myDB = myDB;
 	}
 	
 	// Provide	accessors	and	mutators	for	all	attributes.
@@ -51,6 +54,9 @@ public class Course
 	
 	public void setCourseName(String courseName){this.courseName = courseName;}
 	public String getCourseName(){return courseName;}
+	
+	public void setDB(MySQLDatabase myDB){this.myDB = myDB;}
+	public MySQLDatabase getDB(){return myDB;}
 	
 	// fetch	uses	the	object’s	courseId	attribute	and	the	Database	class
 	//getData	method	to	retrieve	the	database	values	for	that	particular	courseId	
@@ -86,7 +92,7 @@ public class Course
 		values.add(courseNumber);
 		values.add(courseName);
 		values.add(courseId);
-		return JavaConnection.mdb.setData("UPDATE course UserId = ?, Year = ?, CourseNumber = ?, CourseName = ? WHERE CourseId = ?", values);
+		return myDB.setData("UPDATE course UserId = ?, Year = ?, CourseNumber = ?, CourseName = ? WHERE CourseId = ?", values);
 	}
 	
 	// put	inserts	the	object’s	attribute	values	into	the	database	as	a	new	record.
@@ -98,7 +104,7 @@ public class Course
 		values.add(year);
 		values.add(courseNumber);
 		values.add(courseName);
-		return JavaConnection.mdb.setData("INSERT INTO course (UserId,CourseId,Year,CourseNumber,CourseName) VALUES(?,?,?,?,?)", values);
+		return myDB.setData("INSERT INTO course (UserId,CourseId,Year,CourseNumber,CourseName) VALUES(?,?,?,?,?)", values);
 	}
 	
 	// delete removes	from	the	database	any	data	corresponding	to	the	object’s courseId.

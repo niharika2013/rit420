@@ -1,9 +1,5 @@
 package DataLayer;
 
-import java.sql.*;
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
 import java.util.*;
 
 public class Service
@@ -14,6 +10,7 @@ public class Service
 	private String year;
 	private String description;
 	private String role;
+	private MySQLDatabase myDB;
 	
 	// Provide	a	default	constructor.
 	public Service()
@@ -21,19 +18,21 @@ public class Service
 	}
 	
 	// Provide	a	constructor	that	accepts	and	sets	the	serviceId.
-	public Service(String serviceId)
+	public Service(String serviceId, MySQLDatabase myDB)
 	{
 		this.serviceId = serviceId;
+		this.myDB = myDB;
 	}
 	
 	// Provide	a	constructor	that	accepts	and	sets	all	attributes.
-	public Service(String userId, String serviceId, String year, String description, String role)
+	public Service(String userId, String serviceId, String year, String description, String role, MySQLDatabase myDB)
 	{
 		this.userId = userId;
 		this.serviceId = serviceId;
 		this.year = year;
 		this.description = description;
 		this.role = role;
+		this.myDB = myDB;
 	}
 	
 	// Provide	accessors	and	mutators	for	all	attributes.
@@ -52,6 +51,9 @@ public class Service
 	public void setRole(String role){this.role = role;}
 	public String getRole(){return role;}
 	
+	public void setDB(MySQLDatabase myDB){this.myDB = myDB;}
+	public MySQLDatabase getDB(){return myDB;}
+	
 	// fetch	uses	the	object’s	serviceId	attribute	and	the	Database	class
 	//getData	method	to	retrieve	the	database	values	for	that	particular	serviceId	
 	//and	updates	the	object’s	attributes.
@@ -59,7 +61,7 @@ public class Service
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(serviceId);
-		ArrayList<ArrayList<String>> dataList = JavaConnection.mdb.getData("SELECT * FROM services WHERE ServiceId = ?", values);
+		ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM services WHERE ServiceId = ?", values);
 		if(dataList != null)
 		{
 			userId = dataList.get(1).get(1).toString();
@@ -86,7 +88,7 @@ public class Service
 		values.add(description);
 		values.add(role);
 		values.add(serviceId);
-		return JavaConnection.mdb.setData("UPDATE service UserId = ?, Year = ?, Description = ?, Role = ? WHERE ServiceId = ?", values);
+		return myDB.setData("UPDATE service UserId = ?, Year = ?, Description = ?, Role = ? WHERE ServiceId = ?", values);
 	}
 	
 	// put	inserts	the	object’s	attribute	values	into	the	database	as	a	new	record.
@@ -98,7 +100,7 @@ public class Service
 		values.add(year);
 		values.add(description);
 		values.add(role);
-		return JavaConnection.mdb.setData("INSERT INTO service (UserId,ServiceId,Year,Description,Role) VALUES(?,?,?,?,?)", values);
+		return myDB.setData("INSERT INTO service (UserId,ServiceId,Year,Description,Role) VALUES(?,?,?,?,?)", values);
 	}
 	
 	// delete removes	from	the	database	any	data	corresponding	to	the	object’s serviceId.
@@ -106,6 +108,6 @@ public class Service
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(serviceId);
-		return JavaConnection.mdb.setData("DELETE FROM service WHERE serviceID = ?", values);
+		return myDB.setData("DELETE FROM service WHERE serviceID = ?", values);
 	}
 }
