@@ -7,9 +7,9 @@ public class MySQLDatabase{
 
 	// Connection Data
 	public Connection connection;
-	private final String address = "jdbc:mysql://127.0.0.1";
-	private final String userName = "dblab";
-	private final String password = "";
+	private final String address = "jdbc:mysql://db4395955151.db.1and1.com";
+	private final String userName = "dbo439595151";
+	private final String password = "W3S4allBu1ldAD4t4b4se!!!";
 	private final String driver = "com.mysql.jdbc.Driver";
 	private Connection myConnection;
 	
