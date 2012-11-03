@@ -35,17 +35,17 @@ public class Users {
 	 // Get all the users and basic details
     public boolean fetch()
     {
-		ArrayList<ArrayList<String>> dataList = JavaConnection.mdb.getData("SELECT * FROM users");
-		if(dataList != null)
-		{
+        ArrayList<ArrayList<String>> dataList = JavaConnection.mdb.getData("SELECT * FROM users", null);
+        if(dataList != null)
+        {
       	for (int i = 1; i <= dataList.size(); i++)
          {
-         	User e = new User(dataList.get(i).get(1).toString());
-				e.setFName(dataList.get(i).get(2).toString());
-				e.setLName(dataList.get(i).get(3).toString());
-				e.setEmail(dataList.get(i).get(4).toString());
-				e.setPswd(dataList.get(i).get(5).toString());
-				e.setRole(dataList.get(i).get(6).toString());
+            User e = new User(dataList.get(i).get(1).toString());
+            e.setFName(dataList.get(i).get(2).toString());
+            e.setLName(dataList.get(i).get(3).toString());
+            e.setEmail(dataList.get(i).get(4).toString());
+            e.setPswd(dataList.get(i).get(5).toString());
+            e.setRole(dataList.get(i).get(6).toString());
             users.add(e);
          }
          return true;
