@@ -1,9 +1,5 @@
 package DataLayer;
 
-import java.sql.*;
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
 import java.util.*;
 /**
  *
@@ -40,7 +36,7 @@ public class Users {
         {
       	for (int i = 1; i <= dataList.size(); i++)
          {
-            User e = new User(dataList.get(i).get(1).toString());
+            User e = new User(dataList.get(i).get(1).toString(), null);
             e.setFName(dataList.get(i).get(2).toString());
             e.setLName(dataList.get(i).get(3).toString());
             e.setEmail(dataList.get(i).get(4).toString());

@@ -1,9 +1,5 @@
 package DataLayer;
 
-import java.sql.*;
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
 import java.util.*;
 /**
  *
@@ -35,7 +31,7 @@ public class Services {
 	 // Get all the services and basic details
     public boolean fetch()
     {
-		ArrayList<ArrayList<String>> dataList = JavaConnection.mdb.getData("SELECT * FROM services");
+		ArrayList<ArrayList<String>> dataList = JavaConnection.mdb.getData("SELECT * FROM services", null);
 		if(dataList != null)
 		{
       	for (int i = 1; i <= dataList.size(); i++)

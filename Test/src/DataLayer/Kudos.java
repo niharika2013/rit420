@@ -35,7 +35,7 @@ public class Kudos {
 	 // Get all the kudos and basic details
     public boolean fetch()
     {
-		ArrayList<ArrayList<String>> dataList = JavaConnection.mdb.getData("SELECT * FROM kudos");
+		ArrayList<ArrayList<String>> dataList = JavaConnection.mdb.getData("SELECT * FROM kudos", null);
 		if(dataList != null)
 		{
       	for (int i = 1; i <= dataList.size(); i++)

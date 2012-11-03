@@ -1,9 +1,5 @@
 package DataLayer;
 
-import java.sql.*;
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
 import java.util.*;
 /**
  *
@@ -35,7 +31,7 @@ public class Pubs {
 	 // Get all the pubs and basic details
     public boolean fetch()
     {
-		ArrayList<ArrayList<String>> dataList = JavaConnection.mdb.getData("SELECT * FROM pubs");
+		ArrayList<ArrayList<String>> dataList = JavaConnection.mdb.getData("SELECT * FROM pubs", null);
 		if(dataList != null)
 		{
       	for (int i = 1; i <= dataList.size(); i++)

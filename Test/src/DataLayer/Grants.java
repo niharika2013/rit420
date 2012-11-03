@@ -1,9 +1,5 @@
 package DataLayer;
 
-import java.sql.*;
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
 import java.util.*;
 /**
  *
@@ -35,7 +31,7 @@ public class Grants {
 	 // Get all the grants and basic details
     public boolean fetch()
     {
-		ArrayList<ArrayList<String>> dataList = JavaConnection.mdb.getData("SELECT * FROM grants");
+		ArrayList<ArrayList<String>> dataList = JavaConnection.mdb.getData("SELECT * FROM grants", null);
 		if(dataList != null)
 		{
       	for (int i = 1; i <= dataList.size(); i++)
