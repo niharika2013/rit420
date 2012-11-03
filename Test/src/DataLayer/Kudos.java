@@ -1,9 +1,5 @@
 package DataLayer;
 
-import java.sql.*;
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
 import java.util.*;
 /**
  *
@@ -35,7 +31,7 @@ public class Kudos {
 	 // Get all the kudos and basic details
     public boolean fetch() throws DLException
     {
-		ArrayList<ArrayList<String>> dataList = JavaConnection.mdb.getData("SELECT * FROM kudos", null);
+		ArrayList<ArrayList<String>> dataList = MySQLDatabase.mdb.getData("SELECT * FROM kudos", null);
 		if(dataList != null)
 		{
       	for (int i = 1; i <= dataList.size(); i++)

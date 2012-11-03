@@ -19,13 +19,13 @@ public class User
 	}
 	
 	// Provide	a	constructor	that	accepts	and	sets	the	userId.
-	public User(String userId, MySQLDatabase myDB)
+	public User(String userId)
 	{
 		this.userId = userId;
 	}
 	
 	// Provide	a	constructor	that	accepts	and	sets	all	attributes.
-	public User(String userId, String fName, String lName, String email, String pswd, String role, MySQLDatabase myDB)
+	public User(String userId, String fName, String lName, String email, String pswd, String role)
 	{
 		this.userId = userId;
 		this.fName = fName;
@@ -59,10 +59,10 @@ public class User
 	//and	updates	the	object�s	attributes.
 	public boolean fetch() throws DLException
 	{
-		JavaConnection.mdb.connect();
+		MySQLDatabase.mdb.connect();
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(userId);
-		ArrayList<ArrayList<String>> dataList = JavaConnection.mdb.getData("SELECT * FROM users WHERE UserId = ?", values);
+		ArrayList<ArrayList<String>> dataList = MySQLDatabase.mdb.getData("SELECT * FROM users WHERE UserId = ?", values);
 		if(dataList != null)
 		{
 			fName = dataList.get(1).get(1).toString();
@@ -84,7 +84,7 @@ public class User
 	//object�s attribute values.
 	public boolean post() throws DLException
 	{
-		JavaConnection.mdb.connect();
+		MySQLDatabase.mdb.connect();
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(fName); 
 		values.add(lName);
@@ -92,12 +92,14 @@ public class User
 		values.add(pswd);
 		values.add(role);
 		values.add(userId);
-		return JavaConnection.mdb.setData("UPDATE users FName = ?, LName = ?, Email = ?, Pswd = ?, Role = ? WHERE UserId = ?", values);
+		return MySQLDatabase.mdb.setData("UPDATE users FName = ?, LName = ?, Email = ?, Pswd = ?, Role = ? WHERE UserId = ?", values);
 	}
 	
 	// put	inserts	the	object�s	attribute	values	into	the	database	as	a	new	record.
 	public boolean put()
 	{
+            try
+            {
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(userId);
 		values.add(fName);
@@ -105,14 +107,26 @@ public class User
 		values.add(email);
 		values.add(pswd);
 		values.add(role);
-		return JavaConnection.mdb.setData("INSERT INTO users (UserId,FName,LName,Email,Pswd,Role) VALUES(?,?,?,?)", values);
-	}
+		return MySQLDatabase.mdb.setData("INSERT INTO users (UserId,FName,LName,Email,Pswd,Role) VALUES(?,?,?,?)", values);
+            }
+            catch(DLException e)
+            {
+                return false;
+            }
+        }
 	
 	// delete removes	from	the	database	any	data	corresponding	to	the	object�s userId.
 	public boolean delete()
 	{
-		ArrayList<String> values = new ArrayList<String>(0);
-		values.add(userId);
-		return JavaConnection.mdb.setData("DELETE FROM users WHERE userID = ?", values);
-	}
+            try
+            {
+                ArrayList<String> values = new ArrayList<String>(0);
+                values.add(userId);
+                return MySQLDatabase.mdb.setData("DELETE FROM users WHERE userID = ?", values);
+            }
+            catch(DLException e)
+            {
+                return false;
+            }
+        }
 }

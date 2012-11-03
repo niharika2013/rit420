@@ -55,7 +55,7 @@ public class Service
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(serviceId);
-		ArrayList<ArrayList<String>> dataList = JavaConnection.mdb.getData("SELECT * FROM services WHERE ServiceId = ?", values);
+		ArrayList<ArrayList<String>> dataList = MySQLDatabase.mdb.getData("SELECT * FROM services WHERE ServiceId = ?", values);
 		if(dataList != null)
 		{
 			userId = dataList.get(1).get(1).toString();
@@ -76,14 +76,21 @@ public class Service
 	//object�s attribute values.
 	public boolean post()
 	{
+            try
+            {
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(userId); 
 		values.add(year);
 		values.add(description);
 		values.add(role);
 		values.add(serviceId);
-		return JavaConnection.mdb.setData("UPDATE service UserId = ?, Year = ?, Description = ?, Role = ? WHERE ServiceId = ?", values);
-	}
+		return MySQLDatabase.mdb.setData("UPDATE service UserId = ?, Year = ?, Description = ?, Role = ? WHERE ServiceId = ?", values);
+            }
+            catch(DLException e)
+            {
+                return false;
+            }
+        }
 	
 	// put	inserts	the	object�s	attribute	values	into	the	database	as	a	new	record.
 	public boolean put()
@@ -94,7 +101,7 @@ public class Service
 		values.add(year);
 		values.add(description);
 		values.add(role);
-		return JavaConnection.mdb.setData("INSERT INTO service (UserId,ServiceId,Year,Description,Role) VALUES(?,?,?,?,?)", values);
+		return MySQLDatabase.mdb.setData("INSERT INTO service (UserId,ServiceId,Year,Description,Role) VALUES(?,?,?,?,?)", values);
 	}
 	
 	// delete removes	from	the	database	any	data	corresponding	to	the	object�s serviceId.
@@ -102,6 +109,6 @@ public class Service
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(serviceId);
-		return JavaConnection.mdb.setData("DELETE FROM service WHERE serviceID = ?", values);
+		return MySQLDatabase.mdb.setData("DELETE FROM service WHERE serviceID = ?", values);
 	}
 }

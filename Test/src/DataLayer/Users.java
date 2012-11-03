@@ -31,12 +31,12 @@ public class Users {
 	 // Get all the users and basic details
     public boolean fetch() throws DLException
     {
-        ArrayList<ArrayList<String>> dataList = JavaConnection.mdb.getData("SELECT * FROM users", null);
+        ArrayList<ArrayList<String>> dataList = MySQLDatabase.mdb.getData("SELECT * FROM users", null);
         if(dataList != null)
         {
       	for (int i = 1; i <= dataList.size(); i++)
          {
-            User e = new User(dataList.get(i).get(1).toString(), null);
+            User e = new User(dataList.get(i).get(1).toString());
             e.setFName(dataList.get(i).get(2).toString());
             e.setLName(dataList.get(i).get(3).toString());
             e.setEmail(dataList.get(i).get(4).toString());
