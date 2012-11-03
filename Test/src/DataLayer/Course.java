@@ -51,24 +51,29 @@ public class Course
 	// fetch	uses	the	object�s	courseId	attribute	and	the	Database	class
 	//getData	method	to	retrieve	the	database	values	for	that	particular	courseId	
 	//and	updates	the	object�s	attributes.
-	public boolean fetch()
+	public boolean fetch() throws DLException
 	{
-		ArrayList<String> values = new ArrayList<String>(0);
-		values.add(courseId);
-		ArrayList<ArrayList<String>> dataList = JavaConnection.mdb.getData("SELECT * FROM courses WHERE CourseId = ?", values);
-		if(dataList != null)
-		{
-			userId = dataList.get(1).get(1).toString();
-			courseId = dataList.get(1).get(2).toString();
-			year = dataList.get(1).get(3).toString();
-			courseNumber = dataList.get(1).get(4).toString();
-			courseName = dataList.get(1).get(5).toString();
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+		try{
+                    ArrayList<String> values = new ArrayList<String>(0);
+                    values.add(courseId);
+                    ArrayList<ArrayList<String>> dataList = JavaConnection.mdb.getData("SELECT * FROM courses WHERE CourseId = ?", values);
+                    if(dataList != null)
+                    {
+                            userId = dataList.get(1).get(1).toString();
+                            courseId = dataList.get(1).get(2).toString();
+                            year = dataList.get(1).get(3).toString();
+                            courseNumber = dataList.get(1).get(4).toString();
+                            courseName = dataList.get(1).get(5).toString();
+                            return true;
+                    }
+                    else
+                    {
+                            return false;
+                    }
+                }
+                catch(DLException e){
+                    throw new DLException(e);
+                }
 		
 	}
 	

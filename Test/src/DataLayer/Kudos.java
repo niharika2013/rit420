@@ -33,7 +33,7 @@ public class Kudos {
     }
     
 	 // Get all the kudos and basic details
-    public boolean fetch()
+    public boolean fetch() throws DLException
     {
 		ArrayList<ArrayList<String>> dataList = JavaConnection.mdb.getData("SELECT * FROM kudos", null);
 		if(dataList != null)

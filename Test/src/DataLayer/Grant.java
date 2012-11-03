@@ -61,7 +61,7 @@ public class Grant
 	// fetch	uses	the	object�s	grantId	attribute	and	the	Database	class
 	//getData	method	to	retrieve	the	database	values	for	that	particular	grantId	
 	//and	updates	the	object�s	attributes.
-	public boolean fetch()
+	public boolean fetch() throws DLException
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(grantId);

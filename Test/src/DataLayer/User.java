@@ -57,7 +57,7 @@ public class User
 	// fetch	uses	the	object�s	userId	attribute	and	the	Database	class
 	//getData	method	to	retrieve	the	database	values	for	that	particular	userId	
 	//and	updates	the	object�s	attributes.
-	public boolean fetch()
+	public boolean fetch() throws DLException
 	{
 		JavaConnection.mdb.connect();
 		ArrayList<String> values = new ArrayList<String>(0);
@@ -82,7 +82,7 @@ public class User
 	
 	// post updates the database values, for that object�s userId, using the	
 	//object�s attribute values.
-	public boolean post()
+	public boolean post() throws DLException
 	{
 		JavaConnection.mdb.connect();
 		ArrayList<String> values = new ArrayList<String>(0);

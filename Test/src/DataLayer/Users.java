@@ -29,7 +29,7 @@ public class Users {
     }
     
 	 // Get all the users and basic details
-    public boolean fetch()
+    public boolean fetch() throws DLException
     {
         ArrayList<ArrayList<String>> dataList = JavaConnection.mdb.getData("SELECT * FROM users", null);
         if(dataList != null)

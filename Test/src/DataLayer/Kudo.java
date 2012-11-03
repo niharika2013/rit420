@@ -46,7 +46,7 @@ public class Kudo
 	// fetch	uses	the	object�s	kudoId	attribute	and	the	Database	class�	
 	//getData	method	to	retrieve	the	database	values	for	that	particular	kudoId	
 	//and	updates	the	object�s	attributes.
-	public boolean fetch()
+	public boolean fetch() throws DLException
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(kudoId);

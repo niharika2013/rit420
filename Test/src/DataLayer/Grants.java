@@ -29,7 +29,7 @@ public class Grants {
     }
     
 	 // Get all the grants and basic details
-    public boolean fetch()
+    public boolean fetch() throws DLException
     {
 		ArrayList<ArrayList<String>> dataList = JavaConnection.mdb.getData("SELECT * FROM grants", null);
 		if(dataList != null)
