@@ -1,9 +1,5 @@
 package DataLayer;
 
-import java.sql.*;
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
 import java.util.*;
 
 public class Course
@@ -58,9 +54,9 @@ public class Course
 	public void setDB(MySQLDatabase myDB){this.myDB = myDB;}
 	public MySQLDatabase getDB(){return myDB;}
 	
-	// fetch	uses	the	object’s	courseId	attribute	and	the	Database	class
+	// fetch	uses	the	objectï¿½s	courseId	attribute	and	the	Database	class
 	//getData	method	to	retrieve	the	database	values	for	that	particular	courseId	
-	//and	updates	the	object’s	attributes.
+	//and	updates	the	objectï¿½s	attributes.
 	public boolean fetch()
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
@@ -82,8 +78,8 @@ public class Course
 		
 	}
 	
-	// post updates the database values, for that object’s courseId, using the	
-	//object’s attribute values.
+	// post updates the database values, for that objectï¿½s courseId, using the	
+	//objectï¿½s attribute values.
 	public boolean post()
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
@@ -95,7 +91,7 @@ public class Course
 		return myDB.setData("UPDATE course UserId = ?, Year = ?, CourseNumber = ?, CourseName = ? WHERE CourseId = ?", values);
 	}
 	
-	// put	inserts	the	object’s	attribute	values	into	the	database	as	a	new	record.
+	// put	inserts	the	objectï¿½s	attribute	values	into	the	database	as	a	new	record.
 	public boolean put()
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
@@ -107,7 +103,7 @@ public class Course
 		return myDB.setData("INSERT INTO course (UserId,CourseId,Year,CourseNumber,CourseName) VALUES(?,?,?,?,?)", values);
 	}
 	
-	// delete removes	from	the	database	any	data	corresponding	to	the	object’s courseId.
+	// delete removes	from	the	database	any	data	corresponding	to	the	objectï¿½s courseId.
 	public boolean delete()
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
