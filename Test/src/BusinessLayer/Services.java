@@ -1,8 +1,7 @@
 package BusinessLayer;
 
 import DataLayer.DLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
  *

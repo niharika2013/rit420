@@ -24,7 +24,7 @@ public class Pub
 	}
 	
 	// Provide	a	constructor	that	accepts	and	sets	all	attributes.
-	public Pub(String userId, String pubId, String year, String citation, String tease, String status, MySQLDatabase myDB)
+	public Pub(String userId, String pubId, String year, String citation, String tease, String status)
 	{
 		this.userId = userId;
 		this.pubId = pubId;
@@ -60,7 +60,7 @@ public class Pub
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(pubId);
-		ArrayList<ArrayList<String>> dataList = MySQLDatabase.mdb.getData("SELECT * FROM pubs WHERE PubId = ?", values);
+		ArrayList<ArrayList<String>> dataList = MySQLDatabase.getDB().getData("SELECT * FROM pubs WHERE PubId = ?", values);
 		if(dataList != null)
 		{
 			userId = dataList.get(1).get(1).toString();
@@ -89,7 +89,7 @@ public class Pub
 		values.add(tease);
 		values.add(status);
 		values.add(pubId);
-		return MySQLDatabase.mdb.setData("UPDATE pub UserId = ?, Year = ?, Citation = ?, Tease = ?, Status = ? WHERE PubId = ?", values);
+		return MySQLDatabase.getDB().setData("UPDATE pub UserId = ?, Year = ?, Citation = ?, Tease = ?, Status = ? WHERE PubId = ?", values);
 	}
 	
 	// put	inserts	the	object�s	attribute	values	into	the	database	as	a	new	record.
@@ -102,7 +102,7 @@ public class Pub
 		values.add(citation);
 		values.add(tease);
 		values.add(status);
-		return MySQLDatabase.mdb.setData("INSERT INTO pub (UserId,PubId,Year,Citation,Tease,Status) VALUES(?,?,?,?,?,?)", values);
+		return MySQLDatabase.getDB().setData("INSERT INTO pub (UserId,PubId,Year,Citation,Tease,Status) VALUES(?,?,?,?,?,?)", values);
 	}
 	
 	// delete removes	from	the	database	any	data	corresponding	to	the	object�s pubId.
@@ -110,6 +110,6 @@ public class Pub
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(pubId);
-		return MySQLDatabase.mdb.setData("DELETE FROM pub WHERE pubID = ?", values);
+		return MySQLDatabase.getDB().setData("DELETE FROM pub WHERE pubID = ?", values);
 	}
 }
