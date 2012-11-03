@@ -31,7 +31,7 @@ public class Grants {
 	 // Get all the grants and basic details
     public boolean fetch() throws DLException
     {
-		ArrayList<ArrayList<String>> dataList = MySQLDatabase.mdb.getData("SELECT * FROM grants", null);
+		ArrayList<ArrayList<String>> dataList = MySQLDatabase.getDB().getData("SELECT * FROM grants", null);
 		if(dataList != null)
 		{
       	for (int i = 1; i <= dataList.size(); i++)

@@ -31,7 +31,7 @@ public class Courses {
 	 // Get all the courses and basic details
     public boolean fetch() throws DLException
     {
-        ArrayList<ArrayList<String>> dataList = MySQLDatabase.mdb.getData("SELECT * FROM courses", null);
+        ArrayList<ArrayList<String>> dataList = MySQLDatabase.getDB().getData("SELECT * FROM courses", null);
         if(dataList != null)
         {
             for (int i = 1; i <= dataList.size(); i++)
