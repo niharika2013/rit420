@@ -137,6 +137,7 @@ public class MySQLDatabase{
         try
         {
             connect();
+            System.out.println("Attempting to get data...");
             //This method should call the �prepare� method
             PreparedStatement statement = prepare(sql, values);
             //execute the statement
