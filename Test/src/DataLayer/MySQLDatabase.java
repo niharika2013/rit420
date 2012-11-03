@@ -6,7 +6,7 @@ import java.util.*;
 public class MySQLDatabase{
     
     // Rather important for Data Layer objects
-    protected static MySQLDatabase mdb = new MySQLDatabase();
+    private static MySQLDatabase mdb = new MySQLDatabase();
 
     // Connection Data
     protected Connection connection;
@@ -17,8 +17,13 @@ public class MySQLDatabase{
 
     private MySQLDatabase()
     {
+        
     }
-
+    
+    public static MySQLDatabase getDB(){
+        return mdb;
+    } 
+    
     protected boolean connect() throws DLException
     {
         try
@@ -69,6 +74,7 @@ public class MySQLDatabase{
                 //ii. The	first	row	in	the	ArrayList	should	be	the	column	names.	
                 for (int i=1; i<=numCols; i++)
                 {
+                    System.out.println(data.getString(i));
                     dataList.add(data.getString(i)); 
                 }
             }
@@ -113,6 +119,7 @@ public class MySQLDatabase{
             //binds the values
             for(int i = 1; i <= values.size(); i++)
             {
+                System.out.println("Setting data: " + values.get(i-1));
                 statement.setString(i, values.get(i-1));
             }
             //returns a prepared statement
@@ -152,6 +159,7 @@ public class MySQLDatabase{
                 row = new ArrayList<String>(numCols);
                 for (int i = 1; i <= numCols; i++)
                 {
+                    //System.out.println(data.getString(i));
                     row.add(data.getString(i)); 
                 }
                 dataList.add(row);

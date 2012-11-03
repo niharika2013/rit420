@@ -1,8 +1,7 @@
 package DataLayer;
 
-public class JavaConnection
-{
-    public JavaConnection()
-    {
+public class JavaConnection{
+    public static void main(String args[]){
+        
     }
 }
