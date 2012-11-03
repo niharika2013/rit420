@@ -96,6 +96,8 @@ public class Service
 	// put	inserts	the	object�s	attribute	values	into	the	database	as	a	new	record.
 	public boolean put() throws DLException
 	{
+            try
+            {
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(userId);
 		values.add(serviceId);
@@ -103,7 +105,12 @@ public class Service
 		values.add(description);
 		values.add(role);
 		return myDB.setData("INSERT INTO service (UserId,ServiceId,Year,Description,Role) VALUES(?,?,?,?,?)", values);
-	}
+            }
+            catch(Exception e)
+            {
+                throw new DLException(e);
+            }
+        }
 	
 	// delete removes	from	the	database	any	data	corresponding	to	the	object�s serviceId.
 	public boolean delete() throws DLException
