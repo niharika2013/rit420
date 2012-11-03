@@ -29,30 +29,25 @@ public class Courses {
     }
     
 	 // Get all the courses and basic details
-    public boolean fetch() throws DLException
+    public boolean fetch()
     {
-        try{
-            ArrayList<ArrayList<String>> dataList = JavaConnection.mdb.getData("SELECT * FROM courses", null);
-            if(dataList != null)
+        ArrayList<ArrayList<String>> dataList = MySQLDatabase.mdb.getData("SELECT * FROM courses", null);
+        if(dataList != null)
+        {
+            for (int i = 1; i <= dataList.size(); i++)
             {
-                for (int i = 1; i <= dataList.size(); i++)
-                {
-                    Course e = new Course(dataList.get(i).get(2).toString());
-                    e.setUserId(dataList.get(i).get(1).toString());
-                    e.setYear(dataList.get(i).get(3).toString());
-                    e.setCourseNumber(dataList.get(i).get(4).toString());
-                    e.setCourseName(dataList.get(i).get(5).toString());
-                    courses.add(e);
-                }
-                return true;
+                Course e = new Course(dataList.get(i).get(2).toString());
+                e.setUserId(dataList.get(i).get(1).toString());
+                e.setYear(dataList.get(i).get(3).toString());
+                e.setCourseNumber(dataList.get(i).get(4).toString());
+                e.setCourseName(dataList.get(i).get(5).toString());
+                courses.add(e);
             }
-            else
-            {
-                return false;
-            }
+            return true;
         }
-        catch(DLException e){
-            throw new DLException(e);
+        else
+        {
+            return false;
         }
     }
 }

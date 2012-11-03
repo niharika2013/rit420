@@ -14,7 +14,14 @@ public class Users extends DataLayer.Users {
     
     public void get()
     {
-        fetch();
+        try
+        {
+            fetch();
+        }
+        catch(Exception e)
+        {
+            
+        }
     }
     
 }

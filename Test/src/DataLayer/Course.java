@@ -51,29 +51,24 @@ public class Course
 	// fetch	uses	the	object�s	courseId	attribute	and	the	Database	class
 	//getData	method	to	retrieve	the	database	values	for	that	particular	courseId	
 	//and	updates	the	object�s	attributes.
-	public boolean fetch() throws DLException
+	public boolean fetch()
 	{
-		try{
-                    ArrayList<String> values = new ArrayList<String>(0);
-                    values.add(courseId);
-                    ArrayList<ArrayList<String>> dataList = JavaConnection.mdb.getData("SELECT * FROM courses WHERE CourseId = ?", values);
-                    if(dataList != null)
-                    {
-                            userId = dataList.get(1).get(1).toString();
-                            courseId = dataList.get(1).get(2).toString();
-                            year = dataList.get(1).get(3).toString();
-                            courseNumber = dataList.get(1).get(4).toString();
-                            courseName = dataList.get(1).get(5).toString();
-                            return true;
-                    }
-                    else
-                    {
-                            return false;
-                    }
-                }
-                catch(DLException e){
-                    throw new DLException(e);
-                }
+		ArrayList<String> values = new ArrayList<String>(0);
+		values.add(courseId);
+		ArrayList<ArrayList<String>> dataList = MySQLDatabase.mdb.getData("SELECT * FROM courses WHERE CourseId = ?", values);
+		if(dataList != null)
+		{
+			userId = dataList.get(1).get(1).toString();
+			courseId = dataList.get(1).get(2).toString();
+			year = dataList.get(1).get(3).toString();
+			courseNumber = dataList.get(1).get(4).toString();
+			courseName = dataList.get(1).get(5).toString();
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 		
 	}
 	
@@ -87,7 +82,7 @@ public class Course
 		values.add(courseNumber);
 		values.add(courseName);
 		values.add(courseId);
-		return JavaConnection.mdb.setData("UPDATE course UserId = ?, Year = ?, CourseNumber = ?, CourseName = ? WHERE CourseId = ?", values);
+		return MySQLDatabase.mdb.setData("UPDATE course UserId = ?, Year = ?, CourseNumber = ?, CourseName = ? WHERE CourseId = ?", values);
 	}
 	
 	// put	inserts	the	object�s	attribute	values	into	the	database	as	a	new	record.
@@ -99,7 +94,7 @@ public class Course
 		values.add(year);
 		values.add(courseNumber);
 		values.add(courseName);
-		return JavaConnection.mdb.setData("INSERT INTO course (UserId,CourseId,Year,CourseNumber,CourseName) VALUES(?,?,?,?,?)", values);
+		return MySQLDatabase.mdb.setData("INSERT INTO course (UserId,CourseId,Year,CourseNumber,CourseName) VALUES(?,?,?,?,?)", values);
 	}
 	
 	// delete removes	from	the	database	any	data	corresponding	to	the	object�s courseId.
@@ -107,6 +102,6 @@ public class Course
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(courseId);
-		return JavaConnection.mdb.setData("DELETE FROM course WHERE courseID = ?", values);
+		return MySQLDatabase.mdb.setData("DELETE FROM course WHERE courseID = ?", values);
 	}
 }

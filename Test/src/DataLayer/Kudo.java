@@ -50,7 +50,7 @@ public class Kudo
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(kudoId);
-		ArrayList<ArrayList<String>> dataList = JavaConnection.mdb.getData("SELECT * FROM kudos WHERE KudoId = ?", values);
+		ArrayList<ArrayList<String>> dataList = MySQLDatabase.mdb.getData("SELECT * FROM kudos WHERE KudoId = ?", values);
 		if(dataList != null)
 		{
 			userId = dataList.get(1).get(1).toString();
@@ -75,7 +75,7 @@ public class Kudo
 		values.add(year);
 		values.add(kudo);
 		values.add(kudoId);
-		return JavaConnection.mdb.setData("UPDATE kudos UserId = ?, year = ?, Kudo = ? WHERE KudoId = ?", values);
+		return MySQLDatabase.mdb.setData("UPDATE kudos UserId = ?, year = ?, Kudo = ? WHERE KudoId = ?", values);
 	}
 	
 	// put	inserts	the	object�s	attribute	values	into	the	database	as	a	new	record.
@@ -86,7 +86,7 @@ public class Kudo
 		values.add(kudoId);
 		values.add(year);
 		values.add(kudo);
-		return JavaConnection.mdb.setData("INSERT INTO kudos (UserId,KudoId,Year,Kudo) VALUES(?,?,?,?)", values);
+		return MySQLDatabase.mdb.setData("INSERT INTO kudos (UserId,KudoId,Year,Kudo) VALUES(?,?,?,?)", values);
 	}
 	
 	// delete removes	from	the	database	any	data	corresponding	to	the	object�s kudoId.
@@ -94,6 +94,6 @@ public class Kudo
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(kudoId);
-		return JavaConnection.mdb.setData("DELETE FROM kudos WHERE kudoID = ?", values);
+		return MySQLDatabase.mdb.setData("DELETE FROM kudos WHERE kudoID = ?", values);
 	}
 }

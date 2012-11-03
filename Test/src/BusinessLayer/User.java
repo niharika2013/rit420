@@ -31,18 +31,32 @@ public class User extends DataLayer.User {
 	//Passthrough methods
    public void get()
    {
-       fetch();
+       try
+       {
+           fetch();
+       }
+       catch(Exception e)
+       {
+           
+       }
    }
         
    public void save()
    {
        if(getUserId() != null)
        {
-		 	put();
+           put();
        }
        else
        {
-          post();
+           try
+           {
+            post();
+           }
+           catch(Exception e)
+           {
+           
+           }
        }
    }
 }
