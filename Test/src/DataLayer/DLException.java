@@ -14,7 +14,7 @@ public class DLException extends Exception {
 	 * @param args
 	 */
 	
-	ArrayList<ArrayList<String>> eList;
+	ArrayList<ArrayList<String>> eList = new ArrayList<ArrayList<String>>();
 	Exception ex;
 	
 	public DLException(Exception e){
@@ -23,7 +23,7 @@ public class DLException extends Exception {
 	}
 	
 	private void populateList(){
-		if(ex != null){
+		if(ex.getStackTrace() != null){
 			StackTraceElement[] trace = ex.getStackTrace();
 			ArrayList<String> traceList = new ArrayList<String>();
 			for (StackTraceElement element: trace){

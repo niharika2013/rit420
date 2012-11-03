@@ -10,9 +10,9 @@ public class MySQLDatabase{
 
     // Connection Data
     protected Connection connection;
-    private final String address = "jdbc:mysql://localhost/facultyactivity";
-    private final String userName = "root";
-    private final String password = "Dreamcast99";
+    private final String address = "jdbc:mysql://mysql.spoolishness.com/484project";
+    private final String userName = "484user";
+    private final String password = "484password";
     private final String driver = "com.mysql.jdbc.Driver";
 
     private MySQLDatabase()
@@ -30,6 +30,7 @@ public class MySQLDatabase{
         }
         catch(ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e)
         {
+            System.out.println("Connection failed");
             throw new DLException(e);
         }
     }

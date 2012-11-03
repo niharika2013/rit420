@@ -51,7 +51,7 @@ public class Course
 	// fetch	uses	the	object�s	courseId	attribute	and	the	Database	class
 	//getData	method	to	retrieve	the	database	values	for	that	particular	courseId	
 	//and	updates	the	object�s	attributes.
-	public boolean fetch()
+	public boolean fetch() throws DLException
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(courseId);
@@ -74,7 +74,7 @@ public class Course
 	
 	// post updates the database values, for that object�s courseId, using the	
 	//object�s attribute values.
-	public boolean post()
+	public boolean post() throws DLException
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(userId); 
@@ -86,7 +86,7 @@ public class Course
 	}
 	
 	// put	inserts	the	object�s	attribute	values	into	the	database	as	a	new	record.
-	public boolean put()
+	public boolean put() throws DLException
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(userId);
@@ -98,7 +98,7 @@ public class Course
 	}
 	
 	// delete removes	from	the	database	any	data	corresponding	to	the	object�s courseId.
-	public boolean delete()
+	public boolean delete() throws DLException
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(courseId);
