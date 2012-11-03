@@ -10,6 +10,7 @@ public class Pubs {
     
 	 // Array of all pubs
     private ArrayList<Pub> pubs = new ArrayList<Pub>(0);
+    MySQLDatabase myDB = new MySQLDatabase();
     
 	 // Default Constructor
     public Pubs()
@@ -31,7 +32,7 @@ public class Pubs {
 	 // Get all the pubs and basic details
     public boolean fetch() throws DLException
     {
-		ArrayList<ArrayList<String>> dataList = MySQLDatabase.getDB().getData("SELECT * FROM pubs", null);
+		ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM pubs", null);
 		if(dataList != null)
 		{
       	for (int i = 1; i <= dataList.size(); i++)

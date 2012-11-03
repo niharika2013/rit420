@@ -12,6 +12,7 @@ public class Grant
 	private String tease;
 	private String amount;
 	private String status;
+        private MySQLDatabase myDB = new MySQLDatabase();
 	
 	// Provide	a	default	constructor.
 	public Grant()
@@ -65,7 +66,7 @@ public class Grant
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(grantId);
-		ArrayList<ArrayList<String>> dataList = MySQLDatabase.getDB().getData("SELECT * FROM grants WHERE GrantId = ?", values);
+		ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM grants WHERE GrantId = ?", values);
 		if(dataList != null)
 		{
 			userId = dataList.get(1).get(1).toString();
@@ -97,7 +98,7 @@ public class Grant
 		values.add(amount);
 		values.add(status);
 		values.add(grantId);
-		return MySQLDatabase.getDB().setData("UPDATE grant UserId = ?, Year = ?, Citation = ?, Tease = ?, Amount = ?, Status = ? WHERE GrantId = ?", values);
+		return myDB.setData("UPDATE grant UserId = ?, Year = ?, Citation = ?, Tease = ?, Amount = ?, Status = ? WHERE GrantId = ?", values);
 	}
 	
 	// put	inserts	the	object�s	attribute	values	into	the	database	as	a	new	record.
@@ -115,7 +116,7 @@ public class Grant
 			System.out.println(value);
 		}
 		System.out.println("put() grant");
-		return MySQLDatabase.getDB().setData("INSERT INTO grant (UserId,GrantId,Year,Citation,Tease,Amount,Status) VALUES(?,?,?,?,?,?,?)", values);
+		return myDB.setData("INSERT INTO grant (UserId,GrantId,Year,Citation,Tease,Amount,Status) VALUES(?,?,?,?,?,?,?)", values);
 	}
 	
 	// delete removes	from	the	database	any	data	corresponding	to	the	object�s grantId.
@@ -123,6 +124,6 @@ public class Grant
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(grantId);
-		return MySQLDatabase.getDB().setData("DELETE FROM grant WHERE grantID = ?", values);
+		return myDB.setData("DELETE FROM grant WHERE grantID = ?", values);
 	}
 }
