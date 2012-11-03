@@ -1,5 +1,9 @@
 package BusinessLayer;
 
+import DataLayer.DLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Anthony Gentile
@@ -14,7 +18,11 @@ public class Kudos extends DataLayer.Kudos {
     
     public void get()
     {
-        fetch();
+        try {
+            fetch();
+        } catch (DLException e) {
+            e.log();
+        }
     }
     
 }

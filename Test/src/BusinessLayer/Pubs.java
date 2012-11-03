@@ -1,5 +1,9 @@
 package BusinessLayer;
 
+import DataLayer.DLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Anthony Gentile
@@ -12,9 +16,15 @@ public class Pubs extends DataLayer.Pubs {
     {
     }
     
-    public void get()
+    public boolean get()
     {
-        fetch();
+        try {
+            fetch();
+            return true;
+        } catch (DLException e) {
+            e.log();
+            return false;
+        }
     }
     
 }

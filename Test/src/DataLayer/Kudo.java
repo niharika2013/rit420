@@ -68,7 +68,7 @@ public class Kudo
 	
 	// post updates the database values, for that object�s kudoId, using the	
 	//object�s attribute values.
-	public boolean post()
+	public boolean post() throws DLException
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(userId); 
@@ -79,7 +79,7 @@ public class Kudo
 	}
 	
 	// put	inserts	the	object�s	attribute	values	into	the	database	as	a	new	record.
-	public boolean put()
+	public boolean put() throws DLException
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(userId);
@@ -90,7 +90,7 @@ public class Kudo
 	}
 	
 	// delete removes	from	the	database	any	data	corresponding	to	the	object�s kudoId.
-	public boolean delete()
+	public boolean delete() throws DLException
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(kudoId);

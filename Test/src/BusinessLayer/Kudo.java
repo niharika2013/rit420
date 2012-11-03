@@ -1,5 +1,7 @@
 package BusinessLayer;
 
+import DataLayer.DLException;
+
 /**
  *
  * @author Anthony Gentile
@@ -27,20 +29,34 @@ public class Kudo extends DataLayer.Kudo {
 	}
    
 	//Passthrough methods
-   public void get()
+   public boolean get()
    {
-       fetch();
+        try {
+            fetch();
+            return true;
+        } catch (DLException e) {
+            e.log();
+            return false;
+        }
    }
         
-   public void save()
+   public boolean save()
    {
-       if(getKudoId() != null)
-       {
-		 	put();
+       try{
+            if(getKudoId() != null)
+            {
+                             put();
+                             return true;
+            }
+            else
+            {
+               post();
+               return true;
+            }
        }
-       else
-       {
-          post();
+       catch(DLException e){
+           e.log();
+           return false;
        }
    }
 }

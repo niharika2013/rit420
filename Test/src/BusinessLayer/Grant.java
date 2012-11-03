@@ -1,5 +1,9 @@
 package BusinessLayer;
 
+import DataLayer.DLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Anthony Gentile
@@ -30,20 +34,34 @@ public class Grant extends DataLayer.Grant {
 	}
    
 	//Passthrough methods
-   public void get()
+   public boolean get()
    {
-       fetch();
+        try {
+            fetch();
+            return true;
+        } catch (DLException e) {
+            e.log();
+            return false;
+        }
    }
         
-   public void save()
+   public boolean save()
    {
-       if(getGrantId() != null)
-       {
-		 	put();
+       try{
+            if(getGrantId() != null)
+            {
+                             put();
+                             return true;
+            }
+            else
+            {
+               post();
+               return true;
+            }
        }
-       else
-       {
-          post();
+       catch(DLException e){
+           e.log();
+           return false;
        }
    }
 }

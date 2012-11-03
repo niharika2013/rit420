@@ -80,7 +80,7 @@ public class Pub
 	
 	// post updates the database values, for that object�s pubId, using the	
 	//object�s attribute values.
-	public boolean post()
+	public boolean post() throws DLException
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(userId); 
@@ -93,7 +93,7 @@ public class Pub
 	}
 	
 	// put	inserts	the	object�s	attribute	values	into	the	database	as	a	new	record.
-	public boolean put()
+	public boolean put() throws DLException
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(userId);
@@ -106,7 +106,7 @@ public class Pub
 	}
 	
 	// delete removes	from	the	database	any	data	corresponding	to	the	object�s pubId.
-	public boolean delete()
+	public boolean delete() throws DLException
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(pubId);
