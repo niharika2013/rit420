@@ -16,17 +16,15 @@ public class MySQLDatabase{
 	{
 	}
 	
-	public boolean connect(){
+	public boolean connect() throws DLException{
 		try{
 			Class.forName(driver).newInstance();
 			this.connection = DriverManager.getConnection(address, userName, password);
 			System.out.println("Connection sucessful!");
 			return true;
 		}
-		catch(Exception e) {
-			e.getMessage();
-			System.out.println("Connection failed.");
-			return false;
+		catch(ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+			throw new DLException(e);
 		}
 	}
 	
@@ -47,7 +45,7 @@ public class MySQLDatabase{
 	
 	//Add	a	method	named	getData	that	accepts	an	SQL string	and	returns	a	2-d	ArrayList	(or	List	
 	//if	using	.NET). This	will	be	used	for	doing	�SELECT�	sql	statements.
-	public ArrayList<String> getData(String sql)
+	public ArrayList<String> getData(String sql) throws DLException
 	{
 		try
 		{
@@ -72,13 +70,13 @@ public class MySQLDatabase{
 		catch(SQLException e)
 		{
 			System.err.println(e.getMessage());
-			return null;
+                        throw new DLException(e);
 		}
 	}
 	
 	//Add	a	method	named	setData	that	accepts	an	SQL	string	and	returns	a	Boolean.	This	will	be	
 	//used	for	doing	�UPDATE�,	�DELETE�,	and	�INSERT�	operations.
-	public boolean setData(String sql)
+	public boolean setData(String sql) throws DLException
 	{
 		//i. setData	should	perform	the	query	that	was	passed.
 		try
@@ -92,8 +90,7 @@ public class MySQLDatabase{
 		//ii. If the query runs successfully, it should return true. Otherwise it should return false.
 		catch (SQLException e)
 		{
-			System.err.println(e.getMessage());
-			return false;
+                        throw new DLException(e);
 		}
 	}
 	
@@ -121,7 +118,7 @@ public class MySQLDatabase{
 	
 	//Add a method named �getData� (in addition to one you already have) that accepts an SQL
 	//string and an arraylist of string values.
-	public ArrayList<ArrayList<String>> getData(String sql, ArrayList<String> values)
+	public ArrayList<ArrayList<String>> getData(String sql, ArrayList<String> values) throws DLException
 	{
 		try
 		{
@@ -143,7 +140,7 @@ public class MySQLDatabase{
 			dataList.add(row);
 			while (data.next())
 			{
-				row = new ArrayList<String>(numCols);
+				row = new ArrayList<>(numCols);
 				for (int i = 1; i <= numCols; i++)
 				{
 					row.add(data.getString(i)); 
@@ -155,8 +152,7 @@ public class MySQLDatabase{
 		}
 		catch(SQLException e)
 		{
-			System.err.println(e.getMessage());
-			return null;
+                        throw new DLException(e);
 		}
 	}
 	
@@ -184,7 +180,7 @@ public class MySQLDatabase{
 	//Add a method named executeProc that accepts a string and an arraylist of string values
 	//The string that is passed in should represent a stored procedure to be executed
 	//Assume that the procedure returns a single integer value.
-	public int executeProc(String storedProcedure, ArrayList<String> values)
+	public int executeProc(String storedProcedure, ArrayList<String> values) throws DLException
 	{
 		try
 		{
@@ -203,13 +199,12 @@ public class MySQLDatabase{
 		}
 		catch(SQLException e)
 		{
-			System.err.println(e.getMessage());
-			return 0;
+                    throw new DLException(e);
 		}
 	}
 	
 	//Add methods �startTrans�, �endTrans�, and �rollbackTrans� that perform the obvious activities.
-	public boolean startTrans()
+	public boolean startTrans() throws DLException
 	{
 		try
 		{
@@ -218,12 +213,11 @@ public class MySQLDatabase{
 		}
 		catch(SQLException e)
 		{
-			System.err.println(e.getMessage());
-			return false;
+                        throw new DLException(e);
 		}
 	}
 	
-	public boolean endTrans()
+	public boolean endTrans() throws DLException
 	{
 		try
 		{
@@ -233,12 +227,11 @@ public class MySQLDatabase{
 		}
 		catch(SQLException e)
 		{
-			System.err.println(e.getMessage());
-			return false;
+                        throw new DLException(e);
 		}
 	}
 	
-	public boolean rollbackTrans()
+	public boolean rollbackTrans() throws DLException
 	{
 		try
 		{
@@ -247,8 +240,7 @@ public class MySQLDatabase{
 		}
 		catch(SQLException e)
 		{
-			System.err.println(e.getMessage());
-			return false;
+			throw new DLException(e);
 		}
 	}
 }
