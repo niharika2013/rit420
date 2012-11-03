@@ -31,7 +31,7 @@ public class Users {
 	 // Get all the users and basic details
     public boolean fetch() throws DLException
     {
-        ArrayList<ArrayList<String>> dataList = MySQLDatabase.mdb.getData("SELECT * FROM users", null);
+        ArrayList<ArrayList<String>> dataList = MySQLDatabase.getDB().getData("SELECT * FROM users", null);
         if(dataList != null)
         {
       	for (int i = 1; i <= dataList.size(); i++)

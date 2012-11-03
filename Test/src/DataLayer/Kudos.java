@@ -31,7 +31,7 @@ public class Kudos {
 	 // Get all the kudos and basic details
     public boolean fetch() throws DLException
     {
-		ArrayList<ArrayList<String>> dataList = MySQLDatabase.mdb.getData("SELECT * FROM kudos", null);
+		ArrayList<ArrayList<String>> dataList = MySQLDatabase.getDB().getData("SELECT * FROM kudos", null);
 		if(dataList != null)
 		{
       	for (int i = 1; i <= dataList.size(); i++)

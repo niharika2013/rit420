@@ -59,10 +59,9 @@ public class User
 	//and	updates	the	object�s	attributes.
 	public boolean fetch() throws DLException
 	{
-		MySQLDatabase.mdb.connect();
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(userId);
-		ArrayList<ArrayList<String>> dataList = MySQLDatabase.mdb.getData("SELECT * FROM users WHERE UserId = ?", values);
+		ArrayList<ArrayList<String>> dataList = MySQLDatabase.getDB().getData("SELECT * FROM users WHERE UserId = ?", values);
 		if(dataList != null)
 		{
 			fName = dataList.get(1).get(1).toString();
@@ -84,7 +83,6 @@ public class User
 	//object�s attribute values.
 	public boolean post() throws DLException
 	{
-		MySQLDatabase.mdb.connect();
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(fName); 
 		values.add(lName);
@@ -92,7 +90,7 @@ public class User
 		values.add(pswd);
 		values.add(role);
 		values.add(userId);
-		return MySQLDatabase.mdb.setData("UPDATE users FName = ?, LName = ?, Email = ?, Pswd = ?, Role = ? WHERE UserId = ?", values);
+		return MySQLDatabase.getDB().setData("UPDATE users FName = ?, LName = ?, Email = ?, Pswd = ?, Role = ? WHERE UserId = ?", values);
 	}
 	
 	// put	inserts	the	object�s	attribute	values	into	the	database	as	a	new	record.
@@ -107,7 +105,7 @@ public class User
 		values.add(email);
 		values.add(pswd);
 		values.add(role);
-		return MySQLDatabase.mdb.setData("INSERT INTO users (UserId,FName,LName,Email,Pswd,Role) VALUES(?,?,?,?)", values);
+		return MySQLDatabase.getDB().setData("INSERT INTO users (UserId,FName,LName,Email,Pswd,Role) VALUES(?,?,?,?)", values);
             }
             catch(DLException e)
             {
@@ -122,7 +120,7 @@ public class User
             {
                 ArrayList<String> values = new ArrayList<String>(0);
                 values.add(userId);
-                return MySQLDatabase.mdb.setData("DELETE FROM users WHERE userID = ?", values);
+                return MySQLDatabase.getDB().setData("DELETE FROM users WHERE userID = ?", values);
             }
             catch(DLException e)
             {
