@@ -39,25 +39,22 @@ public class DLException extends Exception {
 		populateList();
 	}
 	
-	public void log(){
-		
-		try{
-			Writer logger = new FileWriter(new File("log.txt"));
-			for (int i = 0; i<= eList.size() - 1; i++){
-				for(int j = 0; j<= eList.get(i).size() - 1; j++){
-					java.util.Date date= new java.util.Date();
-					logger.write(new Timestamp(date.getTime()).toString());
-					logger.write(eList.get(i).get(j));
-					logger.flush();
-				}
-			}
-			logger.close();
-		}
-		
-		catch(IOException e){
-			
-		}
-			
-	}
-
+	// Provide	a method named “log” that writes out any available information,
+    //including a timestamp, to a text file.
+    public void log()
+    {
+        try
+        {
+            java.util.Date today = new java.util.Date();
+            Timestamp t = new Timestamp(today.getTime());
+            PrintWriter pw = new PrintWriter(new FileOutputStream("Log", true));
+            pw.format("Timestamp of error: " + t +"\n");
+            printStackTrace(pw);
+            pw.close();
+        }
+        catch(Exception ex)
+        {
+            //If you hit this, nothing is ever logged
+        }
+    }
 }
