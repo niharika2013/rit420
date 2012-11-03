@@ -1,6 +1,5 @@
 package DataLayer;
 
-
 import java.util.*;
 
 public class Pub
@@ -12,7 +11,6 @@ public class Pub
 	private String citation;
 	private String tease;
 	private String status;
-	private MySQLDatabase myDB;
 	
 	// Provide	a	default	constructor.
 	public Pub()
@@ -20,10 +18,9 @@ public class Pub
 	}
 	
 	// Provide	a	constructor	that	accepts	and	sets	the	pubId.
-	public Pub(String pubId, MySQLDatabase myDB)
+	public Pub(String pubId)
 	{
 		this.pubId = pubId;
-		this.myDB = myDB;
 	}
 	
 	// Provide	a	constructor	that	accepts	and	sets	all	attributes.
@@ -35,7 +32,6 @@ public class Pub
 		this.citation = citation;
 		this.tease = tease;
 		this.status = status;
-		this.myDB = myDB;
 	}
 	
 	// Provide	accessors	and	mutators	for	all	attributes.
@@ -57,17 +53,14 @@ public class Pub
 	public void setStatus(String status){this.status = status;}
 	public String getStatus(){return status;}
 	
-	public void setDB(MySQLDatabase myDB){this.myDB = myDB;}
-	public MySQLDatabase getDB(){return myDB;}
-	
-	// fetch	uses	the	object’s	pubId	attribute	and	the	Database	class
+	// fetch	uses	the	objectï¿½s	pubId	attribute	and	the	Database	class
 	//getData	method	to	retrieve	the	database	values	for	that	particular	pubId	
-	//and	updates	the	object’s	attributes.
+	//and	updates	the	objectï¿½s	attributes.
 	public boolean fetch()
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(pubId);
-		ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM pubs WHERE PubId = ?", values);
+		ArrayList<ArrayList<String>> dataList = JavaConnection.mdb.getData("SELECT * FROM pubs WHERE PubId = ?", values);
 		if(dataList != null)
 		{
 			userId = dataList.get(1).get(1).toString();
@@ -85,8 +78,8 @@ public class Pub
 		
 	}
 	
-	// post updates the database values, for that object’s pubId, using the	
-	//object’s attribute values.
+	// post updates the database values, for that objectï¿½s pubId, using the	
+	//objectï¿½s attribute values.
 	public boolean post()
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
@@ -96,10 +89,10 @@ public class Pub
 		values.add(tease);
 		values.add(status);
 		values.add(pubId);
-		return myDB.setData("UPDATE pub UserId = ?, Year = ?, Citation = ?, Tease = ?, Status = ? WHERE PubId = ?", values);
+		return JavaConnection.mdb.setData("UPDATE pub UserId = ?, Year = ?, Citation = ?, Tease = ?, Status = ? WHERE PubId = ?", values);
 	}
 	
-	// put	inserts	the	object’s	attribute	values	into	the	database	as	a	new	record.
+	// put	inserts	the	objectï¿½s	attribute	values	into	the	database	as	a	new	record.
 	public boolean put()
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
@@ -109,14 +102,14 @@ public class Pub
 		values.add(citation);
 		values.add(tease);
 		values.add(status);
-		return myDB.setData("INSERT INTO pub (UserId,PubId,Year,Citation,Tease,Status) VALUES(?,?,?,?,?,?)", values);
+		return JavaConnection.mdb.setData("INSERT INTO pub (UserId,PubId,Year,Citation,Tease,Status) VALUES(?,?,?,?,?,?)", values);
 	}
 	
-	// delete removes	from	the	database	any	data	corresponding	to	the	object’s pubId.
+	// delete removes	from	the	database	any	data	corresponding	to	the	objectï¿½s pubId.
 	public boolean delete()
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(pubId);
-		return myDB.setData("DELETE FROM pub WHERE pubID = ?", values);
+		return JavaConnection.mdb.setData("DELETE FROM pub WHERE pubID = ?", values);
 	}
 }

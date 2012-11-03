@@ -6,12 +6,11 @@ import java.util.*;
 public class MySQLDatabase{
 
 	// Connection Data
-	public Connection connection;
+	protected Connection connection;
 	private final String address = "jdbc:mysql://db4395955151.db.1and1.com";
 	private final String userName = "dbo439595151";
 	private final String password = "W3S4allBu1ldAD4t4b4se!!!";
 	private final String driver = "com.mysql.jdbc.Driver";
-	private Connection myConnection;
 	
 	public MySQLDatabase()
 	{
@@ -20,7 +19,7 @@ public class MySQLDatabase{
 	public boolean connect(){
 		try{
 			Class.forName(driver).newInstance();
-			this.myConnection = DriverManager.getConnection(address, userName, password);
+			this.connection = DriverManager.getConnection(address, userName, password);
 			System.out.println("Connection sucessful!");
 			return true;
 		}
@@ -47,7 +46,7 @@ public class MySQLDatabase{
 	}
 	
 	//Add	a	method	named	getData	that	accepts	an	SQL string	and	returns	a	2-d	ArrayList	(or	List	
-	//if	using	.NET). This	will	be	used	for	doing	“SELECT”	sql	statements.
+	//if	using	.NET). This	will	be	used	for	doing	ï¿½SELECTï¿½	sql	statements.
 	public ArrayList<String> getData(String sql)
 	{
 		try
@@ -78,7 +77,7 @@ public class MySQLDatabase{
 	}
 	
 	//Add	a	method	named	setData	that	accepts	an	SQL	string	and	returns	a	Boolean.	This	will	be	
-	//used	for	doing	“UPDATE”,	“DELETE”,	and	“INSERT”	operations.
+	//used	for	doing	ï¿½UPDATEï¿½,	ï¿½DELETEï¿½,	and	ï¿½INSERTï¿½	operations.
 	public boolean setData(String sql)
 	{
 		//i. setData	should	perform	the	query	that	was	passed.
@@ -98,7 +97,7 @@ public class MySQLDatabase{
 		}
 	}
 	
-	//Add a method named “prepare” that accepts an SQL string and an arraylist of string values
+	//Add a method named ï¿½prepareï¿½ that accepts an SQL string and an arraylist of string values
 	public PreparedStatement prepare(String sql, ArrayList<String> values)
 	{
 		try
@@ -120,14 +119,14 @@ public class MySQLDatabase{
 		}
 	}
 	
-	//Add a method named “getData” (in addition to one you already have) that accepts an SQL
+	//Add a method named ï¿½getDataï¿½ (in addition to one you already have) that accepts an SQL
 	//string and an arraylist of string values.
 	public ArrayList<ArrayList<String>> getData(String sql, ArrayList<String> values)
 	{
 		try
 		{
 			connect();
-			//This method should call the “prepare” method
+			//This method should call the ï¿½prepareï¿½ method
 			PreparedStatement statement = prepare(sql, values);
 			//execute the statement
 			ResultSet data = statement.executeQuery();
@@ -161,14 +160,14 @@ public class MySQLDatabase{
 		}
 	}
 	
-	//Add a method named “setData” (in addition to one you already have) that accepts an SQL 
+	//Add a method named ï¿½setDataï¿½ (in addition to one you already have) that accepts an SQL 
 	//string and an arraylist of string values.
 	public boolean setData(String sql, ArrayList<String> values)
 	{
 		try
 		{
 			connect();
-			//This method should call the “prepare” method
+			//This method should call the ï¿½prepareï¿½ method
 			PreparedStatement statement = prepare(sql, values);
 			//execute the statement
 			statement.execute();
@@ -209,7 +208,7 @@ public class MySQLDatabase{
 		}
 	}
 	
-	//Add methods “startTrans”, “endTrans”, and “rollbackTrans” that perform the obvious activities.
+	//Add methods ï¿½startTransï¿½, ï¿½endTransï¿½, and ï¿½rollbackTransï¿½ that perform the obvious activities.
 	public boolean startTrans()
 	{
 		try

@@ -12,7 +12,6 @@ public class Grant
 	private String tease;
 	private String amount;
 	private String status;
-	private MySQLDatabase myDB;
 	
 	// Provide	a	default	constructor.
 	public Grant()
@@ -20,14 +19,13 @@ public class Grant
 	}
 	
 	// Provide	a	constructor	that	accepts	and	sets	the	grantId.
-	public Grant(String grantId, MySQLDatabase myDB)
+	public Grant(String grantId)
 	{
 		this.grantId = grantId;
-		this.myDB = myDB;
 	}
 	
 	// Provide	a	constructor	that	accepts	and	sets	all	attributes.
-	public Grant(String userId, String grantId, String year, String citation, String tease, String amount, String status, MySQLDatabase myDB)
+	public Grant(String userId, String grantId, String year, String citation, String tease, String amount, String status)
 	{
 		this.userId = userId;
 		this.grantId = grantId;
@@ -36,7 +34,6 @@ public class Grant
 		this.tease = tease;
 		this.amount = amount;
 		this.status = status;
-		this.myDB = myDB;
 	}
 	
 	// Provide	accessors	and	mutators	for	all	attributes.
@@ -60,19 +57,15 @@ public class Grant
 	
 	public void setStatus(String status){this.status = status;}
 	public String getStatus(){return status;}
-	
-	public void setDB(MySQLDatabase myDB){this.myDB = myDB;}
-	public MySQLDatabase getDB(){return myDB;}
-	
-	
-	// fetch	uses	the	object’s	grantId	attribute	and	the	Database	class
+		
+	// fetch	uses	the	objectï¿½s	grantId	attribute	and	the	Database	class
 	//getData	method	to	retrieve	the	database	values	for	that	particular	grantId	
-	//and	updates	the	object’s	attributes.
+	//and	updates	the	objectï¿½s	attributes.
 	public boolean fetch()
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(grantId);
-		ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM grants WHERE GrantId = ?", values);
+		ArrayList<ArrayList<String>> dataList = JavaConnection.mdb.getData("SELECT * FROM grants WHERE GrantId = ?", values);
 		if(dataList != null)
 		{
 			userId = dataList.get(1).get(1).toString();
@@ -92,8 +85,8 @@ public class Grant
 		
 	}
 	
-	// post updates the database values, for that object’s grantId, using the	
-	//object’s attribute values.
+	// post updates the database values, for that objectï¿½s grantId, using the	
+	//objectï¿½s attribute values.
 	public boolean post()
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
@@ -104,10 +97,10 @@ public class Grant
 		values.add(amount);
 		values.add(status);
 		values.add(grantId);
-		return myDB.setData("UPDATE grant UserId = ?, Year = ?, Citation = ?, Tease = ?, Amount = ?, Status = ? WHERE GrantId = ?", values);
+		return JavaConnection.mdb.setData("UPDATE grant UserId = ?, Year = ?, Citation = ?, Tease = ?, Amount = ?, Status = ? WHERE GrantId = ?", values);
 	}
 	
-	// put	inserts	the	object’s	attribute	values	into	the	database	as	a	new	record.
+	// put	inserts	the	objectï¿½s	attribute	values	into	the	database	as	a	new	record.
 	public boolean put()
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
@@ -122,14 +115,14 @@ public class Grant
 			System.out.println(value);
 		}
 		System.out.println("put() grant");
-		return myDB.setData("INSERT INTO grant (UserId,GrantId,Year,Citation,Tease,Amount,Status) VALUES(?,?,?,?,?,?,?)", values);
+		return JavaConnection.mdb.setData("INSERT INTO grant (UserId,GrantId,Year,Citation,Tease,Amount,Status) VALUES(?,?,?,?,?,?,?)", values);
 	}
 	
-	// delete removes	from	the	database	any	data	corresponding	to	the	object’s grantId.
+	// delete removes	from	the	database	any	data	corresponding	to	the	objectï¿½s grantId.
 	public boolean delete()
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(grantId);
-		return myDB.setData("DELETE FROM grant WHERE grantID = ?", values);
+		return JavaConnection.mdb.setData("DELETE FROM grant WHERE grantID = ?", values);
 	}
 }
