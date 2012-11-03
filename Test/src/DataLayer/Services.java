@@ -10,6 +10,7 @@ public class Services {
     
 	 // Array of all services
     private ArrayList<Service> services = new ArrayList<Service>(0);
+    MySQLDatabase myDB = new MySQLDatabase();
     
 	 // Default Constructor
     public Services()
@@ -31,7 +32,7 @@ public class Services {
 	 // Get all the services and basic details
     public boolean fetch() throws DLException
     {
-		ArrayList<ArrayList<String>> dataList = MySQLDatabase.getDB().getData("SELECT * FROM services", null);
+		ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM services", null);
 		if(dataList != null)
 		{
       	for (int i = 1; i <= dataList.size(); i++)

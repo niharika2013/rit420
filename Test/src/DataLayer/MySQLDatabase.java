@@ -6,7 +6,6 @@ import java.util.*;
 public class MySQLDatabase{
     
     // Rather important for Data Layer objects
-    private static MySQLDatabase mdb = new MySQLDatabase();
 
     // Connection Data
     protected Connection connection;
@@ -15,27 +14,26 @@ public class MySQLDatabase{
     private final String password = "484password";
     private final String driver = "com.mysql.jdbc.Driver";
 
-    private MySQLDatabase()
+    public MySQLDatabase()
     {
         
     }
-    
-    public static MySQLDatabase getDB(){
-        return mdb;
-    } 
-    
-    protected boolean connect() throws DLException
+
+    public boolean connect() throws DLException
     {
         try
         {
+            
             Class.forName(driver).newInstance();
+            System.out.println("Attempting Connection");
             this.connection = DriverManager.getConnection(address, userName, password);
-            System.out.println("Connection sucessful!");
+            
             return true;
         }
         catch(ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e)
         {
             System.out.println("Connection failed");
+            System.err.println(e.getMessage());
             throw new DLException(e);
         }
     }
@@ -159,7 +157,7 @@ public class MySQLDatabase{
                 row = new ArrayList<String>(numCols);
                 for (int i = 1; i <= numCols; i++)
                 {
-                    //System.out.println(data.getString(i));
+                    System.out.println(data.getString(i));
                     row.add(data.getString(i)); 
                 }
                 dataList.add(row);
@@ -169,6 +167,7 @@ public class MySQLDatabase{
         }
         catch(SQLException e)
         {
+            System.err.println(e.getMessage());
             throw new DLException(e);
         }
     }

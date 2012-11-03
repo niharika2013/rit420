@@ -10,6 +10,7 @@ public class Courses {
     
 	 // Array of all courses
     private ArrayList<Course> courses = new ArrayList<Course>(0);
+    private MySQLDatabase myDB = new MySQLDatabase();
     
 	 // Default Constructor
     public Courses()
@@ -31,7 +32,7 @@ public class Courses {
 	 // Get all the courses and basic details
     public boolean fetch() throws DLException
     {
-        ArrayList<ArrayList<String>> dataList = MySQLDatabase.getDB().getData("SELECT * FROM courses", null);
+        ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM courses", null);
         if(dataList != null)
         {
             for (int i = 1; i <= dataList.size(); i++)

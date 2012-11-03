@@ -10,6 +10,7 @@ public class Course
 	private String year;
 	private String courseNumber;
 	private String courseName;
+        private MySQLDatabase myDB = new MySQLDatabase();
 	
 	// Provide	a	default	constructor.
 	public Course()
@@ -55,7 +56,7 @@ public class Course
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(courseId);
-		ArrayList<ArrayList<String>> dataList = MySQLDatabase.getDB().getData("SELECT * FROM courses WHERE CourseId = ?", values);
+		ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM courses WHERE CourseId = ?", values);
 		if(dataList != null)
 		{
 			userId = dataList.get(1).get(1).toString();
@@ -82,7 +83,7 @@ public class Course
 		values.add(courseNumber);
 		values.add(courseName);
 		values.add(courseId);
-		return MySQLDatabase.getDB().setData("UPDATE course UserId = ?, Year = ?, CourseNumber = ?, CourseName = ? WHERE CourseId = ?", values);
+		return myDB.setData("UPDATE course UserId = ?, Year = ?, CourseNumber = ?, CourseName = ? WHERE CourseId = ?", values);
 	}
 	
 	// put	inserts	the	object�s	attribute	values	into	the	database	as	a	new	record.
@@ -94,7 +95,7 @@ public class Course
 		values.add(year);
 		values.add(courseNumber);
 		values.add(courseName);
-		return MySQLDatabase.getDB().setData("INSERT INTO course (UserId,CourseId,Year,CourseNumber,CourseName) VALUES(?,?,?,?,?)", values);
+		return myDB.setData("INSERT INTO course (UserId,CourseId,Year,CourseNumber,CourseName) VALUES(?,?,?,?,?)", values);
 	}
 	
 	// delete removes	from	the	database	any	data	corresponding	to	the	object�s courseId.
@@ -102,6 +103,6 @@ public class Course
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(courseId);
-		return MySQLDatabase.getDB().setData("DELETE FROM course WHERE courseID = ?", values);
+		return myDB.setData("DELETE FROM course WHERE courseID = ?", values);
 	}
 }
