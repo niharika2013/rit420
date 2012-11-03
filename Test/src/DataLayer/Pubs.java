@@ -29,7 +29,7 @@ public class Pubs {
     }
     
 	 // Get all the pubs and basic details
-    public boolean fetch()
+    public boolean fetch() throws DLException
     {
 		ArrayList<ArrayList<String>> dataList = JavaConnection.mdb.getData("SELECT * FROM pubs", null);
 		if(dataList != null)

@@ -51,7 +51,7 @@ public class Service
 	// fetch	uses	the	object�s	serviceId	attribute	and	the	Database	class
 	//getData	method	to	retrieve	the	database	values	for	that	particular	serviceId	
 	//and	updates	the	object�s	attributes.
-	public boolean fetch()
+	public boolean fetch() throws DLException
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(serviceId);

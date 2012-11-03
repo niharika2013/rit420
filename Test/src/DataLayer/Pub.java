@@ -56,7 +56,7 @@ public class Pub
 	// fetch	uses	the	object�s	pubId	attribute	and	the	Database	class
 	//getData	method	to	retrieve	the	database	values	for	that	particular	pubId	
 	//and	updates	the	object�s	attributes.
-	public boolean fetch()
+	public boolean fetch() throws DLException
 	{
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(pubId);
