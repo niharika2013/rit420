@@ -11,6 +11,7 @@ package PresentationLayer;
  */
 public class View extends javax.swing.JFrame {
 
+    private CourseWindow n;
     /**
      * Creates new form View
      */
@@ -32,11 +33,11 @@ public class View extends javax.swing.JFrame {
         logoutButton = new java.awt.Button();
         loginPane = new javax.swing.JScrollPane();
         loginText = new javax.swing.JTextArea();
-        teachingPanel = new javax.swing.JPanel();
-        teachingPane = new javax.swing.JScrollPane();
-        teachingTable = new javax.swing.JTable();
-        newTeaching = new javax.swing.JButton();
-        editTeaching = new javax.swing.JButton();
+        CoursesPanel = new javax.swing.JPanel();
+        coursesPane = new javax.swing.JScrollPane();
+        coursesTable = new javax.swing.JTable();
+        newCourse = new javax.swing.JButton();
+        editCourses = new javax.swing.JButton();
         servicesPanel = new javax.swing.JPanel();
         newService = new javax.swing.JButton();
         editService = new javax.swing.JButton();
@@ -45,8 +46,8 @@ public class View extends javax.swing.JFrame {
         scholarshipPanel = new javax.swing.JPanel();
         newScholarship = new javax.swing.JButton();
         editScholarship = new javax.swing.JButton();
-        scholarshipPane = new javax.swing.JScrollPane();
-        scholarshipTable = new javax.swing.JTable();
+        scholarshipsPane = new javax.swing.JScrollPane();
+        scholarshipsTable = new javax.swing.JTable();
         publicationsPanel = new javax.swing.JPanel();
         newPublication = new javax.swing.JButton();
         updatePublication = new javax.swing.JButton();
@@ -55,13 +56,13 @@ public class View extends javax.swing.JFrame {
         kudosPanel = new javax.swing.JPanel();
         newKudo = new javax.swing.JButton();
         updateKudo = new javax.swing.JButton();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        jTable6 = new javax.swing.JTable();
+        kudosPane = new javax.swing.JScrollPane();
+        kudosTable = new javax.swing.JTable();
         usersPanel = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        newUser = new javax.swing.JButton();
+        UpdateUser = new javax.swing.JButton();
+        usersPane = new javax.swing.JScrollPane();
+        usersTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("The Educational Editor");
@@ -115,7 +116,7 @@ public class View extends javax.swing.JFrame {
 
         viewPane.addTab("Welcome", welcomePanel);
 
-        teachingTable.setModel(new javax.swing.table.DefaultTableModel(
+        coursesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null}
             },
@@ -131,50 +132,55 @@ public class View extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        teachingTable.getTableHeader().setReorderingAllowed(false);
-        teachingPane.setViewportView(teachingTable);
-        teachingTable.getColumnModel().getColumn(0).setResizable(false);
-        teachingTable.getColumnModel().getColumn(1).setResizable(false);
-        teachingTable.getColumnModel().getColumn(2).setResizable(false);
-        teachingTable.getColumnModel().getColumn(3).setResizable(false);
+        coursesTable.getTableHeader().setReorderingAllowed(false);
+        coursesPane.setViewportView(coursesTable);
+        coursesTable.getColumnModel().getColumn(0).setResizable(false);
+        coursesTable.getColumnModel().getColumn(1).setResizable(false);
+        coursesTable.getColumnModel().getColumn(2).setResizable(false);
+        coursesTable.getColumnModel().getColumn(3).setResizable(false);
 
-        newTeaching.setText("Create New");
-        newTeaching.addMouseListener(new java.awt.event.MouseAdapter() {
+        newCourse.setText("Create New");
+        newCourse.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                newTeachingMouseClicked(evt);
+                newCourseMouseClicked(evt);
             }
         });
 
-        editTeaching.setText("Update Selected");
+        editCourses.setText("Update Selected");
+        editCourses.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                editCoursesMouseClicked(evt);
+            }
+        });
 
-        org.jdesktop.layout.GroupLayout teachingPanelLayout = new org.jdesktop.layout.GroupLayout(teachingPanel);
-        teachingPanel.setLayout(teachingPanelLayout);
-        teachingPanelLayout.setHorizontalGroup(
-            teachingPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(teachingPanelLayout.createSequentialGroup()
+        org.jdesktop.layout.GroupLayout CoursesPanelLayout = new org.jdesktop.layout.GroupLayout(CoursesPanel);
+        CoursesPanel.setLayout(CoursesPanelLayout);
+        CoursesPanelLayout.setHorizontalGroup(
+            CoursesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(CoursesPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .add(teachingPane, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 392, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(coursesPane, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 392, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, teachingPanelLayout.createSequentialGroup()
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, CoursesPanelLayout.createSequentialGroup()
                 .add(22, 22, 22)
-                .add(editTeaching)
+                .add(editCourses)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(newTeaching)
+                .add(newCourse)
                 .addContainerGap())
         );
-        teachingPanelLayout.setVerticalGroup(
-            teachingPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, teachingPanelLayout.createSequentialGroup()
+        CoursesPanelLayout.setVerticalGroup(
+            CoursesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, CoursesPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .add(teachingPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+                .add(coursesPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
                 .add(18, 18, 18)
-                .add(teachingPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(newTeaching)
-                    .add(editTeaching))
+                .add(CoursesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(newCourse)
+                    .add(editCourses))
                 .addContainerGap())
         );
 
-        viewPane.addTab("Teaching", teachingPanel);
+        viewPane.addTab("Courses", CoursesPanel);
 
         newService.setText("Create New");
 
@@ -236,7 +242,7 @@ public class View extends javax.swing.JFrame {
 
         editScholarship.setText("Update Selected");
 
-        scholarshipTable.setModel(new javax.swing.table.DefaultTableModel(
+        scholarshipsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null}
             },
@@ -252,13 +258,13 @@ public class View extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        scholarshipTable.getTableHeader().setReorderingAllowed(false);
-        scholarshipPane.setViewportView(scholarshipTable);
-        scholarshipTable.getColumnModel().getColumn(0).setResizable(false);
-        scholarshipTable.getColumnModel().getColumn(1).setResizable(false);
-        scholarshipTable.getColumnModel().getColumn(2).setResizable(false);
-        scholarshipTable.getColumnModel().getColumn(3).setResizable(false);
-        scholarshipTable.getColumnModel().getColumn(5).setResizable(false);
+        scholarshipsTable.getTableHeader().setReorderingAllowed(false);
+        scholarshipsPane.setViewportView(scholarshipsTable);
+        scholarshipsTable.getColumnModel().getColumn(0).setResizable(false);
+        scholarshipsTable.getColumnModel().getColumn(1).setResizable(false);
+        scholarshipsTable.getColumnModel().getColumn(2).setResizable(false);
+        scholarshipsTable.getColumnModel().getColumn(3).setResizable(false);
+        scholarshipsTable.getColumnModel().getColumn(5).setResizable(false);
 
         org.jdesktop.layout.GroupLayout scholarshipPanelLayout = new org.jdesktop.layout.GroupLayout(scholarshipPanel);
         scholarshipPanel.setLayout(scholarshipPanelLayout);
@@ -266,7 +272,7 @@ public class View extends javax.swing.JFrame {
             scholarshipPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(scholarshipPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .add(scholarshipPane, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 392, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(scholarshipsPane, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 392, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .add(org.jdesktop.layout.GroupLayout.TRAILING, scholarshipPanelLayout.createSequentialGroup()
                 .add(22, 22, 22)
@@ -279,7 +285,7 @@ public class View extends javax.swing.JFrame {
             scholarshipPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, scholarshipPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .add(scholarshipPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+                .add(scholarshipsPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
                 .add(18, 18, 18)
                 .add(scholarshipPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(newScholarship)
@@ -350,7 +356,7 @@ public class View extends javax.swing.JFrame {
 
         updateKudo.setText("Update Selected");
 
-        jTable6.setModel(new javax.swing.table.DefaultTableModel(
+        kudosTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null}
             },
@@ -366,11 +372,11 @@ public class View extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jTable6.getTableHeader().setReorderingAllowed(false);
-        jScrollPane7.setViewportView(jTable6);
-        jTable6.getColumnModel().getColumn(0).setResizable(false);
-        jTable6.getColumnModel().getColumn(1).setResizable(false);
-        jTable6.getColumnModel().getColumn(2).setResizable(false);
+        kudosTable.getTableHeader().setReorderingAllowed(false);
+        kudosPane.setViewportView(kudosTable);
+        kudosTable.getColumnModel().getColumn(0).setResizable(false);
+        kudosTable.getColumnModel().getColumn(1).setResizable(false);
+        kudosTable.getColumnModel().getColumn(2).setResizable(false);
 
         org.jdesktop.layout.GroupLayout kudosPanelLayout = new org.jdesktop.layout.GroupLayout(kudosPanel);
         kudosPanel.setLayout(kudosPanelLayout);
@@ -378,7 +384,7 @@ public class View extends javax.swing.JFrame {
             kudosPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(kudosPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .add(jScrollPane7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 392, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(kudosPane, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 392, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .add(org.jdesktop.layout.GroupLayout.TRAILING, kudosPanelLayout.createSequentialGroup()
                 .add(22, 22, 22)
@@ -391,7 +397,7 @@ public class View extends javax.swing.JFrame {
             kudosPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, kudosPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .add(jScrollPane7, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+                .add(kudosPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
                 .add(18, 18, 18)
                 .add(kudosPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(newKudo)
@@ -403,11 +409,16 @@ public class View extends javax.swing.JFrame {
 
         usersPanel.setEnabled(false);
 
-        jButton3.setText("Create New");
+        newUser.setText("Create New");
 
-        jButton4.setText("Update Selected");
+        UpdateUser.setText("Update Selected");
+        UpdateUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateUserActionPerformed(evt);
+            }
+        });
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        usersTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null}
             },
@@ -423,12 +434,12 @@ public class View extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jTable2.getTableHeader().setReorderingAllowed(false);
-        jScrollPane3.setViewportView(jTable2);
-        jTable2.getColumnModel().getColumn(0).setResizable(false);
-        jTable2.getColumnModel().getColumn(1).setResizable(false);
-        jTable2.getColumnModel().getColumn(2).setResizable(false);
-        jTable2.getColumnModel().getColumn(3).setResizable(false);
+        usersTable.getTableHeader().setReorderingAllowed(false);
+        usersPane.setViewportView(usersTable);
+        usersTable.getColumnModel().getColumn(0).setResizable(false);
+        usersTable.getColumnModel().getColumn(1).setResizable(false);
+        usersTable.getColumnModel().getColumn(2).setResizable(false);
+        usersTable.getColumnModel().getColumn(3).setResizable(false);
 
         org.jdesktop.layout.GroupLayout usersPanelLayout = new org.jdesktop.layout.GroupLayout(usersPanel);
         usersPanel.setLayout(usersPanelLayout);
@@ -436,24 +447,24 @@ public class View extends javax.swing.JFrame {
             usersPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(usersPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .add(jScrollPane3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 392, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(usersPane, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 392, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .add(org.jdesktop.layout.GroupLayout.TRAILING, usersPanelLayout.createSequentialGroup()
                 .add(22, 22, 22)
-                .add(jButton4)
+                .add(UpdateUser)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(jButton3)
+                .add(newUser)
                 .addContainerGap())
         );
         usersPanelLayout.setVerticalGroup(
             usersPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, usersPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+                .add(usersPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
                 .add(18, 18, 18)
                 .add(usersPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jButton3)
-                    .add(jButton4))
+                    .add(newUser)
+                    .add(UpdateUser))
                 .addContainerGap())
         );
 
@@ -477,16 +488,31 @@ public class View extends javax.swing.JFrame {
 
     private void logoutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseClicked
         // TODO add your handling code here:
-        System.out.println("test");
+        //System.out.println("test");
     }//GEN-LAST:event_logoutButtonMouseClicked
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_logoutButtonActionPerformed
 
-    private void newTeachingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newTeachingMouseClicked
+    private void newCourseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newCourseMouseClicked
+        n = new CourseWindow(this);
+        n.setVisible(true);
+        setEnabled(false);
+    }//GEN-LAST:event_newCourseMouseClicked
+
+    private void UpdateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateUserActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_newTeachingMouseClicked
+    }//GEN-LAST:event_UpdateUserActionPerformed
+
+    // Editing a Course
+    private void editCoursesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editCoursesMouseClicked
+        //This would normally pull data from the table on the page, but this
+        //functionality is pending
+        n = new CourseWindow(this, "777");
+        n.setVisible(true);
+        setEnabled(false);
+    }//GEN-LAST:event_editCoursesMouseClicked
 
     /**
      * @param args the command line arguments
@@ -523,39 +549,39 @@ public class View extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel CoursesPanel;
+    private javax.swing.JButton UpdateUser;
+    private javax.swing.JScrollPane coursesPane;
+    private javax.swing.JTable coursesTable;
+    private javax.swing.JButton editCourses;
     private javax.swing.JButton editScholarship;
     private javax.swing.JButton editService;
-    private javax.swing.JButton editTeaching;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable6;
+    private javax.swing.JScrollPane kudosPane;
     private javax.swing.JPanel kudosPanel;
+    private javax.swing.JTable kudosTable;
     private javax.swing.JScrollPane loginPane;
     private javax.swing.JTextArea loginText;
     private java.awt.Button logoutButton;
+    private javax.swing.JButton newCourse;
     private javax.swing.JButton newKudo;
     private javax.swing.JButton newPublication;
     private javax.swing.JButton newScholarship;
     private javax.swing.JButton newService;
-    private javax.swing.JButton newTeaching;
+    private javax.swing.JButton newUser;
     private javax.swing.JScrollPane publicationsPane;
     private javax.swing.JPanel publicationsPanel;
     private javax.swing.JTable publicationsTable;
-    private javax.swing.JScrollPane scholarshipPane;
     private javax.swing.JPanel scholarshipPanel;
-    private javax.swing.JTable scholarshipTable;
+    private javax.swing.JScrollPane scholarshipsPane;
+    private javax.swing.JTable scholarshipsTable;
     private javax.swing.JScrollPane servicesPane;
     private javax.swing.JPanel servicesPanel;
     private javax.swing.JTable servicesTable;
-    private javax.swing.JScrollPane teachingPane;
-    private javax.swing.JPanel teachingPanel;
-    private javax.swing.JTable teachingTable;
     private javax.swing.JButton updateKudo;
     private javax.swing.JButton updatePublication;
+    private javax.swing.JScrollPane usersPane;
     private javax.swing.JPanel usersPanel;
+    private javax.swing.JTable usersTable;
     private javax.swing.JTabbedPane viewPane;
     private javax.swing.JPanel welcomePanel;
     // End of variables declaration//GEN-END:variables
