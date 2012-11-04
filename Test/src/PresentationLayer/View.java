@@ -11,7 +11,7 @@ package PresentationLayer;
  */
 public class View extends javax.swing.JFrame {
 
-    private CourseWindow n;
+    private javax.swing.JFrame n;
     /**
      * Creates new form View
      */
@@ -183,8 +183,18 @@ public class View extends javax.swing.JFrame {
         viewPane.addTab("Courses", CoursesPanel);
 
         newService.setText("Create New");
+        newService.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                newServiceMouseClicked(evt);
+            }
+        });
 
         editService.setText("Update Selected");
+        editService.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                editServiceMouseClicked(evt);
+            }
+        });
 
         servicesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -239,8 +249,18 @@ public class View extends javax.swing.JFrame {
         viewPane.addTab("Services", servicesPanel);
 
         newScholarship.setText("Create New");
+        newScholarship.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                newScholarshipMouseClicked(evt);
+            }
+        });
 
         editScholarship.setText("Update Selected");
+        editScholarship.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                editScholarshipMouseClicked(evt);
+            }
+        });
 
         scholarshipsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -296,8 +316,18 @@ public class View extends javax.swing.JFrame {
         viewPane.addTab("Scholarship", scholarshipPanel);
 
         newPublication.setText("Create New");
+        newPublication.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                newPublicationMouseClicked(evt);
+            }
+        });
 
         updatePublication.setText("Update Selected");
+        updatePublication.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                updatePublicationMouseClicked(evt);
+            }
+        });
 
         publicationsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -353,8 +383,18 @@ public class View extends javax.swing.JFrame {
         viewPane.addTab("Publications", publicationsPanel);
 
         newKudo.setText("Create New");
+        newKudo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                newKudoMouseClicked(evt);
+            }
+        });
 
         updateKudo.setText("Update Selected");
+        updateKudo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                updateKudoMouseClicked(evt);
+            }
+        });
 
         kudosTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -410,8 +450,18 @@ public class View extends javax.swing.JFrame {
         usersPanel.setEnabled(false);
 
         newUser.setText("Create New");
+        newUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                newUserMouseClicked(evt);
+            }
+        });
 
         UpdateUser.setText("Update Selected");
+        UpdateUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                UpdateUserMouseClicked(evt);
+            }
+        });
         UpdateUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UpdateUserActionPerformed(evt);
@@ -513,6 +563,77 @@ public class View extends javax.swing.JFrame {
         n.setVisible(true);
         setEnabled(false);
     }//GEN-LAST:event_editCoursesMouseClicked
+
+    //New Service
+    private void newServiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newServiceMouseClicked
+        n = new ServiceWindow(this);
+        n.setVisible(true);
+        setEnabled(false);
+    }//GEN-LAST:event_newServiceMouseClicked
+
+    private void editServiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editServiceMouseClicked
+        //This would normally pull data from the table on the page, but this
+        //functionality is pending
+        n = new ServiceWindow(this, "777");
+        n.setVisible(true);
+        setEnabled(false);
+    }//GEN-LAST:event_editServiceMouseClicked
+
+    private void newScholarshipMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newScholarshipMouseClicked
+        n = new ScholarshipWindow(this);
+        n.setVisible(true);
+        setEnabled(false);
+    }//GEN-LAST:event_newScholarshipMouseClicked
+
+    private void editScholarshipMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editScholarshipMouseClicked
+        //This would normally pull data from the table on the page, but this
+        //functionality is pending
+        n = new ScholarshipWindow(this, "777");
+        n.setVisible(true);
+        setEnabled(false);
+    }//GEN-LAST:event_editScholarshipMouseClicked
+
+    private void newPublicationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newPublicationMouseClicked
+        n = new PublicationWindow(this);
+        n.setVisible(true);
+        setEnabled(false);
+    }//GEN-LAST:event_newPublicationMouseClicked
+
+    private void updatePublicationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updatePublicationMouseClicked
+        //This would normally pull data from the table on the page, but this
+        //functionality is pending
+        n = new PublicationWindow(this, "777");
+        n.setVisible(true);
+        setEnabled(false);
+    }//GEN-LAST:event_updatePublicationMouseClicked
+
+    private void newKudoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newKudoMouseClicked
+        n = new KudoWindow(this);
+        n.setVisible(true);
+        setEnabled(false);
+    }//GEN-LAST:event_newKudoMouseClicked
+
+    private void updateKudoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateKudoMouseClicked
+        //This would normally pull data from the table on the page, but this
+        //functionality is pending
+        n = new KudoWindow(this, "777");
+        n.setVisible(true);
+        setEnabled(false);
+    }//GEN-LAST:event_updateKudoMouseClicked
+
+    private void newUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newUserMouseClicked
+        n = new UserWindow(this);
+        n.setVisible(true);
+        setEnabled(false);
+    }//GEN-LAST:event_newUserMouseClicked
+
+    private void UpdateUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UpdateUserMouseClicked
+        //This would normally pull data from the table on the page, but this
+        //functionality is pending
+        n = new UserWindow(this, "777");
+        n.setVisible(true);
+        setEnabled(false);
+    }//GEN-LAST:event_UpdateUserMouseClicked
 
     /**
      * @param args the command line arguments
