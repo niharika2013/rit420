@@ -266,11 +266,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Create New"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="newServiceMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="editService">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Update Selected"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="editServiceMouseClicked"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="servicesPane">
               <AuxValues>
@@ -368,11 +374,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Create New"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="newScholarshipMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="editScholarship">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Update Selected"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="editScholarshipMouseClicked"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="scholarshipsPane">
               <AuxValues>
@@ -482,11 +494,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Create New"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="newPublicationMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="updatePublication">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Update Selected"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="updatePublicationMouseClicked"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="publicationsPane">
               <AuxValues>
@@ -590,11 +608,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Create New"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="newKudoMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="updateKudo">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Update Selected"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="updateKudoMouseClicked"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="kudosPane">
               <AuxValues>
@@ -689,12 +713,16 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Create New"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="newUserMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="UpdateUser">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Update Selected"/>
               </Properties>
               <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="UpdateUserMouseClicked"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="UpdateUserActionPerformed"/>
               </Events>
             </Component>
