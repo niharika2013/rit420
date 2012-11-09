@@ -48,7 +48,7 @@ public class MySQLDatabase{
 
             return statement;
         } catch(SQLException e) {
-            //System.err.println(e.getMessage());
+            System.err.println(e.getMessage());
             return null;
         }
     }

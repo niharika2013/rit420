@@ -37,7 +37,7 @@ public class User {
             ArrayList<String> values = new ArrayList<>(0);
             values.add(userId);
             myDB.connect();
-    ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM users WHERE UserId = ?", values);
+            ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT fName, lName, email, pswd, role FROM users WHERE UserId = ?", values);
             myDB.close();
             if(dataList != null){
                     fName = dataList.get(1).get(1).toString();

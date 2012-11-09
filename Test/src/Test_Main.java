@@ -6,7 +6,7 @@ public class Test_Main {
         
     	//testDatabase();
     	//testUserFetch();
-        //testUserDelete();
+        testUserDelete();
         //testUserPut();
         //testUserPost();
     	
@@ -25,7 +25,7 @@ public class Test_Main {
     	
     	
     	
-    }
+    } //works
     
     public static void testUserPost(){
         
@@ -45,7 +45,7 @@ public class Test_Main {
         System.out.println("Email: "+testUser.getEmail());
         System.out.println("Password: "+testUser.getPswd());
         System.out.println("Role: "+testUser.getRole());  
-    }
+    } //works
     
     public static void testUserFetch(){
         User testUser = new User("2");
@@ -62,7 +62,7 @@ public class Test_Main {
         System.out.println("Email: "+testUser.getEmail());
         System.out.println("Password: "+testUser.getPswd());
         System.out.println("Role: "+testUser.getRole());  
-    }
+    } //works
 
     public static void testUserPut(){
         User testUser = new User("6","666","Lucifer","Morningstar","webmaster@aol.com","3");
@@ -70,16 +70,27 @@ public class Test_Main {
         try{
             testUser.put();
         } catch (Exception e){
-            System.err.print(e);
+            System.err.print(e+ "From Put");
         }
         
+        testUser = null;
+         
+        testUser = new User("6");
+        try{ 
+            testUser.fetch();
+        } catch (Exception e){
+            System.err.println(e);
+        }
+        
+             System.out.println("after fetch ");
+   
         System.out.println("UserId: "+testUser.getUserId());
         System.out.println("FirstName: "+testUser.getFName());
         System.out.println("LastName: "+testUser.getLName());
         System.out.println("Email: "+testUser.getEmail());
         System.out.println("Password: "+testUser.getPswd());
         System.out.println("Role: "+testUser.getRole());
-    }
+    } //works
 
     public static void testUserDelete(){
         User testUser = new User("19","666","Lucifer","Morningstar","webmaster@aol.com","3");
