@@ -6,7 +6,7 @@ public class Test_Main {
         
     	//testDatabase(); //works
     	//testUserFetch(); //works
-        //testUserDelete(); //works sort of... catching a weird exception in  
+        testUserDelete(); //works sort of... catching a weird exception in  
                             //fetch method after deletion, but not a real use case
         //testUserPut(); //works
         //testUserPost(); //works
@@ -99,7 +99,7 @@ public class Test_Main {
             testUser = new User("19");
             testUser.fetch();
         } catch (DLException e){
-            System.err.print(e);
+            //System.err.print(e);
         }
         
         System.out.println("UserId: "   +testUser.getUserId());
