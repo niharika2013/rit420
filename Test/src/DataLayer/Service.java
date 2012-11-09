@@ -54,6 +54,9 @@ public class Service
 	//and	updates	the	object�s	attributes.
 	public boolean fetch() throws DLException
 	{
+            try{    
+            myDB = new MySQLDatabase();
+            
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(serviceId);
 		ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM services WHERE ServiceId = ?", values);
@@ -70,13 +73,17 @@ public class Service
 		{
 			return false;
 		}
-		
+            } catch (Exception e){
+                throw new DLException(e);
+            }
 	}
 	
 	// post updates the database values, for that object�s serviceId, using the	
 	//object�s attribute values.
 	public boolean post() throws DLException
 	{
+            myDB = new MySQLDatabase();
+
             try
             {
 		ArrayList<String> values = new ArrayList<String>(0);
@@ -96,6 +103,9 @@ public class Service
 	// put	inserts	the	object�s	attribute	values	into	the	database	as	a	new	record.
 	public boolean put() throws DLException
 	{
+            myDB = new MySQLDatabase();
+
+            
             try
             {
 		ArrayList<String> values = new ArrayList<String>(0);
@@ -104,19 +114,28 @@ public class Service
 		values.add(year);
 		values.add(description);
 		values.add(role);
-		return myDB.setData("INSERT INTO service (UserId,ServiceId,Year,Description,Role) VALUES(?,?,?,?,?)", values);
+                myDB.connect();
+		myDB.setData("INSERT INTO service (UserId,ServiceId,Year,Description,Role) VALUES(?,?,?,?,?)", values);
+                myDB.close();
+                return true;
             }
-            catch(Exception e)
+            catch(DLException e)
             {
-                throw new DLException(e);
+                return false;
             }
         }
 	
-	// delete removes	from	the	database	any	data	corresponding	to	the	object�s serviceId.
-	public boolean delete() throws DLException
-	{
-		ArrayList<String> values = new ArrayList<String>(0);
-		values.add(serviceId);
-		return myDB.setData("DELETE FROM service WHERE serviceID = ?", values);
-	}
+    // delete removes	from	the	database	any	data	corresponding	to	the	object�s serviceId.
+    public boolean delete() throws DLException
+    {
+        myDB = new MySQLDatabase();
+        try {
+            ArrayList<String> values = new ArrayList<String>(0);
+            values.add(serviceId);
+            myDB.setData("DELETE FROM service WHERE serviceID = ?", values);
+            return true;
+        } catch(DLException e) {
+            return false;
+        }
+    }
 }
