@@ -14,6 +14,12 @@ public class DLException extends Exception {
 		this.ex = e;
 		populateList();
 	}
+
+	public DLException(Exception e, ArrayList<ArrayList<String>> eList){
+		this.ex = e;
+		this.eList = eList;
+		populateList();
+	}
 	
 	private void populateList(){
 		if(ex.getStackTrace() != null){
@@ -21,19 +27,12 @@ public class DLException extends Exception {
 			ArrayList<String> traceList = new ArrayList<String>();
 			for (StackTraceElement element: trace){
 				traceList.add(element.toString());
-			}
+			}//end for
 			eList.add(traceList);
-		}
-	}
-	
-	public DLException(Exception e, ArrayList<ArrayList<String>> eList){
-		this.ex = e;
-		this.eList = eList;
-		populateList();
-	}
+		}//end if
+	}//end populateList
 	
 	public void log(){
-		
 		try{
 			Writer logger = new FileWriter(new File("log.txt"));
 			for (int i = 0; i<= eList.size() - 1; i++){
@@ -42,15 +41,9 @@ public class DLException extends Exception {
 					logger.write(new Timestamp(date.getTime()).toString());
 					logger.write(eList.get(i).get(j));
 					logger.flush();
-				}
-			}
+				}//end inner for
+			}//end outer for
 			logger.close();
-		}
-		
-		catch(IOException e){
-			
-		}
-			
-	}
-
-}
+		} catch(IOException e){	}//end catch
+	}//end log
+}//end class
