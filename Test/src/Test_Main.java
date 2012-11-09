@@ -5,9 +5,8 @@ public class Test_Main {
     public static void main(String[] args){
         
     	//testDatabase();
-    	
     	//testUserFetch();
-        testUserDelete();
+        //testUserDelete();
         //testUserPut();
         //testUserPost();
     	

@@ -48,7 +48,7 @@ public class MySQLDatabase{
 
             return statement;
         } catch(SQLException e) {
-            System.err.println(e.getMessage());
+            //System.err.println(e.getMessage());
             return null;
         }
     }
@@ -60,17 +60,18 @@ public class MySQLDatabase{
             PreparedStatement statement = prepare(sql, values);
             ResultSet data = statement.executeQuery();
             
-            ArrayList<ArrayList<String>> dataList = new ArrayList<ArrayList<String>>(0);
+            ArrayList<ArrayList<String>> dataList = new ArrayList<>(0);
             ResultSetMetaData rsmd = data.getMetaData();
             int numCols = rsmd.getColumnCount();
-            ArrayList<String> row = new ArrayList<String>(numCols);
+            
+            ArrayList<String> row = new ArrayList<>(numCols);
             for (int j = 0; j < numCols; j++) {
                 row.add(j, rsmd.getColumnName(j+1));
             }
             
             dataList.add(row);
             while (data.next()) {
-                row = new ArrayList<String>(numCols);
+                row = new ArrayList<>(numCols);
                 for (int i = 1; i <= numCols; i++) {
                     //System.out.println(data.getString(i));
                     row.add(data.getString(i)); 
@@ -93,27 +94,11 @@ public class MySQLDatabase{
             statement.execute();
             return true;
         } catch(SQLException e){
-            System.err.print(e);
+            //System.err.print(e);
             return false;
         }
     }
     
-    //stored procedure method
-    protected int executeProc(String storedProcedure, ArrayList<String> values) throws DLException {
-        try {
-            connect();
-            CallableStatement statement = connection.prepareCall(storedProcedure);
-            for(int i = 0; i < values.size(); i++) { 
-                statement.setString(i, values.get(i)); 
-            }
-            statement.executeUpdate();
-            close();
-            return 1;
-        } catch(Exception e) {
-            throw new DLException(e);
-        }
-    }
-
     
     //transaction methods follow
     protected boolean startTrans() throws DLException {
