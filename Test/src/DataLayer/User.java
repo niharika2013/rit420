@@ -32,6 +32,7 @@ public class User {
     // gets all the data for a specific user ID, fills out the remaining
     // fields of this data object with those values.
     public boolean fetch() throws DLException {
+        try{    
             myDB = new MySQLDatabase();
 
             ArrayList<String> values = new ArrayList<>(0);
@@ -49,6 +50,9 @@ public class User {
             } else {
                     return false;
             }
+        } catch (Exception e){
+            throw new DLException(e);
+        }
     }
 
 
