@@ -4,13 +4,12 @@ public class Test_Main {
 
     public static void main(String[] args){
         
-    	//testDatabase();
-    	//testUserFetch();
-        testUserDelete();
-        //testUserPut();
-        //testUserPost();
-    	
-       
+    	//testDatabase(); //works
+    	//testUserFetch(); //works
+        //testUserDelete(); //works sort of... catching a weird exception in  
+                            //fetch method after deletion, but not a real use case
+        //testUserPut(); //works
+        //testUserPost(); //works
     }
 
     public static void testDatabase(){
@@ -25,7 +24,7 @@ public class Test_Main {
     	
     	
     	
-    } //works
+    } 
     
     public static void testUserPost(){
         
@@ -45,7 +44,7 @@ public class Test_Main {
         System.out.println("Email: "+testUser.getEmail());
         System.out.println("Password: "+testUser.getPswd());
         System.out.println("Role: "+testUser.getRole());  
-    } //works
+    } 
     
     public static void testUserFetch(){
         User testUser = new User("2");
@@ -62,7 +61,7 @@ public class Test_Main {
         System.out.println("Email: "+testUser.getEmail());
         System.out.println("Password: "+testUser.getPswd());
         System.out.println("Role: "+testUser.getRole());  
-    } //works
+    } 
 
     public static void testUserPut(){
         User testUser = new User("6","666","Lucifer","Morningstar","webmaster@aol.com","3");
@@ -90,7 +89,7 @@ public class Test_Main {
         System.out.println("Email: "+testUser.getEmail());
         System.out.println("Password: "+testUser.getPswd());
         System.out.println("Role: "+testUser.getRole());
-    } //works
+    } 
 
     public static void testUserDelete(){
         User testUser = new User("19","666","Lucifer","Morningstar","webmaster@aol.com","3");
@@ -99,15 +98,15 @@ public class Test_Main {
             testUser.delete();
             testUser = new User("19");
             testUser.fetch();
-        } catch (Exception e){
+        } catch (DLException e){
             System.err.print(e);
         }
         
-        System.out.println("UserId: "+testUser.getUserId());
+        System.out.println("UserId: "   +testUser.getUserId());
         System.out.println("FirstName: "+testUser.getFName());
-        System.out.println("LastName: "+testUser.getLName());
-        System.out.println("Email: "+testUser.getEmail());
-        System.out.println("Password: "+testUser.getPswd());
-        System.out.println("Role: "+testUser.getRole());
-    }
-}
+        System.out.println("LastName: " +testUser.getLName());
+        System.out.println("Email: "    +testUser.getEmail());
+        System.out.println("Password: " +testUser.getPswd());
+        System.out.println("Role: "     +testUser.getRole());
+    } 
+}//end class

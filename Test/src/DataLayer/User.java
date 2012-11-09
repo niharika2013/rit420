@@ -32,12 +32,12 @@ public class User {
     // gets all the data for a specific user ID, fills out the remaining
     // fields of this data object with those values.
     public boolean fetch() throws DLException {
-    myDB = new MySQLDatabase();
+            myDB = new MySQLDatabase();
 
             ArrayList<String> values = new ArrayList<>(0);
             values.add(userId);
             myDB.connect();
-            ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT fName, lName, email, pswd, role FROM users WHERE UserId = ?", values);
+            ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM users WHERE UserId = ?", values);
             myDB.close();
             if(dataList != null){
                     fName = dataList.get(1).get(1).toString();
