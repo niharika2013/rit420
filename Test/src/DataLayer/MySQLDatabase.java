@@ -4,109 +4,48 @@ import java.sql.*;
 import java.util.*;
 
 public class MySQLDatabase{
-    
-    // Rather important for Data Layer objects
-
-    // Connection Data
+  
     protected Connection connection;
-    private final String address = "jdbc:mysql://mysql.spoolishness.com/484project";
-    private final String userName = "484user";
-    private final String password = "484password";
-    private final String driver = "com.mysql.jdbc.Driver";
+    private final String ADDRESS = "jdbc:mysql://mysql.spoolishness.com/484project";
+    private final String USER_NAME = "484user";
+    private final String PASSWORD = "484password";
+    private final String DRIVER = "com.mysql.jdbc.Driver";
 
     public boolean connect() throws DLException {
-        try
-        {
-            
-            Class.forName(driver).newInstance();
-            System.out.println("Attempting Connection");
-            this.connection = DriverManager.getConnection(address, userName, password);
-            
+        try {
+            Class.forName(DRIVER).newInstance();
+            this.connection = DriverManager.getConnection(ADDRESS, USER_NAME, PASSWORD);
             return true;
         }
         catch(ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e)
         {
-            System.out.println("Connection failed");
-            System.err.println(e.getMessage());
             throw new DLException(e);
         }
     }
 
-    protected boolean close() {
-        try
-        {
-            connection.close();
-            System.out.println("Connection Closed");
-            return true;
-        }
-        catch (SQLException e) {
-            //e.printStackTrace();
-            System.err.println(e.getMessage());
-            return false;
-        }
-    }
-
-    //Add	a	method	named	getData	that	accepts	an	SQL string	and	returns	a	2-d	ArrayList	(or	List	
-    //if	using	.NET). This	will	be	used	for	doing	�SELECT�	sql	statements.
-    protected ArrayList<String> getData(String sql) throws DLException  {
+    public boolean close() throws DLException {
         try {
-            connect();
-            //i. getData	should	perform	the	query	that	was	passed	in	
-            Statement getData = connection.createStatement();
-            ResultSet data = getData.executeQuery(sql);
-            //then	convert	the ResultSet	(or	RecordSet)	into	a	simple	2-d	ArrayList	(or	List).
-            ResultSetMetaData rsmd = data.getMetaData();
-            int numCols = rsmd.getColumnCount();
-            ArrayList<String> dataList = new ArrayList<String>();
-            while (data.next())
-            {
-                //ii. The	first	row	in	the	ArrayList	should	be	the	column	names.	
-                for (int i=1; i<=numCols; i++)
-                {
-                    System.out.println(data.getString(i));
-                    dataList.add(data.getString(i)); 
-                }
-            }
-            close();
-            return dataList;
-        }
-        //If the query	fails	to	run, return null.
+            connection.close();
+            return true;
+        }        
         catch(SQLException e)
         {
-            System.err.println(e.getMessage());
             throw new DLException(e);
-        }
-    }
+        }//end catch
+    }//end close
 
-    //Add	a	method	named	setData	that	accepts	an	SQL	string	and	returns	a	Boolean.	This	will	be	
-    //used	for	doing	�UPDATE�,	�DELETE�,	and	�INSERT�	operations.
-    protected boolean setData(String sql) throws DLException {
-        //i. setData	should	perform	the	query	that	was	passed.
-        try {	
-            connect();
-            Statement statement = connection.createStatement();
-            statement.execute(sql);
-            close();
-            return true;
-        }
-        //ii. If the query runs successfully, it should return true. Otherwise it should return false.
-        catch (SQLException e)
-        {
-            throw new DLException(e);
-        }
-    }
-
-    //Add a method named �prepare� that accepts an SQL string and an arraylist of string values
-    protected PreparedStatement prepare(String sql, ArrayList<String> values)   {
+    
+    //prepared statement method accepts a SQL string and the values to be 
+    //bound to that string before query submission
+    protected PreparedStatement prepare(String sql, ArrayList<String> values) {
         try {
-            //prepares it
             PreparedStatement statement = connection.prepareStatement(sql);
-            //binds the values
+
             for(int i = 1; i <= values.size(); i++) {
-                System.out.println("Setting data: " + values.get(i-1));
+                //System.out.println("Setting data: " + values.get(i-1));
                 statement.setString(i, values.get(i-1));
             }
-            //returns a prepared statement
+
             return statement;
         } catch(SQLException e) {
             System.err.println(e.getMessage());
@@ -114,11 +53,10 @@ public class MySQLDatabase{
         }
     }
 
-    //Add a method named �getData� (in addition to one you already have) that accepts an SQL
-    //string and an arraylist of string values.
+    
+    //Calls the database with a prepared statement and accepts rows of data
     protected ArrayList<ArrayList<String>> getData(String sql, ArrayList<String> values) throws DLException   {
         try {
-            System.out.println("Attempting to get data...");
             PreparedStatement statement = prepare(sql, values);
             ResultSet data = statement.executeQuery();
             
@@ -129,103 +67,80 @@ public class MySQLDatabase{
             for (int j = 0; j < numCols; j++) {
                 row.add(j, rsmd.getColumnName(j+1));
             }
+            
             dataList.add(row);
             while (data.next()) {
                 row = new ArrayList<String>(numCols);
                 for (int i = 1; i <= numCols; i++) {
-                    System.out.println(data.getString(i));
+                    //System.out.println(data.getString(i));
                     row.add(data.getString(i)); 
                 }
                 dataList.add(row);
             }
             return dataList;
-        }
-        catch(SQLException e){
-            System.err.println(e.getMessage());
+        } catch(SQLException e){
             throw new DLException(e);
         }
     }
 
-    //Add a method named �setData� (in addition to one you already have) that accepts an SQL 
-    //string and an arraylist of string values.
-    protected boolean setData(String sql, ArrayList<String> values) throws DLException   {
+    
+    //sends an update or insert statement to the database and returns a boolean 
+    protected boolean setData(String sql, ArrayList<String> values) throws DLException {
         PreparedStatement statement = null;
         
         try {
             statement = this.prepare(sql, values);
             statement.execute();
             return true;
-        }
-        catch(SQLException e){
+        } catch(SQLException e){
             System.err.print(e);
             return false;
         }
     }
-   
-    //Add a method named executeProc that accepts a string and an arraylist of string values
-    //The string that is passed in should represent a stored procedure to be executed
-    //Assume that the procedure returns a single integer value.
-    protected int executeProc(String storedProcedure, ArrayList<String> values) throws DLException
-    {
-        try
-        {
+    
+    //stored procedure method
+    protected int executeProc(String storedProcedure, ArrayList<String> values) throws DLException {
+        try {
             connect();
-            //Write code in executeProc so that the values are bound 
             CallableStatement statement = connection.prepareCall(storedProcedure);
-            for(int i = 0; i < values.size(); i++)
-            { 
+            for(int i = 0; i < values.size(); i++) { 
                 statement.setString(i, values.get(i)); 
             }
-            //the procedure is executed
-            //Pass back any result from the stored procedure.
             statement.executeUpdate();
             close();
             return 1;
-        }
-        catch(Exception e)
-        {
+        } catch(Exception e) {
             throw new DLException(e);
         }
     }
 
-    //Add methods �startTrans�, �endTrans�, and �rollbackTrans� that perform the obvious activities.
-    protected boolean startTrans() throws DLException
-    {
-        try
-        {
+    
+    //transaction methods follow
+    protected boolean startTrans() throws DLException {
+        try {
             connection.setAutoCommit(false);
             return true;
-        }
-        catch(SQLException e)
-        {
+        } catch(SQLException e) {
             throw new DLException(e);
         }
     }
 
-    protected boolean endTrans() throws DLException
-    {
-        try
-        {
+    protected boolean endTrans() throws DLException {
+        try {
             connection.commit();
             connection.setAutoCommit(true);
             return true;
-        }
-        catch(SQLException e)
-        {
+        } catch(SQLException e) {
             throw new DLException(e);
         }
     }
 
-    protected boolean rollbackTrans() throws DLException
-    {
-        try
-        {
+    protected boolean rollbackTrans() throws DLException {
+        try {
             connection.rollback();
             return true;
-        }
-        catch(SQLException e)
-        {
+        } catch(SQLException e) {
             throw new DLException(e);
         }
     }
-}
+}//end class
