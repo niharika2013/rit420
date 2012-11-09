@@ -34,12 +34,12 @@ public class User {
 	public boolean fetch() throws DLException {
 		myDB = new MySQLDatabase();
 		
-		ArrayList<String> values = new ArrayList<String>(0);
+		ArrayList<String> values = new ArrayList<>(0);
 		values.add(userId);
-        myDB.connect();
+                myDB.connect();
 		ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM users WHERE UserId = ?", values);
-        myDB.close();
-        if(dataList != null){
+                myDB.close();
+                if(dataList != null){
 			fName = dataList.get(1).get(1).toString();
 			lName = dataList.get(1).get(2).toString();
 			email = dataList.get(1).get(3).toString();
@@ -57,16 +57,23 @@ public class User {
 	public boolean post() throws DLException {
 		myDB = new MySQLDatabase();
 		
-		ArrayList<String> values = new ArrayList<String>(0);
+                try{
+                    ArrayList<String> values = new ArrayList<>(0);
 
-		values.add(userId);
-		values.add(fName); 
-		values.add(lName);
-		values.add(email);
-		values.add(pswd);
-		values.add(role);
-
-		return myDB.setData("UPDATE users FName = ?, LName = ?, Email = ?, Pswd = ?, Role = ? WHERE UserId = ?", values);
+                    values.add(userId);
+                    values.add(fName); 
+                    values.add(lName);
+                    values.add(email);
+                    values.add(pswd);
+                    values.add(role);
+                    myDB.connect();
+                    myDB.setData("UPDATE users FName = ?, LName = ?, Email = ?, Pswd = ?, Role = ? WHERE UserId = ?", values);
+                    myDB.close();
+                    return true;
+                }
+                catch(DLException e){
+                    return false;
+                }
 	}
 	
 	
@@ -76,18 +83,16 @@ public class User {
 		myDB = new MySQLDatabase();
 
 		try {
-			ArrayList<String> values = new ArrayList<String>(0);
-
-			values.add(userId);
+			ArrayList<String> values = new ArrayList<>(0);
+                        values.add(userId);
 			values.add(fName);
 			values.add(lName);
 			values.add(email);
 			values.add(pswd);
 			values.add(role);
-
-			myDB.connect();
-            myDB.setData("INSERT INTO users (UserId,FName,LName,Email,Pswd,Role) VALUES(?,?,?,?,?,?)", values);
-            myDB.close();
+                        myDB.connect();
+                        myDB.setData("INSERT INTO users (UserId,FName,LName,Email,Pswd,Role) VALUES(?,?,?,?,?,?)", values);
+                        myDB.close();
 
             return true;
         } catch(DLException e) {
@@ -100,7 +105,7 @@ public class User {
     public boolean delete(){
 		myDB = new MySQLDatabase();
     	try {
-            ArrayList<String> values = new ArrayList<String>(0);
+            ArrayList<String> values = new ArrayList<>(0);
             values.add(userId);
             myDB.connect();
             myDB.setData("DELETE FROM users WHERE userID = ?", values);
