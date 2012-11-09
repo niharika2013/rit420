@@ -9,7 +9,7 @@ public class Kudo
 	private String kudoId;
 	private String year;
 	private String kudo;
-        private MySQLDatabase myDB = new MySQLDatabase();
+        private MySQLDatabase myDB;
 	
 	// Provide	a	default	constructor.
 	public Kudo()
@@ -49,6 +49,10 @@ public class Kudo
 	//and	updates	the	object�s	attributes.
 	public boolean fetch() throws DLException
 	{
+              try{    
+            myDB = new MySQLDatabase();
+
+            
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(kudoId);
 		ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM kudos WHERE KudoId = ?", values);
@@ -64,37 +68,62 @@ public class Kudo
 		{
 			return false;
 		}
-		
+	
+                  } catch (Exception e){
+            throw new DLException(e);
+        }
+                
 	}
 	
 	// post updates the database values, for that object�s kudoId, using the	
 	//object�s attribute values.
 	public boolean post() throws DLException
 	{
-		ArrayList<String> values = new ArrayList<String>(0);
+            myDB = new MySQLDatabase();
+
+            try{
+            ArrayList<String> values = new ArrayList<String>(0);
 		values.add(userId); 
 		values.add(year);
 		values.add(kudo);
 		values.add(kudoId);
-		return myDB.setData("UPDATE kudos UserId = ?, year = ?, Kudo = ? WHERE KudoId = ?", values);
-	}
+                myDB.setData("UPDATE kudos UserId = ?, year = ?, Kudo = ? WHERE KudoId = ?", values);
+		return true;
+	
+            }catch(DLException e){
+                return false;
+            }
+        }
 	
 	// put	inserts	the	object�s	attribute	values	into	the	database	as	a	new	record.
 	public boolean put() throws DLException
 	{
+              myDB = new MySQLDatabase();
+
+            try {
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(userId);
 		values.add(kudoId);
 		values.add(year);
 		values.add(kudo);
-		return myDB.setData("INSERT INTO kudos (UserId,KudoId,Year,Kudo) VALUES(?,?,?,?)", values);
-	}
+                myDB.setData("INSERT INTO kudos (UserId,KudoId,Year,Kudo) VALUES(?,?,?,?)", values);
+		return true;
+	  } catch(DLException e) {
+                 return false;
+         }
+            
+          }
 	
 	// delete removes	from	the	database	any	data	corresponding	to	the	object�s kudoId.
 	public boolean delete() throws DLException
 	{
+             myDB = new MySQLDatabase();
+    	try {
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(kudoId);
-		return myDB.setData("DELETE FROM kudos WHERE kudoID = ?", values);
-	}
-}
+		myDB.setData("DELETE FROM kudos WHERE kudoID = ?", values);
+                return true;
+	}   catch(DLException e) {
+            return false;
+        }
+}}

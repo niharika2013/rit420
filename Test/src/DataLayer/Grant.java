@@ -4,7 +4,6 @@ import java.util.*;
 
 public class Grant
 {
-	// Provide	attributes	that	mirror	the	Grants	table.
 	private String userId;
 	private String grantId;
 	private String year;
@@ -12,9 +11,8 @@ public class Grant
 	private String tease;
 	private String amount;
 	private String status;
-        private MySQLDatabase myDB = new MySQLDatabase();
+        private MySQLDatabase myDB;
 	
-	// Provide	a	default	constructor.
 	public Grant()
 	{
 	}
@@ -64,10 +62,15 @@ public class Grant
 	//and	updates	the	object�s	attributes.
 	public boolean fetch() throws DLException
 	{
+            try{
+                myDB = new MySQLDatabase();
+            
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(grantId);
-		ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM grants WHERE GrantId = ?", values);
-		if(dataList != null)
+		myDB.connect();
+                ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM grants WHERE GrantId = ?", values);
+		myDB.close();
+                if(dataList != null)
 		{
 			userId = dataList.get(1).get(1).toString();
 			grantId = dataList.get(1).get(2).toString();
@@ -83,13 +86,19 @@ public class Grant
 		{
 			return false;
 		}
-		
+            } catch (Exception e){
+                throw new DLException(e);
+            }
 	}
 	
 	// post updates the database values, for that object�s grantId, using the	
 	//object�s attribute values.
 	public boolean post() throws DLException
 	{
+                      myDB = new MySQLDatabase();
+
+            try{
+            
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(userId); 
 		values.add(year);
@@ -99,11 +108,19 @@ public class Grant
 		values.add(status);
 		values.add(grantId);
 		return myDB.setData("UPDATE grant UserId = ?, Year = ?, Citation = ?, Tease = ?, Amount = ?, Status = ? WHERE GrantId = ?", values);
-	}
+                     }
+            catch(DLException e){
+                return false;
+            }
+           }
 	
 	// put	inserts	the	object�s	attribute	values	into	the	database	as	a	new	record.
 	public boolean put() throws DLException
 	{
+             myDB = new MySQLDatabase();
+
+            try {
+            
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(userId);
 		values.add(grantId);
@@ -115,15 +132,25 @@ public class Grant
 		for (String value: values){
 			System.out.println(value);
 		}
-		System.out.println("put() grant");
-		return myDB.setData("INSERT INTO grant (UserId,GrantId,Year,Citation,Tease,Amount,Status) VALUES(?,?,?,?,?,?,?)", values);
-	}
+		//System.out.println("put() grant");
+		myDB.setData("INSERT INTO grant (UserId,GrantId,Year,Citation,Tease,Amount,Status) VALUES(?,?,?,?,?,?,?)", values);
+                
+                return true;
+	    } catch(DLException e) {
+        return false;
+    }
+            }
 	
 	// delete removes	from	the	database	any	data	corresponding	to	the	object�s grantId.
 	public boolean delete() throws DLException
-	{
+	{        myDB = new MySQLDatabase();
+    	try {
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(grantId);
 		return myDB.setData("DELETE FROM grant WHERE grantID = ?", values);
-	}
+	 } catch(DLException e) {
+            return false;
+        }
+        
+        }
 }

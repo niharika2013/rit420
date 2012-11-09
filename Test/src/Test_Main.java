@@ -4,10 +4,9 @@ public class Test_Main {
 
     public static void main(String[] args){
         
-    	//testDatabase(); //works
+    	testDatabase(); //works
     	//testUserFetch(); //works
-        testUserDelete(); //works sort of... catching a weird exception in  
-                            //fetch method after deletion, but not a real use case
+        //testUserDelete(); //works 
         //testUserPut(); //works
         //testUserPost(); //works
     }

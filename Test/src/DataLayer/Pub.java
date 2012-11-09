@@ -11,7 +11,7 @@ public class Pub
 	private String citation;
 	private String tease;
 	private String status;
-        private MySQLDatabase myDB = new MySQLDatabase();
+        private MySQLDatabase myDB;
 	
 	// Provide	a	default	constructor.
 	public Pub()
@@ -59,10 +59,14 @@ public class Pub
 	//and	updates	the	object�s	attributes.
 	public boolean fetch() throws DLException
 	{
+             try{    
+            myDB = new MySQLDatabase();
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(pubId);
-		ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM pubs WHERE PubId = ?", values);
-		if(dataList != null)
+		myDB.connect();
+                ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM pubs WHERE PubId = ?", values);
+		myDB.close();
+                if(dataList != null)
 		{
 			userId = dataList.get(1).get(1).toString();
 			pubId = dataList.get(1).get(2).toString();
@@ -76,13 +80,17 @@ public class Pub
 		{
 			return false;
 		}
-		
+            } catch (Exception e){
+                throw new DLException(e);
+            }
 	}
 	
 	// post updates the database values, for that object�s pubId, using the	
 	//object�s attribute values.
 	public boolean post() throws DLException
 	{
+                myDB = new MySQLDatabase();
+                try{
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(userId); 
 		values.add(year);
@@ -90,12 +98,24 @@ public class Pub
 		values.add(tease);
 		values.add(status);
 		values.add(pubId);
-		return myDB.setData("UPDATE pub UserId = ?, Year = ?, Citation = ?, Tease = ?, Status = ? WHERE PubId = ?", values);
-	}
+                myDB.connect();
+                myDB.setData("UPDATE pub UserId = ?, Year = ?, Citation = ?, Tease = ?, Status = ? WHERE PubId = ?", values);
+		myDB.close();
+                return true; 
+	
+                }
+            catch(DLException e){
+                return false;
+            }
+        }
 	
 	// put	inserts	the	object�s	attribute	values	into	the	database	as	a	new	record.
 	public boolean put() throws DLException
 	{
+              myDB = new MySQLDatabase();
+
+            try {
+            
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(userId);
 		values.add(pubId);
@@ -103,14 +123,27 @@ public class Pub
 		values.add(citation);
 		values.add(tease);
 		values.add(status);
-		return myDB.setData("INSERT INTO pub (UserId,PubId,Year,Citation,Tease,Status) VALUES(?,?,?,?,?,?)", values);
-	}
+		myDB.setData("INSERT INTO pub (UserId,PubId,Year,Citation,Tease,Status) VALUES(?,?,?,?,?,?)", values);
+	        return true;
+    } catch(DLException e) {
+        return false;
+    }
+            }
+            
 	
 	// delete removes	from	the	database	any	data	corresponding	to	the	object�s pubId.
 	public boolean delete() throws DLException
 	{
+               myDB = new MySQLDatabase();
+    	try {
 		ArrayList<String> values = new ArrayList<String>(0);
 		values.add(pubId);
-		return myDB.setData("DELETE FROM pub WHERE pubID = ?", values);
-	}
+		myDB.connect();
+                myDB.setData("DELETE FROM pub WHERE pubID = ?", values);
+                myDB.close();
+                return true;
+        } catch(DLException e) {
+            return false;
+        }
+    }
 }
