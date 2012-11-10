@@ -3,13 +3,15 @@ package DataLayer;
 import java.util.*;
 
 public class User {
+
+    private MySQLDatabase myDB = new MySQLDatabase();
+
     private String userId;
     private String fName;
     private String lName;
     private String email;
     private String pswd;
     private String role;
-    private MySQLDatabase myDB = new MySQLDatabase();
 
     //User ID only constuctor
     public User(String userId) {  
@@ -32,11 +34,10 @@ public class User {
     // fields of this data object with those values.
     public boolean fetch() throws DLException {
         try{    
-
             ArrayList<String> values = new ArrayList<>(0);
             values.add(userId);
             ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM users WHERE UserId = ?", values);
-            if(dataList != null){
+            if(dataList != null){                
                     fName = dataList.get(1).get(1).toString();
                     lName = dataList.get(1).get(2).toString();
                     email = dataList.get(1).get(3).toString();
@@ -55,46 +56,40 @@ public class User {
     //updates the given user ID with new values according to the
     //fields of the present object
     public boolean post() throws DLException {
-
-            try{
-                ArrayList<String> values = new ArrayList<>(0);
-
-                values.add(userId);
-                values.add(fName); 
-                values.add(lName);
-                values.add(email);
-                values.add(pswd);
-                values.add(role);
-                myDB.setData("UPDATE users FName = ?, LName = ?, Email = ?, Pswd = ?, Role = ? WHERE UserId = ?", values);
-                return true;
-            }
-            catch(DLException e){
-                return false;
-            }
+        try{
+            ArrayList<String> values = new ArrayList<>(0);
+            values.add(userId);
+            values.add(fName); 
+            values.add(lName);
+            values.add(email);
+            values.add(pswd);
+            values.add(role);
+            myDB.setData("UPDATE users FName = ?, LName = ?, Email = ?, Pswd = ?, Role = ? WHERE UserId = ?", values);
+            return true;
+        }
+        catch(Exception e){
+            throw new DLException(e);
+        }
     }
 
 
     //takes all the fields of the data object and inserts them into the 
     //database under the given UID
-    public boolean put(){
-
-            try {
-                    ArrayList<String> values = new ArrayList<>(0);
-                    values.add(userId);
-                    values.add(fName);
-                    values.add(lName);
-                    values.add(email);
-                    values.add(pswd);
-                    values.add(role);
-                    myDB.connect();
-                    myDB.setData("INSERT INTO users (UserId,FName,LName,Email,Pswd,Role) VALUES(?,?,?,?,?,?)", values);
-                    myDB.close();
-
-        return true;
-    } catch(DLException e) {
-        return false;
+    public boolean put() throws DLException{
+        try {
+            ArrayList<String> values = new ArrayList<>(0);
+            values.add(userId);
+            values.add(fName);
+            values.add(lName);
+            values.add(email);
+            values.add(pswd);
+            values.add(role);
+            myDB.setData("INSERT INTO users (UserId,FName,LName,Email,Pswd,Role) VALUES(?,?,?,?,?,?)", values);
+            return true;
+        } catch(Exception e) {
+            throw new DLException(e);
+        }
     }
-}
 
 
     //deletes the user with this Object UID from the database.
@@ -102,9 +97,7 @@ public class User {
     	try {
             ArrayList<String> values = new ArrayList<>(0);
             values.add(userId);
-            myDB.connect();
             myDB.setData("DELETE FROM users WHERE userID = ?", values);
-            myDB.close();
             return true;
         } catch(DLException e) {
             return false;

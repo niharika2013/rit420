@@ -8,7 +8,7 @@ public class Test_Main {
     	//testUserFetch(); //works
         //testUserDelete(); //works 
         //testUserPut(); //works
-        //testUserPost(); //works
+        testUserPost(); //works
     }
 
     public static void testDatabase(){
@@ -92,8 +92,9 @@ public class Test_Main {
 
     public static void testUserDelete(){
         User testUser = new User("19","666","Lucifer","Morningstar","webmaster@aol.com","3");
-        testUser.put();
+        
         try{
+            testUser.put();
             testUser.delete();
             testUser = new User("19");
             testUser.fetch();
