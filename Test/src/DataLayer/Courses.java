@@ -1,42 +1,27 @@
 package DataLayer;
 
 import java.util.*;
-/**
- *
- * @author Anthony Gentile
- */
 
 public class Courses {
     
-	 // Array of all courses
-    private ArrayList<Course> courses = new ArrayList<Course>(0);
+    private ArrayList<Course> courses = new ArrayList<>(0);
     private MySQLDatabase myDB = new MySQLDatabase();
     
-	 // Default Constructor
-    public Courses()
-    {
+    public Courses(){
     }
     
-	 // Getter
-    public ArrayList<Course> getCourses()
-    {
+    public ArrayList<Course> getCourses(){
         return courses;
     }
     
-	 // Setter
-    public void setCourses(ArrayList<Course> coursesList)
-    {
+    public void setCourses(ArrayList<Course> coursesList){
         courses = coursesList;
     }
     
-	 // Get all the courses and basic details
-    public boolean fetch() throws DLException
-    {
+    public boolean fetch() throws DLException {
         ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM courses", null);
-        if(dataList != null)
-        {
-            for (int i = 1; i <= dataList.size(); i++)
-            {
+        if(dataList != null) {
+            for (int i = 1; i <= dataList.size(); i++) {
                 Course e = new Course(dataList.get(i).get(2).toString());
                 e.setUserId(dataList.get(i).get(1).toString());
                 e.setYear(dataList.get(i).get(3).toString());
@@ -45,9 +30,7 @@ public class Courses {
                 courses.add(e);
             }
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
