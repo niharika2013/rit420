@@ -18,11 +18,6 @@ public class User {
             this.userId = userId; 
     }
 
-    public User(String pEmail, String pPassword) {  
-            email = pEmail;
-            pswd = pPassword;
-    }
-
     
     //Constructor with all fields as parameters.
     public User(String userId, String fName, String lName, String email, String pswd, String role)	{

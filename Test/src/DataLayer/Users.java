@@ -4,12 +4,12 @@ import java.util.*;
 
 
 public class Users {
+  
     
-    private ArrayList<User> users = new ArrayList<User>(0);
+    private ArrayList<User> users = new ArrayList<>(0);
     private MySQLDatabase myDB = new MySQLDatabase();
 
-    public Users() {
-    }
+    public Users() {}
     
 
     public ArrayList<User> getUsers() {

@@ -28,16 +28,16 @@ public class Course {
 	
         public boolean fetch() throws DLException {
             try{
-                ArrayList<String> values = new ArrayList<String>(0);
+                ArrayList<String> values = new ArrayList<>(0);
                 values.add(courseId);
                 ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM courses WHERE CourseId = ?", values);
                 if(dataList != null) {
-                        userId = dataList.get(1).get(1).toString();
-                        courseId = dataList.get(1).get(2).toString();
-                        year = dataList.get(1).get(3).toString();
-                        courseNumber = dataList.get(1).get(4).toString();
-                        courseName = dataList.get(1).get(5).toString();
-                        return true;
+                    userId = dataList.get(1).get(1).toString();
+                    courseId = dataList.get(1).get(2).toString();
+                    year = dataList.get(1).get(3).toString();
+                    courseNumber = dataList.get(1).get(4).toString();
+                    courseName = dataList.get(1).get(5).toString();
+                    return true;
                 } else {
                         return false;
                 }
@@ -51,7 +51,7 @@ public class Course {
 	//object�s attribute values.
 	public boolean post() throws DLException {
             try{
-                ArrayList<String> values = new ArrayList<String>(0);
+                ArrayList<String> values = new ArrayList<>(0);
 		values.add(userId); 
 		values.add(year);
 		values.add(courseNumber);
@@ -59,15 +59,15 @@ public class Course {
 		values.add(courseId);
                 myDB.setData("UPDATE course UserId = ?, Year = ?, CourseNumber = ?, CourseName = ? WHERE CourseId = ?", values);
                 return true; 
-            }catch(DLException e){
-                return false;
+            }catch(Exception e){
+                throw new DLException(e);
             }
         }
 	
 	// put	inserts	the	object�s	attribute	values	into	the	database	as	a	new	record.
 	public boolean put() throws DLException	{
            try {
-		ArrayList<String> values = new ArrayList<String>();
+		ArrayList<String> values = new ArrayList<>();
                 values.add(this.getUserId());
 		values.add(this.getCourseId());
 		values.add(this.getYear());
@@ -76,7 +76,7 @@ public class Course {
                 myDB.setData("INSERT INTO courses (UserId,CourseId,Year,CourseNumber,CourseName) VALUES(?,?,?,?,?)", values);                
 		return true;      
             }catch (Exception e){
-                    throw new DLException(e);
+                throw new DLException(e);
             }
            
         }
@@ -84,7 +84,7 @@ public class Course {
 	// delete removes	from	the	database	any	data	corresponding	to	the	object�s courseId.
 	public boolean delete() throws DLException {
             try {            
-                ArrayList<String> values = new ArrayList<String>(0);
+                ArrayList<String> values = new ArrayList<>(0);
                 values.add(courseId);
                 return myDB.setData("DELETE FROM course WHERE courseID = ?", values);
             } catch (Exception e) {
