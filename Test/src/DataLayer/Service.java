@@ -71,13 +71,13 @@ public class Service {
             try{                
 		ArrayList<String> values = new ArrayList<>(0);
 		values.add(serviceId);
-		ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM services WHERE ServiceId = ?", values);
+		ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT userId, serviceId, year, description, role FROM services WHERE ServiceId = ?", values);
 		if(dataList.size() > 1){
-                    userId = dataList.get(1).get(1).toString();
-                    serviceId = dataList.get(1).get(2).toString();
-                    year = dataList.get(1).get(3).toString();
+                    userId      = dataList.get(1).get(1).toString();
+                    serviceId   = dataList.get(1).get(2).toString();
+                    year        = dataList.get(1).get(3).toString();
                     description = dataList.get(1).get(4).toString();
-                    role = dataList.get(1).get(5).toString();
+                    role        = dataList.get(1).get(5).toString();
                     return true;
 		} else {
 			return false;

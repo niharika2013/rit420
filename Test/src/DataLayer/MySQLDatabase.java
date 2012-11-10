@@ -66,13 +66,13 @@ public class MySQLDatabase{
             PreparedStatement statement = connection.prepareStatement(sql);
 
             for(int i = 1; i <= values.size(); i++) {
-                System.out.println("Setting data: " + values.get(i-1));
+                //System.out.println("Setting data: " + values.get(i-1));
                 statement.setString(i, values.get(i-1));
             }
 
             return statement;
         } catch(SQLException e) {
-            System.err.println(e.getMessage());
+            //System.err.println(e.getMessage());
             return null;
         }
     }

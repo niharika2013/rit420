@@ -49,13 +49,13 @@ public class Grant {
          * @param status 
          */
         public Grant(String userId, String grantId, String year, String citation, String tease, String amount, String status) {
-		this.userId = userId;
-		this.grantId = grantId;
-		this.year = year;
-		this.citation = citation;
-		this.tease = tease;
-		this.amount = amount;
-		this.status = status;
+		this.userId     = userId;
+		this.grantId    = grantId;
+		this.year       = year;
+		this.citation   = citation;
+		this.tease      = tease;
+		this.amount     = amount;
+		this.status     = status;
 	}
 
         
@@ -74,15 +74,15 @@ public class Grant {
             try{            
 		ArrayList<String> values = new ArrayList<>(0);
 		values.add(grantId);
-		ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM grants WHERE GrantId = ?", values);
+		ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT userId, grantId, year, citation, tease, amount, status FROM grants WHERE GrantId = ?", values);
 		if(dataList.size() > 1) {
-			userId = dataList.get(1).get(1).toString();
-			grantId = dataList.get(1).get(2).toString();
-			year = dataList.get(1).get(3).toString();
-			citation = dataList.get(1).get(4).toString();
-			tease = dataList.get(1).get(5).toString();
-			amount = dataList.get(1).get(6).toString();
-			status = dataList.get(1).get(7).toString();
+			userId      = dataList.get(1).get(1).toString();
+			grantId     = dataList.get(1).get(2).toString();
+			year        = dataList.get(1).get(3).toString();
+			citation    = dataList.get(1).get(4).toString();
+			tease       = dataList.get(1).get(5).toString();
+			amount      = dataList.get(1).get(6).toString();
+			status      = dataList.get(1).get(7).toString();
 			return true;
 		} else {
 			return false;

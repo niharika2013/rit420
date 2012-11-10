@@ -72,7 +72,9 @@ public class Course {
             try{
                 ArrayList<String> values = new ArrayList<>(0);
                 values.add(courseId);
-                ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM courses WHERE CourseId = ?", values);
+                String sql = "SELECT userId, courseId, year, courseNumber, courseName "+
+                             "FROM courses WHERE CourseId = ?";
+                ArrayList<ArrayList<String>> dataList = myDB.getData(sql, values);
                 if(dataList.size() > 1) {
                     userId = dataList.get(1).get(1).toString();
                     courseId = dataList.get(1).get(2).toString();
@@ -104,7 +106,9 @@ public class Course {
 		values.add(courseNumber);
 		values.add(courseName);
 		values.add(courseId);
-                myDB.setData("UPDATE course UserId = ?, Year = ?, CourseNumber = ?, CourseName = ? WHERE CourseId = ?", values);
+                String sql = "UPDATE course UserId = ?, Year = ?, CourseNumber = ?, CourseName = ? "+
+                             "WHERE CourseId = ?";
+                myDB.setData(sql, values);
                 return true; 
             }catch(Exception e){
                 throw new DLException(e);

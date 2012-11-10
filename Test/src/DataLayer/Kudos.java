@@ -51,7 +51,7 @@ public class Kudos {
      * @throws DLException 
      */
     public boolean fetch() throws DLException {
-        ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM kudos", null);
+        ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT userId, kudoId, year, kudo FROM kudos", null);
 	if(dataList.size() > 1) {
             for (int i = 1; i <= dataList.size(); i++) {
          	Kudo e = new Kudo(dataList.get(i).get(2).toString());
