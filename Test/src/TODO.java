@@ -11,8 +11,29 @@ public class TODO {
      *
      * Properly abstract an entity/entities class
      * 
-     * 
+     * Validate email
      * 
      * 
      */
+
+/*
+ * 
+ * PRESENTATIONSES
+ * 
+ * Nuked the business layer
+ * 
+ * Subversion check out system
+ * 
+ * Password field auto-encrypts yay
+ * 
+ * How the hashing works
+ * 
+ * Using Netbeans IDE for presentation layer
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
+
 }

@@ -3,6 +3,8 @@ package DataLayer;
 import java.util.*;
 
 /**
+ * The Grants class creates a data object representing multiple rows/tuples
+ * from the 'grants' table of the faculty activity database (484 project in this case).
  * 
  * @author Adam Morgan
  * @author Anthony Gentile

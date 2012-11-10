@@ -3,6 +3,8 @@ package DataLayer;
 import java.util.*;
 
 /**
+ * The Pubs class creates a data object representing multiple rows/tuples
+ * from the pubs table of the faculty activity database (484 project in this case).
  * 
  * @author Adam Morgan
  * @author Anthony Gentile
