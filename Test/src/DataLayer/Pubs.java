@@ -2,21 +2,43 @@ package DataLayer;
 
 import java.util.*;
 
+/**
+ * 
+ * @author owen
+ */
+
 public class Pubs {
     
     private ArrayList<Pub> pubs = new ArrayList<>(0);
     MySQLDatabase myDB = new MySQLDatabase();
-    
+   
+    /**
+     * 
+     */
     public Pubs() {}
     
+    
+    /**
+     * 
+     * @return 
+     */
     public ArrayList<Pub> getPubs() {
         return pubs;
     }
     
+    /**
+     * 
+     * @param pubsList 
+     */
     public void setPubs(ArrayList<Pub> pubsList) {
         pubs = pubsList;
     }
     
+    /**
+     * 
+     * @return
+     * @throws DLException 
+     */
     public boolean fetch() throws DLException {
 	ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM pubs", null);
 	if(dataList != null){

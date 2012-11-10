@@ -2,6 +2,10 @@ package DataLayer;
 
 import java.util.*;
 
+/**
+ * 
+ * @author owen
+ */
 public class Service {
 	
         private MySQLDatabase myDB = new MySQLDatabase();
@@ -12,18 +16,33 @@ public class Service {
 	private String year;
 	private String description;
 	private String role;
-        
+   
+        /**
+         * 
+         */
 	public Service()
 	{
 	}
 	
 	// Provide	a	constructor	that	accepts	and	sets	the	serviceId.
-	public Service(String serviceId){
+	/**
+         * 
+         * @param serviceId 
+         */
+        public Service(String serviceId){
 		this.serviceId = serviceId;
 	}
 	
 	// Provide	a	constructor	that	accepts	and	sets	all	attributes.
-	public Service(String userId, String serviceId, String year, String description, String role){
+	/**
+         * 
+         * @param userId
+         * @param serviceId
+         * @param year
+         * @param description
+         * @param role 
+         */
+        public Service(String userId, String serviceId, String year, String description, String role){
 		this.userId = userId;
 		this.serviceId = serviceId;
 		this.year = year;
@@ -34,9 +53,14 @@ public class Service {
         // fetch	uses	the	object�s	serviceId	attribute	and	the	Database	class
 	//getData	method	to	retrieve	the	database	values	for	that	particular	serviceId	
 	//and	updates	the	object�s	attributes.
-	public boolean fetch() throws DLException {
+	/**
+         * 
+         * @return
+         * @throws DLException 
+         */
+        public boolean fetch() throws DLException {
             try{                
-		ArrayList<String> values = new ArrayList<String>(0);
+		ArrayList<String> values = new ArrayList<>(0);
 		values.add(serviceId);
 		ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM services WHERE ServiceId = ?", values);
 		if(dataList != null){
@@ -56,9 +80,14 @@ public class Service {
 	
 	// post updates the database values, for that object�s serviceId, using the	
 	//object�s attribute values.
-	public boolean post() throws DLException {
+	/**
+         * 
+         * @return
+         * @throws DLException 
+         */
+        public boolean post() throws DLException {
             try {
-		ArrayList<String> values = new ArrayList<String>(0);
+		ArrayList<String> values = new ArrayList<>(0);
 		values.add(userId); 
 		values.add(year);
 		values.add(description);
@@ -71,7 +100,12 @@ public class Service {
         }
 	
 	// put	inserts	the	object�s	attribute	values	into	the	database	as	a	new	record.
-	public boolean put() throws DLException {
+	/**
+         * 
+         * @return
+         * @throws DLException 
+         */
+        public boolean put() throws DLException {
             try {
 		ArrayList<String> values = new ArrayList<>(0);
 		values.add(userId);
@@ -87,32 +121,81 @@ public class Service {
         }
 	
     // delete removes	from	the	database	any	data	corresponding	to	the	object�s serviceId.
-    public boolean delete() throws DLException {
-        try {
-            ArrayList<String> values = new ArrayList<String>(0);
-            values.add(serviceId);
-            myDB.setData("DELETE FROM service WHERE serviceID = ?", values);
-            return true;
-        } catch(Exception e) {
-            throw new DLException(e);
+    
+        /**
+         * 
+         * @return
+         * @throws DLException 
+         */
+        public boolean delete() throws DLException {
+            try {
+                ArrayList<String> values = new ArrayList<>(0);
+                values.add(serviceId);
+                myDB.setData("DELETE FROM service WHERE serviceID = ?", values);
+                return true;
+            } catch(Exception e) {
+                throw new DLException(e);
+            }
         }
-    }
     
         // Provide	accessors	and	mutators	for	all	attributes.
-	public void setServiceId(String serviceId){this.serviceId = serviceId;}
-	public String getServiceId(){return serviceId;}
+	/**
+         * 
+         * @param serviceId 
+         */
+        public void setServiceId(String serviceId){this.serviceId = serviceId;}
 	
-	public void setUserId(String userId){this.userId = userId;}
-	public String getUserId(){return userId;}
+        /**
+         * 
+         * @return 
+         */
+        public String getServiceId(){return serviceId;}
 	
+	/**
+         * 
+         * @param userId 
+         */
+        public void setUserId(String userId){this.userId = userId;}
+	
+        /**
+         * 
+         * @return 
+         */
+        public String getUserId(){return userId;}
+	
+        /**
+         * 
+         * @param year 
+         */
 	public void setYear(String year){this.year = year;}
-	public String getYear(){return year;}
 	
+        /**
+         * 
+         * @return 
+         */
+        public String getYear(){return year;}
+	
+        /**
+         * 
+         * @param description 
+         */
 	public void setDescription(String description){this.description = description;}
-	public String getDescription(){return description;}
 	
+        /**
+         * 
+         * @return 
+         */
+        public String getDescription(){return description;}
+	
+        /**
+         * 
+         * @param role 
+         */
 	public void setRole(String role){this.role = role;}
-	public String getRole(){return role;}
 	
-
+        /**
+         * 
+         * @return 
+         */
+        public String getRole(){return role;}
 }

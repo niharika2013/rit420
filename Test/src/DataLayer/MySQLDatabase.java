@@ -3,6 +3,11 @@ package DataLayer;
 import java.sql.*;
 import java.util.*;
 
+/**
+ * 
+ * @author owen
+ */
+
 public class MySQLDatabase{
   
     protected Connection connection;
@@ -11,6 +16,11 @@ public class MySQLDatabase{
     private final String PASSWORD = "484password";
     private final String DRIVER = "com.mysql.jdbc.Driver";
 
+    /**
+     * 
+     * @return
+     * @throws DLException 
+     */
     public boolean connect() throws DLException {
         try {
             Class.forName(DRIVER).newInstance();
@@ -23,6 +33,11 @@ public class MySQLDatabase{
         }
     }
 
+    /**
+     * 
+     * @return
+     * @throws DLException 
+     */
     public boolean close() throws DLException {
         try {
             connection.close();
@@ -37,6 +52,12 @@ public class MySQLDatabase{
     
     //prepared statement method accepts a SQL string and the values to be 
     //bound to that string before query submission
+    /**
+     * 
+     * @param sql
+     * @param values
+     * @return 
+     */
     protected PreparedStatement prepare(String sql, ArrayList<String> values) {
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -55,6 +76,13 @@ public class MySQLDatabase{
 
     
     //Calls the database with a prepared statement and accepts rows of data
+    /**
+     * 
+     * @param sql
+     * @param values
+     * @return
+     * @throws DLException 
+     */
     protected ArrayList<ArrayList<String>> getData(String sql, ArrayList<String> values) throws DLException   {
         try {
             connect();
@@ -92,6 +120,13 @@ public class MySQLDatabase{
 
     
     //sends an update or insert statement to the database and returns a boolean 
+    /**
+     * 
+     * @param sql
+     * @param values
+     * @return
+     * @throws DLException 
+     */
     protected boolean setData(String sql, ArrayList<String> values) throws DLException {
         PreparedStatement statement = null;
         
@@ -109,6 +144,11 @@ public class MySQLDatabase{
     
     
     //transaction methods follow
+   /**
+    * 
+    * @return
+    * @throws DLException 
+    */
     protected boolean startTrans() throws DLException {
         try {
             connection.setAutoCommit(false);
@@ -118,6 +158,11 @@ public class MySQLDatabase{
         }
     }
 
+    /**
+     * 
+     * @return
+     * @throws DLException 
+     */
     protected boolean endTrans() throws DLException {
         try {
             connection.commit();
@@ -128,6 +173,12 @@ public class MySQLDatabase{
         }
     }
 
+    
+    /**
+     * 
+     * @return
+     * @throws DLException 
+     */
     protected boolean rollbackTrans() throws DLException {
         try {
             connection.rollback();
