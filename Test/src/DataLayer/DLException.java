@@ -5,6 +5,8 @@ import java.sql.Timestamp;
 import java.util.*;
 
 /**
+ * DLException is a custom exception class to catch all data layer exceptions.
+ * 
  * 
  * @author Adam Morgan
  * @author Anthony Gentile
@@ -18,7 +20,9 @@ public class DLException extends Exception {
 	ArrayList<ArrayList<String>> eList = new ArrayList<>();
 	Exception ex;
 
+        
         /**
+         * Constructor accepts the triggering exception.
          * 
          * @param e 
          */
@@ -29,6 +33,8 @@ public class DLException extends Exception {
 
         
         /**
+         * Constructor accepts the triggering exception and accompanying
+         * list of strings.
          * 
          * @param e
          * @param eList 
@@ -39,8 +45,10 @@ public class DLException extends Exception {
 		populateList();
 	}
 	
+        
         /**
-         * 
+         * This method prints the stack trace of the object's ex field 
+         * (representing the original exception) to a log.
          */
 	private void populateList(){
 		if(ex.getStackTrace() != null){
@@ -52,10 +60,10 @@ public class DLException extends Exception {
 			eList.add(traceList);
 		}//end if
 	}//end populateList
-	
+
         
         /**
-         * 
+         * Logs the values of the eList field.
          */
 	public void log(){
 		try{

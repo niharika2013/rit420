@@ -25,21 +25,22 @@ public class Grant {
 	private String status;
 	
         /**
-         * 
+         * Explicit default constuctor for Grant does nothing.
          */
         public Grant() { }
 	
 		
         /**
-         * Provide a constructor that accepts and sets the grantId.
+         * Constructor sets only the grantId.
          * @param grantId 
          */
         public Grant(String grantId) {
 		this.grantId = grantId;
 	}
-	
+
+        
 	/**
-         * Provide a constructor that accepts and sets all attributes.
+         * Constructor with parameters for all fields of Grant.
          * 
          * @param userId
          * @param grantId
@@ -59,12 +60,17 @@ public class Grant {
 		this.status = status;
 	}
 
+        
+        
 	
         /**
-         * @return
+         * This method uses the grantId field of the dataobject to query the 
+         * grants table in the faculty activity database, and complete the remaining
+         * fields of the data object with the returned values.
+         * 
+         * @return boolean indicating data exists
          * @throws DLException 
          */
-        
         public boolean fetch() throws DLException {
             try{            
 		ArrayList<String> values = new ArrayList<>(0);
@@ -89,11 +95,12 @@ public class Grant {
 	
         
         /**
+         * This method uses all of the fields of the present data object to
+         * update the database for the object's grantId.
          * 
-         * @return
+         * @return boolean indicating success.
          * @throws DLException 
          */
-        
 	public boolean post() throws DLException {
             try{
 		ArrayList<String> values = new ArrayList<>(0);
@@ -110,10 +117,13 @@ public class Grant {
                 throw new DLException(e);
             }
         }
-	
+
+        
 	/**
+         * This method inserts the the values of this data object's fields into
+         * the grants table.
          * 
-         * @return
+         * @return boolean indicating success
          * @throws DLException 
          */
         public boolean put() throws DLException {
@@ -135,11 +145,13 @@ public class Grant {
 	
 	
         /**
+         * This method deletes an entire row corresponding to this data object's
+         * grantId field.
          * 
-         * @return
+         * @return boolean indicating success
          * @throws DLException 
          */
-        public boolean delete() throws DLException {        myDB = new MySQLDatabase();
+        public boolean delete() throws DLException {       
             try {
         	ArrayList<String> values = new ArrayList<>(0);
                 values.add(grantId);
@@ -151,88 +163,105 @@ public class Grant {
         }
         
         
+        
+        
+        
+        
 	/**
+         * Mutator method for grantID.
          * 
          * @param grantId 
          */
         public void setGrantId(String grantId){this.grantId = grantId;}
 	
         /**
+         * Accessor Method for grantId
          * 
-         * @return 
+         * @return String value of grantID.
          */
         public String getGrantId(){return grantId;}
 	
         /**
+         * Mutator method for usedId.
          * 
          * @param userId 
          */
 	public void setUserId(String userId){this.userId = userId;}
 	
         /**
+         * Accessor method for userId.
          * 
-         * @return 
+         * @return String value of userId.
          */
         public String getUserId(){return userId;}
 	
         /**
+         * Mutator value for year.
          * 
          * @param year 
          */
 	public void setYear(String year){this.year = year;}
 	
         /**
+         * Accessor value for year.
          * 
-         * @return 
+         * @return String value of year.
          */
         public String getYear(){return year;}
 	
         /**
+         * Mutator method for citation
          * 
          * @param citation 
          */
 	public void setCitation(String citation){this.citation = citation;}
 	
         /**
+         * Accessor method for citation
          * 
-         * @return 
+         * @return String value of citation
          */
-        public String getCitation(){return citation;}
-	
+        public String getCitation(){return citation;}   
         
         /**
+         * Mutator method for tease.
          * 
          * @param tease 
          */
 	public void setTease(String tease){this.tease = tease;}
 	
         /**
+         * Accessor method for tease.
          * 
-         * @return 
+         * @return String value of tease.
          */
         public String getTease(){return tease;}
 	
         /**
+         * Mutator method for amount.
          * 
          * @param amount 
          */
 	public void setAmount(String amount){this.amount = amount;}
 	
         /**
+         * Accessor method for amount.
          * 
-         * @return 
+         * @return String value of amount.
          */
         public String getAmount(){return amount;}
 	
         /**
+         * Mutator method for status.
          * 
          * @param status 
          */
 	public void setStatus(String status){this.status = status;}
 	
         /**
+         * Accessor method for status.
          * 
-         * @return 
+         * @return String value of status.
          */
         public String getStatus(){return status;}
 		
