@@ -22,6 +22,7 @@ public class Pub {
 	private String status;
         private MySQLDatabase myDB;
 	
+        
 	/**
          * Explicit default constructor for Pub does nothing! 
          */
@@ -55,6 +56,9 @@ public class Pub {
 		this.status = status;
 	}
 	
+        
+        
+        
         /**
          * This method retrieves the row corresponding to this data object's
          * pubId field and sets this data object's attributes accordingly.
@@ -125,8 +129,7 @@ public class Pub {
              } catch(Exception e) {
                 throw new DLException(e);
              }
-        }
-            
+        }   
 	
 	/**
          * This method removes from the database all values corresponding to
@@ -149,6 +152,7 @@ public class Pub {
         
         
         
+        
         /**
          * Mutator method for pubId
          * @param pubId 
@@ -160,7 +164,6 @@ public class Pub {
          * @return String value of pubId
          */
         public String getPubId(){return pubId;}
-	
         
         /**
          * Mutator method for userId
@@ -191,14 +194,12 @@ public class Pub {
          * @param citation 
          */
 	public void setCitation(String citation){this.citation = citation;}
-	
         
         /**
          * Accessor method for citation
          * @return String value for citation
          */
         public String getCitation(){return citation;}
-	
         
         /**
          * Mutator method for tease
