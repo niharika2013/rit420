@@ -21,22 +21,27 @@ public class Kudo {
 	private String year;
 	private String kudo;
     	
-        /**
-         * 
-         */
         
+        
+        
+        
+        /**
+         * Explicit default constructor for Kudo does nothing!
+         */
 	public Kudo(){}
 	
         /**
+         * Constructor for Kudo sets only kudoId.
          * 
          * @param kudoId 
          */
 	public Kudo(String kudoId) {
 		this.kudoId = kudoId;
 	}
-	
-        
+       
         /**
+         * Constructor for kudo accepts one paramenter for each field of the 
+         * data object.
          * 
          * @param userId
          * @param kudoId
@@ -49,15 +54,17 @@ public class Kudo {
 		this.year = year;
 		this.kudo = kudo;
 	}
-	
-	
-	// fetch	uses	the	object�s	kudoId	attribute	and	the	Database	class�	
-	//getData	method	to	retrieve	the	database	values	for	that	particular	kudoId	
-	//and	updates	the	object�s	attributes.
-	
+
+        
+        
+        
+        
         /**
+         * This method uses the kudoId field of the data object to query the
+         * kudos table of the faculty activity database. Values retrieved for
+         * the kudoId are stored in the fields of this data object.
          * 
-         * @return
+         * @return boolean indicating data exists.
          * @throws DLException 
          */
         public boolean fetch() throws DLException {
@@ -79,11 +86,12 @@ public class Kudo {
               }    
 	}
 	
-	// post updates the database values, for that object�s kudoId, using the	
-	//object�s attribute values.
 	/**
+         * This method uses this data object's kudoId field to update the kudos
+         * table of the faculty activity database with values equal to the 
+         * fields of this data object.
          * 
-         * @return
+         * @return boolean indicating success.
          * @throws DLException 
          */
         public boolean post() throws DLException{
@@ -100,10 +108,11 @@ public class Kudo {
             }
         }
 	
-	// put	inserts	the	object�s	attribute	values	into	the	database	as	a	new	record.
 	/**
+         * This method inserts this data object's attribute values into the 
+         * kudos table of the faculty activity database.
          * 
-         * @return
+         * @return boolean indicating success
          * @throws DLException 
          */
         public boolean put() throws DLException {
@@ -120,10 +129,11 @@ public class Kudo {
             }
         }
 	
-	// delete removes	from	the	database	any	data	corresponding	to	the	object�s kudoId.
 	/**
+         * This method deletes from the database all values associated with
+         * this object's kudoId.
          * 
-         * @return
+         * @return boolean indicating success.
          * @throws DLException 
          */
         public boolean delete() throws DLException {
@@ -138,51 +148,56 @@ public class Kudo {
         }
 
         
+        
+        
+        
+        
         /**
+         * Mutator method for kudoId
          * 
          * @param kudoId 
          */
         public void setKudoId(String kudoId){this.kudoId = kudoId;}
         
         /**
-         * 
-         * @return 
+         * Accessor method for kudoId
+         * @return String value of kudoId
          */
         public String getKudoId(){return kudoId;}
 
         /**
-         * 
+         * Mutator method for userId
          * @param userId 
          */
         public void setUserId(String userId){this.userId = userId;}
         
         /**
-         * 
-         * @return 
+         * Accessor method for userId
+         * @return String value of userId
          */
         public String getUserId(){return userId;}
 
         /**
-         * 
+         * Mutator method for year
          * @param year 
          */
         public void setYear(String year){this.year = year;}
         
         /**
-         * 
-         * @return 
+         * Accessor method for year
+         * @return String value of year
          */
         public String getYear(){return year;}
 
         /**
-         * 
+         * Mutator method for kudo
          * @param kudo 
          */
         public void setKudo(String kudo){this.kudo = kudo;}
         
         /**
-         * 
-         * @return 
+         * Accessor method for kudo
+         * @return String value for kudo
          */
         public String getKudo(){return kudo;}
 

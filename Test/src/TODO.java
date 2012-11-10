@@ -30,6 +30,7 @@ public class TODO {
  * 
  * Using Netbeans IDE for presentation layer
  * 
+ * PHP myadmin, setting up a single production DB
  * 
  * 
  * 
