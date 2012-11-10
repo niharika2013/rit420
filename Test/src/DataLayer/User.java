@@ -2,8 +2,13 @@ package DataLayer;
 
 import java.util.*;
 
+/**
+ * 
+ * @author owen
+ */
 public class User {
 
+    
     private MySQLDatabase myDB = new MySQLDatabase();
 
     private String userId;
@@ -13,13 +18,30 @@ public class User {
     private String pswd;
     private String role;
 
-    //User ID only constuctor
+    
+    /**
+     * User ID only constuctor
+     * @param userId 
+     */
+    
     public User(String userId) {  
             this.userId = userId; 
     }
 
     
-    //Constructor with all fields as parameters.
+    
+     
+    /**
+     * Constructor with all fields as parameters.
+     * 
+     * @param userId
+     * @param fName
+     * @param lName
+     * @param email
+     * @param pswd
+     * @param role 
+     */
+    
     public User(String userId, String fName, String lName, String email, String pswd, String role)	{
             this.userId = userId;
             this.fName = fName;
@@ -30,8 +52,16 @@ public class User {
     }
 
 
-    // gets all the data for a specific user ID, fills out the remaining
-    // fields of this data object with those values.
+     
+     
+    /**
+     * gets all the data for a specific user ID, fills out the remaining
+     * fields of this data object with those values.
+     * 
+     * @return
+     * @throws DLException 
+     */
+    
     public boolean fetch() throws DLException {
         try{    
             ArrayList<String> values = new ArrayList<>(0);
@@ -53,8 +83,16 @@ public class User {
     }
 
 
-    //updates the given user ID with new values according to the
-    //fields of the present object
+    
+    
+    /**
+     * updates the given user ID with new values according to the
+     * fields of the present object
+     * 
+     * @return
+     * @throws DLException 
+     */
+    
     public boolean post() throws DLException {
         try{
             ArrayList<String> values = new ArrayList<>(0);
@@ -72,8 +110,17 @@ public class User {
     }
 
 
-    //takes all the fields of the data object and inserts them into the 
-    //database under the given UID
+    
+    
+    
+    /**
+     * takes all the fields of the data object and inserts them into the 
+     * database under the given UID
+     * 
+     * @return
+     * @throws DLException 
+     */
+    
     public boolean put() throws DLException{
         try {
             ArrayList<String> values = new ArrayList<>(0);
@@ -91,7 +138,14 @@ public class User {
     }
 
 
-    //deletes the user with this Object UID from the database.
+    
+    /**
+     * deletes the user with this Object UID from the database.
+     * 
+     * @return
+     * @throws DLException 
+     */
+    
     public boolean delete() throws DLException {
     	try {
             ArrayList<String> values = new ArrayList<>(0);
@@ -106,23 +160,76 @@ public class User {
     
 
     
-    //paired getters and setters follow
+    /**
+     * 
+     * @param userId 
+     */
     public void setUserId(String userId){this.userId = userId;}
+    
+    /**
+     * 
+     * @return 
+     */
     public String getUserId(){return userId;}
 
+    /**
+     * 
+     * @param fName 
+     */
     public void setFName(String fName){this.fName = fName;}
+    
+    /**
+     * 
+     * @return 
+     */
     public String getFName(){return fName;}
 
+    /**
+     * 
+     * @param lName 
+     */
     public void setLName(String lName){this.lName = lName;}
+    
+    /**
+     * 
+     * @return 
+     */
     public String getLName(){return lName;}
 
+    /**
+     * 
+     * @param email 
+     */
     public void setEmail(String email){this.email = email;}
+    
+    /**
+     * 
+     * @return 
+     */
     public String getEmail(){return email;}
 
+    /**
+     * 
+     * @param pswd 
+     */
     public void setPswd(String pswd){this.pswd = pswd;}
+    
+    /**
+     * 
+     * @return 
+     */
     public String getPswd(){return pswd;} //ORLY?
 
+    /**
+     * 
+     * @param role 
+     */
     public void setRole(String role){this.role = role;}
+    
+    /**
+     * 
+     * @return 
+     */
     public String getRole(){return role;}
 
 }

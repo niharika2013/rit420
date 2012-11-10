@@ -2,6 +2,11 @@ package DataLayer;
 
 import java.util.*;
 
+/**
+ * 
+ * @author owen
+ */
+
 public class Course {	
        
         private MySQLDatabase myDB = new MySQLDatabase();
@@ -12,12 +17,27 @@ public class Course {
 	private String courseNumber;
 	private String courseName;
 	
+        /**
+         * 
+         */
         public Course(){}
         
+        /**
+         * 
+         * @param pCourseId 
+         */
 	public Course(String pCourseId) {
 		this.courseId = pCourseId;
 	}
 	
+        /**
+         * 
+         * @param pUserId
+         * @param pCourseId
+         * @param pYear
+         * @param pCourseNumber
+         * @param pCourseName 
+         */
 	public Course(String pUserId, String pCourseId, String pYear, String pCourseNumber, String pCourseName) {
 		this.userId = pUserId;
 		this.courseId = pCourseId;
@@ -26,6 +46,12 @@ public class Course {
 		this.courseName = pCourseName;
 	}
 	
+        
+        /**
+         * 
+         * @return
+         * @throws DLException 
+         */
         public boolean fetch() throws DLException {
             try{
                 ArrayList<String> values = new ArrayList<>(0);
@@ -49,7 +75,12 @@ public class Course {
 	
 	// post updates the database values, for that object�s courseId, using the	
 	//object�s attribute values.
-	public boolean post() throws DLException {
+	/**
+         * 
+         * @return
+         * @throws DLException 
+         */
+        public boolean post() throws DLException {
             try{
                 ArrayList<String> values = new ArrayList<>(0);
 		values.add(userId); 
@@ -65,7 +96,12 @@ public class Course {
         }
 	
 	// put	inserts	the	object�s	attribute	values	into	the	database	as	a	new	record.
-	public boolean put() throws DLException	{
+	/**
+         * 
+         * @return
+         * @throws DLException 
+         */
+        public boolean put() throws DLException	{
            try {
 		ArrayList<String> values = new ArrayList<>();
                 values.add(this.getUserId());
@@ -82,7 +118,12 @@ public class Course {
         }
 	
 	// delete removes	from	the	database	any	data	corresponding	to	the	object�s courseId.
-	public boolean delete() throws DLException {
+	/**
+         * 
+         * @return
+         * @throws DLException 
+         */
+        public boolean delete() throws DLException {
             try {            
                 ArrayList<String> values = new ArrayList<>(0);
                 values.add(courseId);
@@ -92,19 +133,64 @@ public class Course {
             }
         }
         
+        /**
+         * 
+         * @param pCourseId 
+         */
         public void setCourseId(String pCourseId){this.courseId = pCourseId;}
-	public String getCourseId(){return courseId;}
 	
+        /**
+         * 
+         * @return 
+         */
+        public String getCourseId(){return courseId;}
+	
+        /**
+         * 
+         * @param pUserId 
+         */
 	public void setUserId(String pUserId){this.userId = pUserId;}
-	public String getUserId(){return userId;}
 	
+        /**
+         * 
+         * @return 
+         */
+        public String getUserId(){return userId;}
+	
+        /**
+         * 
+         * @param pYear 
+         */
 	public void setYear(String pYear){this.year = pYear;}
-	public String getYear(){return year;}
 	
+        /**
+         * 
+         * @return 
+         */
+        public String getYear(){return year;}
+	
+        /**
+         * 
+         * @param pCourseNumber 
+         */
 	public void setCourseNumber(String pCourseNumber){this.courseNumber = pCourseNumber;}
-	public String getCourseNumber(){return courseNumber;}
 	
+        /**
+         * 
+         * @return 
+         */
+        public String getCourseNumber(){return courseNumber;}
+	
+        /**
+         * 
+         * @param pCourseName 
+         */
 	public void setCourseName(String pCourseName){this.courseName = pCourseName;}
-	public String getCourseName(){return courseName;}
+	
+        /**
+         * 
+         * @return 
+         */
+        public String getCourseName(){return courseName;}
 	
 }

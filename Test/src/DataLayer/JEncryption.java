@@ -2,11 +2,8 @@ package DataLayer;
 //Take password, run through hash function 
 //Send hashed string to database
 //Encrypt password inputs to test against database
-//Taken from http://www.mkyong.com/java/jce-encryption-data-encryption-standard-des-tutorial/
-
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
- 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
@@ -14,10 +11,21 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
  
+/**
+ * Taken from http://www.mkyong.com/java/jce-encryption-data-encryption-standard-des-tutorial/
+ *
+ * @author owen
+ */
 public class JEncryption
 {    
         static Cipher desCipher;
         static SecretKey myDesKey;
+        
+        
+        
+        /**
+         * 
+         */
         public JEncryption(){
             try{   
                 KeyGenerator keygenerator = KeyGenerator.getInstance("DES");
@@ -33,6 +41,14 @@ public class JEncryption
 		}
         }
         
+        
+        
+        
+        /**
+         * 
+         * @param text
+         * @return 
+         */
         public byte[] encrypt(String text){
             //sensitive information
             try{
@@ -54,6 +70,14 @@ public class JEncryption
                     
         }
         
+        
+        
+        
+        /**
+         * 
+         * @param text
+         * @return 
+         */
         public String decrypt(byte[] text){
             try{
  
@@ -74,7 +98,13 @@ public class JEncryption
                     return null;
                 }
         }
-            
+        
+        
+        
+        /**
+         * 
+         * @param argv 
+         */
 	public static void main(String[] argv) {
             JEncryption encrypter = new JEncryption();
             byte[] encryptedText = encrypter.encrypt("Mike is a whore");
