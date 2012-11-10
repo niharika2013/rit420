@@ -14,7 +14,10 @@ import javax.crypto.SecretKey;
 /**
  * Taken from http://www.mkyong.com/java/jce-encryption-data-encryption-standard-des-tutorial/
  *
- * @author owen
+ * @author Adam Morgan
+ * @author Anthony Gentile
+ * @author Mike Baszto
+ * @author Owen O'Connell
  */
 public class JEncryption
 {    

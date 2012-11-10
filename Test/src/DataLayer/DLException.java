@@ -6,7 +6,10 @@ import java.util.*;
 
 /**
  * 
- * @author owen
+ * @author Adam Morgan
+ * @author Anthony Gentile
+ * @author Mike Baszto
+ * @author Owen O'Connell
  */
 
 public class DLException extends Exception {

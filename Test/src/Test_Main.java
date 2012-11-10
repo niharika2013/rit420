@@ -1,5 +1,15 @@
 import DataLayer.*;
 
+/**
+ * This test class contains methods to test the methods of 
+ * each data object.
+ * 
+ * @author Adam Morgan
+ * @author Anthony Gentile
+ * @author Mike Baszto
+ * @author Owen O'Connell
+ * 
+ */
 public class Test_Main {
 
     public static void main(String[] args){
