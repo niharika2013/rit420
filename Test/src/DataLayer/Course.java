@@ -23,11 +23,13 @@ public class Course {
 	private String courseName;
 	
         /**
-         * 
+         * Explicit default constructor does nothing.
          */
         public Course(){}
         
+        
         /**
+         * Constructor for course ID only.
          * 
          * @param pCourseId 
          */
@@ -35,7 +37,9 @@ public class Course {
 		this.courseId = pCourseId;
 	}
 	
+        
         /**
+         * Constructor to set all fields at instantiation.
          * 
          * @param pUserId
          * @param pCourseId
@@ -53,8 +57,11 @@ public class Course {
 	
         
         /**
+         * This method uses the object's course ID field to query the courses
+         * table of the database and retrieve the information for all remaining
+         * fields of the data object.
          * 
-         * @return
+         * @return boolean indicating whether the table contained any data.
          * @throws DLException 
          */
         public boolean fetch() throws DLException {
@@ -62,7 +69,7 @@ public class Course {
                 ArrayList<String> values = new ArrayList<>(0);
                 values.add(courseId);
                 ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM courses WHERE CourseId = ?", values);
-                if(dataList != null) {
+                if(dataList.size() > 1) {
                     userId = dataList.get(1).get(1).toString();
                     courseId = dataList.get(1).get(2).toString();
                     year = dataList.get(1).get(3).toString();

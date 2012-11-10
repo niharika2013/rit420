@@ -68,7 +68,7 @@ public class Service {
 		ArrayList<String> values = new ArrayList<>(0);
 		values.add(serviceId);
 		ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM services WHERE ServiceId = ?", values);
-		if(dataList != null){
+		if(dataList.size() > 1){
                     userId = dataList.get(1).get(1).toString();
                     serviceId = dataList.get(1).get(2).toString();
                     year = dataList.get(1).get(3).toString();

@@ -50,7 +50,7 @@ public class Services {
      */
     public boolean fetch() throws DLException {
         ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM services", null);
-        if(dataList != null) {
+        if(dataList.size() > 1) {
             for (int i = 1; i <= dataList.size(); i++){
                 Service e = new Service(dataList.get(i).get(2).toString());
                 e.setUserId(dataList.get(i).get(1).toString());

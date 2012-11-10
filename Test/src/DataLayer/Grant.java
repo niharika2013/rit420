@@ -70,7 +70,7 @@ public class Grant {
 		ArrayList<String> values = new ArrayList<>(0);
 		values.add(grantId);
 		ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM grants WHERE GrantId = ?", values);
-		if(dataList != null) {
+		if(dataList.size() > 1) {
 			userId = dataList.get(1).get(1).toString();
 			grantId = dataList.get(1).get(2).toString();
 			year = dataList.get(1).get(3).toString();

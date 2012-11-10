@@ -65,7 +65,7 @@ public class Kudo {
                   ArrayList<String> values = new ArrayList<>(0);
                   values.add(kudoId);
                   ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM kudos WHERE KudoId = ?", values);
-                  if(dataList != null) {
+                  if(dataList.size() > 1) {
                           userId = dataList.get(1).get(1).toString();
                           kudoId = dataList.get(1).get(2).toString();
                           year = dataList.get(1).get(3).toString();
