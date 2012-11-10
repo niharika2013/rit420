@@ -18,21 +18,22 @@ public class Pubs {
     MySQLDatabase myDB = new MySQLDatabase();
    
     /**
-     * 
+     * Explicit default constructor for Pubs doesn't serve any purpose really.
      */
     public Pubs() {}
     
-    
     /**
-     * 
-     * @return 
+     * This method returns and arraylist of Pub objects from the pubs attribute
+     * of this data object.
+     * @return arraylist of pubs.
      */
     public ArrayList<Pub> getPubs() {
         return pubs;
     }
     
     /**
-     * 
+     * This method sets the pubs attribute of this data object equal to the 
+     * arraylist of pub objects accepted in its parameter.
      * @param pubsList 
      */
     public void setPubs(ArrayList<Pub> pubsList) {
@@ -40,6 +41,8 @@ public class Pubs {
     }
     
     /**
+     * This method retrieves all rows from the pubs table in the faculty activity
+     * database and stores it in the pubs attribute of this data object.
      * 
      * @return
      * @throws DLException 
