@@ -27,15 +27,13 @@ public class User {
     /**
      * User ID only constructor
      * @param userId 
-     */
-    
+     */    
     public User(String userId) {  
         this.userId = userId; 
     }
 
-    //User Login Credentials constuctor
     /**
-     *
+     * User Login Credentials constuctor
      * @param email
      * @param pswd
      */
@@ -55,8 +53,7 @@ public class User {
      * @param email
      * @param pswd
      * @param role 
-     */
-    
+     */ 
     public User(String userId, String fName, String lName, String email, String pswd, String role)	{
             this.userId = userId;
             this.fName = fName;
@@ -76,7 +73,6 @@ public class User {
      * @return
      * @throws DLException 
      */
-    
     public boolean fetch() throws DLException{
         try{
             ArrayList<String> values = new ArrayList<>(0);
@@ -99,7 +95,12 @@ public class User {
         }
     }
     
-    
+    /**
+     * Checks the email and password input by the user against the database. 
+     * 
+     * @return boolean indicates user/password combination exists in database.
+     * @throws DLException 
+     */
     public boolean login() throws DLException{
         try{
             ArrayList<String> values = new ArrayList<>(0);
@@ -130,7 +131,6 @@ public class User {
      * @return
      * @throws DLException 
      */
-    
     public boolean post() throws DLException {
         try{
             ArrayList<String> values = new ArrayList<>(0);
@@ -161,7 +161,6 @@ public class User {
      * @return
      * @throws DLException 
      */
-    
     public boolean put() throws DLException{
         try {
             ArrayList<String> values = new ArrayList<>(0);
@@ -189,7 +188,6 @@ public class User {
      * @return
      * @throws DLException 
      */
-    
     public boolean delete() throws DLException {
     	try {
             ArrayList<String> values = new ArrayList<>(0);
@@ -202,10 +200,11 @@ public class User {
     }
     
     /**
-     * 
+     * Override with custom toString()
      * 
      * @return String
      */
+
     @Override
     public String toString(){
         return "userId: " + userId + "\nfname: " + fName + "\nlname: " + lName + "\npswd: " + pswd + "\nemail: " + email + "\nrole: " + role;
@@ -213,74 +212,75 @@ public class User {
 
     
     /**
+     * Mutator method for userId
      * 
      * @param userId 
      */
     public void setUserId(String userId){this.userId = userId;}
     
     /**
-     * 
-     * @return 
+     * Accessor method for userId
+     * @return String value of userId
      */
     public String getUserId(){return userId;}
 
     /**
-     * 
+     * Mutator method for fName
      * @param fName 
      */
     public void setFName(String fName){this.fName = fName;}
     
     /**
-     * 
-     * @return 
+     * Accessor method for fname
+     * @return String value of fName
      */
     public String getFName(){return fName;}
 
     /**
-     * 
+     * Mutator method for lName
      * @param lName 
      */
     public void setLName(String lName){this.lName = lName;}
     
     /**
-     * 
-     * @return 
+     * Accessor method for  lName
+     * @return String value of lName
      */
     public String getLName(){return lName;}
 
     /**
-     * 
+     * Mutator method for email
      * @param email 
      */
     public void setEmail(String email){this.email = email;}
     
     /**
-     * 
-     * @return 
+     * Accessor method for email
+     * @return String value of email
      */
     public String getEmail(){return email;}
 
     /**
-     * 
+     * Mutator method for pswd
      * @param pswd 
      */
     public void setPswd(String pswd){this.pswd = pswd;}
     
     /**
-     * 
-     * @return 
+     * Accessor method for pswd
+     * @return String value of pswd
      */
     public String getPswd(){return pswd;} //ORLY?
 
     /**
-     * 
+     * Mutator method for role
      * @param role 
      */
     public void setRole(String role){this.role = role;}
     
     /**
-     * 
-     * @return 
+     * Accessor method for role
+     * @return String value of role
      */
     public String getRole(){return role;}
 
