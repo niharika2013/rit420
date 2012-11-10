@@ -16,7 +16,7 @@ public class Grants {
     private ArrayList<Grant> grants = new ArrayList<>(0);
     private MySQLDatabase myDB = new MySQLDatabase();
 
-   /**
+    /**
     * Explicit default constructor for grants does nothing.
     */
     public Grants() {}
