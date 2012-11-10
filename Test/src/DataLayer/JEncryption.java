@@ -1,5 +1,7 @@
 package DataLayer;
-
+//Take password, run through hash function 
+//Send hashed string to database
+//Encrypt password inputs to test against database
 //Taken from http://www.mkyong.com/java/jce-encryption-data-encryption-standard-des-tutorial/
 
 import java.security.InvalidKeyException;
