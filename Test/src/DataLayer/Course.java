@@ -3,6 +3,8 @@ package DataLayer;
 import java.util.*;
 
 /**
+ * The Course class creates a data object representing a single tuple from the 
+ * courses table in the faculty activity database (484 project in this case).
  * 
  * @author Adam Morgan
  * @author Anthony Gentile

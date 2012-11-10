@@ -3,7 +3,9 @@ package DataLayer;
 import java.util.*;
 
 /**
- * 
+ * The Grant class creates a data object representing a single tuple from the 
+ * grants table in the faculty activity database (484 project in this case).
+ *
  * @author Adam Morgan
  * @author Anthony Gentile
  * @author Mike Baszto

@@ -3,7 +3,9 @@ package DataLayer;
 import java.util.*;
 
 /**
- * 
+ * The User class creates a data object representing a single tuple from the 
+ * users table in the faculty activity database (484 project in this case).
+ *
  * @author Adam Morgan
  * @author Anthony Gentile
  * @author Mike Baszto

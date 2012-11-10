@@ -3,6 +3,10 @@ package DataLayer;
 import java.util.*;
 
 /**
+ * The Pub class creates a data object representing a single tuple from the 
+ * pubs table in the faculty activity database (484 project in this case).
+ *
+ * Also a local drinking establishment.
  * 
  * @author Adam Morgan
  * @author Anthony Gentile
