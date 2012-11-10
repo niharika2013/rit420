@@ -25,7 +25,7 @@ public class User {
 
     
     /**
-     * User ID only constuctor
+     * User ID only constructor
      * @param userId 
      */
     
@@ -33,7 +33,7 @@ public class User {
         this.userId = userId; 
     }
 
-    //User ID only constuctor
+    //User Login Credentials constuctor
     public User(String email, String pswd) {  
         this.email = email;
         this.pswd = pswd;
@@ -167,7 +167,15 @@ public class User {
         }
     }
     
-    
+    /**
+     * 
+     * 
+     * @return String
+     */
+    @Override
+    public String toString(){
+        return "userId: " + userId + "\nfname: " + fName + "\nlname: " + lName + "\npswd: " + pswd + "\nemail: " + email + "\nrole: " + role;
+    }
 
     
     /**
