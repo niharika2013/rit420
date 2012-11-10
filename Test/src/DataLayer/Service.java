@@ -22,15 +22,17 @@ public class Service {
 	private String description;
 	private String role;
    
+        
+        
+        
         /**
-         * 
+         * Explicit default constructor for service doesn't do much.
          */
-	public Service()
-	{
+	public Service()	{
 	}
 	
-	// Provide	a	constructor	that	accepts	and	sets	the	serviceId.
 	/**
+         * Constructor accepts a string value for service ID only.
          * 
          * @param serviceId 
          */
@@ -38,8 +40,8 @@ public class Service {
 		this.serviceId = serviceId;
 	}
 	
-	// Provide	a	constructor	that	accepts	and	sets	all	attributes.
 	/**
+         * Constructor accepts and sets parameters for all attributes. 
          * 
          * @param userId
          * @param serviceId
@@ -55,12 +57,14 @@ public class Service {
 		this.role = role;
 	}
 
-        // fetch	uses	the	object�s	serviceId	attribute	and	the	Database	class
-	//getData	method	to	retrieve	the	database	values	for	that	particular	serviceId	
-	//and	updates	the	object�s	attributes.
+        
+        
+        
 	/**
+         * This method uses the object's serviceId attribute to query the 
+         * services table and retrieve all values for that id.
          * 
-         * @return
+         * @return boolean indicating success.
          * @throws DLException 
          */
         public boolean fetch() throws DLException {
@@ -83,11 +87,11 @@ public class Service {
             }
 	}
 	
-	// post updates the database values, for that object�s serviceId, using the	
-	//object�s attribute values.
 	/**
+         * This method updates the database values, for that object's serviceId, 
+         * using the object's attribute values.
          * 
-         * @return
+         * @return boolean indicating success
          * @throws DLException 
          */
         public boolean post() throws DLException {
@@ -104,10 +108,10 @@ public class Service {
             }
         }
 	
-	// put	inserts	the	object�s	attribute	values	into	the	database	as	a	new	record.
 	/**
+         * Inserts this data object's attribute values into the services table.
          * 
-         * @return
+         * @return boolean indicating success.
          * @throws DLException 
          */
         public boolean put() throws DLException {
@@ -125,11 +129,11 @@ public class Service {
             }
         }
 	
-    // delete removes	from	the	database	any	data	corresponding	to	the	object�s serviceId.
-    
         /**
+         * Removes from the database any data corresponding to this data object's
+         * serviceID
          * 
-         * @return
+         * @return boolean indicating success
          * @throws DLException 
          */
         public boolean delete() throws DLException {
@@ -143,64 +147,67 @@ public class Service {
             }
         }
     
-        // Provide	accessors	and	mutators	for	all	attributes.
+        
+        
+        
+        
 	/**
-         * 
+         * Mutator method for serviceId
          * @param serviceId 
          */
         public void setServiceId(String serviceId){this.serviceId = serviceId;}
 	
         /**
-         * 
-         * @return 
+         * Accessor method for serviceId   
+         * @return String value of serviceId
          */
         public String getServiceId(){return serviceId;}
 	
 	/**
-         * 
+         * Mutator method for userId
          * @param userId 
          */
         public void setUserId(String userId){this.userId = userId;}
 	
         /**
-         * 
-         * @return 
+         * Accessor method for userId
+         * @return String value of userId
          */
         public String getUserId(){return userId;}
 	
         /**
-         * 
+         * Mutator method for year
          * @param year 
          */
 	public void setYear(String year){this.year = year;}
 	
         /**
-         * 
-         * @return 
+         * Accessor method for year
+         * @return String value of year
          */
         public String getYear(){return year;}
 	
         /**
-         * 
+         * Mutator method for description
          * @param description 
          */
 	public void setDescription(String description){this.description = description;}
 	
         /**
-         * 
-         * @return 
+         * Accessor method for description
+         * @return String value of description
          */
         public String getDescription(){return description;}
 	
         /**
-         * 
+         * Mutator method for role
          * @param role 
          */
 	public void setRole(String role){this.role = role;}
 	
         /**
-         * 
-         * @return 
+         * Accessor method for role
+         * @return String value of role
          */
         public String getRole(){return role;}
 }

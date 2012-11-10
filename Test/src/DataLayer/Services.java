@@ -19,15 +19,17 @@ public class Services {
    
     
     /**
-     * 
+     * Explicit default constructor for Services don't do nuthin.
      */
     public Services(){
     }
     
     
     /**
+     * This method returns an arraylist of service objects from the services 
+     * attribute of this data object.
      * 
-     * @return 
+     * @return arraylist of Service objects.
      */
     public ArrayList<Service> getServices() {
         return services;
@@ -35,6 +37,8 @@ public class Services {
     
     
     /**
+     * This method accepts an arraylist of Service objects, and updates this data
+     * object's services attribute to match.
      * 
      * @param servicesList 
      */
@@ -44,8 +48,10 @@ public class Services {
     
     
     /**
+     * This retrieves all the rows from the services table and stores them in
+     * this data object's services attribute
      * 
-     * @return
+     * @return boolean indicating success.
      * @throws DLException 
      */
     public boolean fetch() throws DLException {
