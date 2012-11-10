@@ -17,32 +17,37 @@ public class Kudos {
     private MySQLDatabase myDB = new MySQLDatabase();
    
     /**
-     * 
+     * Explicit default constructor for Kudos, does nothing!
      */
     public Kudos(){
     }
     
     /**
+     * This method returns an ArrayList of Kudos from this data object's kudos
+     * field.
      * 
-     * @return 
+     * @return arraylist of kudo objects. 
      */
     public ArrayList<Kudo> getKudos() {
         return kudos;
     }
-    
-    
+   
     /**
+     * This method accepts an arraylist of Kudo objects, and sets this object's
+     * kudosList field.
+     * 
      * 
      * @param kudosList 
      */
     public void setKudos(ArrayList<Kudo> kudosList) {
         kudos = kudosList;
-    }
-    
+    } 
     
     /**
+     * This method queries the kudos table of the faculty activity database and
+     * stores the resulting values in the kudos field of this data object.
      * 
-     * @return
+     * @return boolean indicating success
      * @throws DLException 
      */
     public boolean fetch() throws DLException {
