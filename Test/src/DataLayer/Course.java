@@ -56,6 +56,10 @@ public class Course {
 	}
 	
         
+        
+        
+        
+        
         /**
          * This method uses the object's course ID field to query the courses
          * table of the database and retrieve the information for all remaining
@@ -85,11 +89,11 @@ public class Course {
          }
           
 	
-	// post updates the database values, for that object�s courseId, using the	
-	//object�s attribute values.
 	/**
+         * This method updates the database values for this object's courseId,
+         * using the object's attribute values.
          * 
-         * @return
+         * @return a boolean indicating success.
          * @throws DLException 
          */
         public boolean post() throws DLException {
@@ -107,10 +111,12 @@ public class Course {
             }
         }
 	
-	// put	inserts	the	object�s	attribute	values	into	the	database	as	a	new	record.
-	/**
+        
+        /**
+         * This method inserts the object's attribute values into the database
+         * as a new record. 
          * 
-         * @return
+         * @return a boolean indicating success.
          * @throws DLException 
          */
         public boolean put() throws DLException	{
@@ -128,9 +134,11 @@ public class Course {
             }
            
         }
-	
-	// delete removes	from	the	database	any	data	corresponding	to	the	object�s courseId.
-	/**
+
+        
+        /**
+         * This method removes from the database any data corresponding to the
+         * object's course ID.
          * 
          * @return
          * @throws DLException 
@@ -145,63 +153,77 @@ public class Course {
             }
         }
         
+        
+        
+        
+        
+        
         /**
+         * Mutator method for courseId.
          * 
          * @param pCourseId 
          */
         public void setCourseId(String pCourseId){this.courseId = pCourseId;}
 	
         /**
-         * 
-         * @return 
+         * Accessor method for courseId.
+         * @return String value of courseId
          */
         public String getCourseId(){return courseId;}
 	
         /**
+         * Mutator method for userID.
          * 
          * @param pUserId 
          */
 	public void setUserId(String pUserId){this.userId = pUserId;}
 	
         /**
+         * Accessor method for userID.
          * 
-         * @return 
+         * @return String value of userId
          */
         public String getUserId(){return userId;}
 	
         /**
+         * Mutator method for year
          * 
          * @param pYear 
          */
 	public void setYear(String pYear){this.year = pYear;}
 	
         /**
+         * Accessor method for year
          * 
-         * @return 
+         * @return String value for year
          */
         public String getYear(){return year;}
 	
         /**
+         * Mutator method for courseNumber
          * 
          * @param pCourseNumber 
          */
 	public void setCourseNumber(String pCourseNumber){this.courseNumber = pCourseNumber;}
 	
         /**
+         * Accessor method for courseNumber
          * 
-         * @return 
+         * @return String value of courseNumber
          */
         public String getCourseNumber(){return courseNumber;}
 	
         /**
+         * Mutator method for courseName.
          * 
          * @param pCourseName 
          */
 	public void setCourseName(String pCourseName){this.courseName = pCourseName;}
 	
         /**
+         * Accessor method for courseName
          * 
-         * @return 
+         * @return String value of courseName.
          */
         public String getCourseName(){return courseName;}
 	
