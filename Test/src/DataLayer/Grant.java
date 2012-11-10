@@ -2,6 +2,11 @@ package DataLayer;
 
 import java.util.*;
 
+/**
+ * 
+ * @author owen
+ */
+
 public class Grant {
 	
         private MySQLDatabase myDB = new MySQLDatabase();
@@ -14,19 +19,32 @@ public class Grant {
 	private String amount;
 	private String status;
 	
-	public Grant()
-	{
-	}
+        /**
+         * 
+         */
+        public Grant() { }
 	
-	// Provide	a	constructor	that	accepts	and	sets	the	grantId.
-	public Grant(String grantId)
-	{
+		
+        /**
+         * Provide a constructor that accepts and sets the grantId.
+         * @param grantId 
+         */
+        public Grant(String grantId) {
 		this.grantId = grantId;
 	}
 	
-	// Provide	a	constructor	that	accepts	and	sets	all	attributes.
-	public Grant(String userId, String grantId, String year, String citation, String tease, String amount, String status)
-	{
+	/**
+         * Provide a constructor that accepts and sets all attributes.
+         * 
+         * @param userId
+         * @param grantId
+         * @param year
+         * @param citation
+         * @param tease
+         * @param amount
+         * @param status 
+         */
+        public Grant(String userId, String grantId, String year, String citation, String tease, String amount, String status) {
 		this.userId = userId;
 		this.grantId = grantId;
 		this.year = year;
@@ -36,12 +54,15 @@ public class Grant {
 		this.status = status;
 	}
 
-	// fetch	uses	the	object�s	grantId	attribute	and	the	Database	class
-	//getData	method	to	retrieve	the	database	values	for	that	particular	grantId	
-	//and	updates	the	object�s	attributes.
-	public boolean fetch() throws DLException {
+	
+        /**
+         * @return
+         * @throws DLException 
+         */
+        
+        public boolean fetch() throws DLException {
             try{            
-		ArrayList<String> values = new ArrayList<String>(0);
+		ArrayList<String> values = new ArrayList<>(0);
 		values.add(grantId);
 		ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM grants WHERE GrantId = ?", values);
 		if(dataList != null) {
@@ -61,11 +82,16 @@ public class Grant {
             }
 	}
 	
-	// post updates the database values, for that object�s grantId, using the	
-	//object�s attribute values.
+        
+        /**
+         * 
+         * @return
+         * @throws DLException 
+         */
+        
 	public boolean post() throws DLException {
             try{
-		ArrayList<String> values = new ArrayList<String>(0);
+		ArrayList<String> values = new ArrayList<>(0);
 		values.add(userId); 
 		values.add(year);
 		values.add(citation);
@@ -80,10 +106,14 @@ public class Grant {
             }
         }
 	
-	// put	inserts	the	object�s	attribute	values	into	the	database	as	a	new	record.
-	public boolean put() throws DLException {
+	/**
+         * 
+         * @return
+         * @throws DLException 
+         */
+        public boolean put() throws DLException {
             try {            
-		ArrayList<String> values = new ArrayList<String>(0);
+		ArrayList<String> values = new ArrayList<>(0);
 		values.add(userId);
 		values.add(grantId);
 		values.add(year);
@@ -98,10 +128,15 @@ public class Grant {
             }
         }
 	
-	// delete removes	from	the	database	any	data	corresponding	to	the	object�s grantId.
-	public boolean delete() throws DLException {        myDB = new MySQLDatabase();
+	
+        /**
+         * 
+         * @return
+         * @throws DLException 
+         */
+        public boolean delete() throws DLException {        myDB = new MySQLDatabase();
             try {
-        	ArrayList<String> values = new ArrayList<String>(0);
+        	ArrayList<String> values = new ArrayList<>(0);
                 values.add(grantId);
 		myDB.setData("DELETE FROM grant WHERE grantID = ?", values);
                 return true;
@@ -111,27 +146,90 @@ public class Grant {
         }
         
         
-	// Provide	accessors	and	mutators	for	all	attributes.
-	public void setGrantId(String grantId){this.grantId = grantId;}
-	public String getGrantId(){return grantId;}
+	/**
+         * 
+         * @param grantId 
+         */
+        public void setGrantId(String grantId){this.grantId = grantId;}
 	
+        /**
+         * 
+         * @return 
+         */
+        public String getGrantId(){return grantId;}
+	
+        /**
+         * 
+         * @param userId 
+         */
 	public void setUserId(String userId){this.userId = userId;}
-	public String getUserId(){return userId;}
 	
+        /**
+         * 
+         * @return 
+         */
+        public String getUserId(){return userId;}
+	
+        /**
+         * 
+         * @param year 
+         */
 	public void setYear(String year){this.year = year;}
-	public String getYear(){return year;}
 	
+        /**
+         * 
+         * @return 
+         */
+        public String getYear(){return year;}
+	
+        /**
+         * 
+         * @param citation 
+         */
 	public void setCitation(String citation){this.citation = citation;}
-	public String getCitation(){return citation;}
 	
+        /**
+         * 
+         * @return 
+         */
+        public String getCitation(){return citation;}
+	
+        
+        /**
+         * 
+         * @param tease 
+         */
 	public void setTease(String tease){this.tease = tease;}
-	public String getTease(){return tease;}
 	
+        /**
+         * 
+         * @return 
+         */
+        public String getTease(){return tease;}
+	
+        /**
+         * 
+         * @param amount 
+         */
 	public void setAmount(String amount){this.amount = amount;}
-	public String getAmount(){return amount;}
 	
+        /**
+         * 
+         * @return 
+         */
+        public String getAmount(){return amount;}
+	
+        /**
+         * 
+         * @param status 
+         */
 	public void setStatus(String status){this.status = status;}
-	public String getStatus(){return status;}
+	
+        /**
+         * 
+         * @return 
+         */
+        public String getStatus(){return status;}
 		
 
 }//end class
