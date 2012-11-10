@@ -98,8 +98,8 @@ public class User {
             values.add(userId);
             myDB.setData("DELETE FROM users WHERE userID = ?", values);
             return true;
-        } catch(DLException e) {
-            return false;
+        } catch(Exception e) {
+            throw new DLException(e);
         }
     }
     
