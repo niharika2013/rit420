@@ -28,7 +28,6 @@ public class Grant {
          * Explicit default constuctor for Grant does nothing.
          */
         public Grant() { }
-	
 		
         /**
          * Constructor sets only the grantId.
@@ -37,7 +36,6 @@ public class Grant {
         public Grant(String grantId) {
 		this.grantId = grantId;
 	}
-
         
 	/**
          * Constructor with parameters for all fields of Grant.
@@ -60,6 +58,7 @@ public class Grant {
 		this.status = status;
 	}
 
+        
         
         
 	
@@ -92,7 +91,6 @@ public class Grant {
                 throw new DLException(e);
             }
 	}
-	
         
         /**
          * This method uses all of the fields of the present data object to
@@ -117,7 +115,6 @@ public class Grant {
                 throw new DLException(e);
             }
         }
-
         
 	/**
          * This method inserts the the values of this data object's fields into
@@ -142,7 +139,6 @@ public class Grant {
                 throw new DLException(e);
             }
         }
-	
 	
         /**
          * This method deletes an entire row corresponding to this data object's
