@@ -5,8 +5,10 @@
 package PresentationLayer;
 
 import DataLayer.DLException;
-import DataLayer.User;
 import DataLayer.JEncryption;
+import DataLayer.User;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author Black Tony
@@ -101,13 +103,19 @@ public class Login extends javax.swing.JFrame {
     private void loginButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButtonMouseClicked
         //Make a default user object and bind the input data
         User loginUser;
-        loginUser = new User(emailField.getText(), passwordField.getPassword().toString());
+        loginUser = new User(emailField.getText(), new String(passwordField.getPassword()));
         //Check hashed credentials against database
-        JEncryption encrypter = new JEncryption();
-        loginUser.setPswd(new String(encrypter.encrypt(loginUser.getPswd())));
+        //JEncryption encrypter = new JEncryption();
+        //loginUser.setPswd(new String(encrypter.encrypt(loginUser.getPswd())));
+        try {
+            loginUser.login();
+            System.out.println(loginUser.toString());
+        } catch (DLException ex) {
+            ex.printStackTrace();
+        }
         try
         {
-            if(loginUser.fetch())
+            if(loginUser.login())
             {
                 //If successful load the view
                 System.out.println(loginUser.toString());
@@ -153,6 +161,7 @@ public class Login extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Login().setVisible(true);
             }
