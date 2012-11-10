@@ -17,15 +17,18 @@ public class Users {
     private ArrayList<User> users = new ArrayList<>(0);
     private MySQLDatabase myDB = new MySQLDatabase();
 
+    
     /**
-     * 
+     * Explicit default constructor does nothing.
      */
     public Users() {}
     
 
     /**
+     * This method returns an arraylist representing multiple rows 
+     * selected from the database
      * 
-     * @return 
+     * @return an arrayList of User Objects
      */
     public ArrayList<User> getUsers() {
         return users;
@@ -33,8 +36,10 @@ public class Users {
     
 
     /**
+     * This method accepts an arraylist representing one or more rows
+     * to be inserted into the database
      * 
-     * @param usersList 
+     * @param usersList an arraylist of User objects
      */
     public void setUsers(ArrayList<User> usersList) {
         users = usersList;
@@ -42,13 +47,16 @@ public class Users {
     
 
     /**
+     * This method retrieves all rows from the Users table in the database,
+     * and stores the resulting arraylist in the corresponding field of this
+     * Users data object.
      * 
-     * @return
+     * @return boolean value indicates whether table contains any data.
      * @throws DLException 
      */
     public boolean fetch() throws DLException {
         ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM users", null);
-        if(dataList != null) {
+        if(dataList.size() > 1) {
             for (int i = 1; i <= dataList.size(); i++) {
                 User e = new User(dataList.get(i).get(1).toString());
                 e.setFName(dataList.get(i).get(2).toString());

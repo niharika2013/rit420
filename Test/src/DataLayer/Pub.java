@@ -74,10 +74,10 @@ public class Pub {
          */
         public boolean fetch() throws DLException {
              try{    
-            	ArrayList<String> values = new ArrayList<String>(0);
+            	ArrayList<String> values = new ArrayList<>(0);
 		values.add(pubId);
                 ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM pubs WHERE PubId = ?", values);
-                if(dataList != null) {
+                if(dataList.size() > 1) {
 			userId = dataList.get(1).get(1).toString();
 			pubId = dataList.get(1).get(2).toString();
 			year = dataList.get(1).get(3).toString();
