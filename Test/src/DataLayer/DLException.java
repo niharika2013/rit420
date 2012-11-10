@@ -4,23 +4,41 @@ import java.io.*;
 import java.sql.Timestamp;
 import java.util.*;
 
+/**
+ * 
+ * @author owen
+ */
+
 public class DLException extends Exception {
 
 	private static final long serialVersionUID = 1L;	
 	ArrayList<ArrayList<String>> eList = new ArrayList<>();
 	Exception ex;
-	
+
+        /**
+         * 
+         * @param e 
+         */
 	public DLException(Exception e){
 		this.ex = e;
 		populateList();
 	}
 
+        
+        /**
+         * 
+         * @param e
+         * @param eList 
+         */
 	public DLException(Exception e, ArrayList<ArrayList<String>> eList){
 		this.ex = e;
 		this.eList = eList;
 		populateList();
 	}
 	
+        /**
+         * 
+         */
 	private void populateList(){
 		if(ex.getStackTrace() != null){
 			StackTraceElement[] trace = ex.getStackTrace();
@@ -32,6 +50,10 @@ public class DLException extends Exception {
 		}//end if
 	}//end populateList
 	
+        
+        /**
+         * 
+         */
 	public void log(){
 		try{
 			Writer logger = new FileWriter(new File("log.txt"));
