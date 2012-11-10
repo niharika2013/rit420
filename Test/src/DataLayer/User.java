@@ -34,6 +34,11 @@ public class User {
     }
 
     //User Login Credentials constuctor
+    /**
+     *
+     * @param email
+     * @param pswd
+     */
     public User(String email, String pswd) {  
         this.email = email;
         this.pswd = pswd;
@@ -72,11 +77,12 @@ public class User {
      * @throws DLException 
      */
     
-    public boolean fetch() throws DLException {
+    public boolean fetch() throws DLException{
         try{
             ArrayList<String> values = new ArrayList<>(0);
             values.add(userId);
             ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM users WHERE UserId = ?", values);
+            System.out.println();
             if(dataList.size() > 1){                
                     fName = dataList.get(1).get(1).toString();
                     lName = dataList.get(1).get(2).toString();
@@ -88,10 +94,32 @@ public class User {
                     return false;
             }
         } catch (Exception e){
-            throw new DLException(e);
+             e.printStackTrace();
+             throw new DLException(e);
         }
     }
-
+    
+    
+    public boolean login() throws DLException{
+        try{
+            ArrayList<String> values = new ArrayList<>(0);
+            values.add(email);
+            values.add(pswd);
+            ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT UserId, FName, LName, Role FROM users WHERE Email = ? AND Pswd = ?", values);
+            if(dataList.size() > 1){
+                    userId = dataList.get(1).get(0).toString(); 
+                    fName = dataList.get(1).get(1).toString();
+                    lName = dataList.get(1).get(2).toString();
+                    role = dataList.get(1).get(3).toString();
+                    return true;
+            } else {
+                    return false;
+            }
+        } catch (Exception e){
+             e.printStackTrace();
+             throw new DLException(e);
+        }
+    }
 
     
     
