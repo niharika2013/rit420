@@ -7,7 +7,7 @@ public class Test_Main {
     	//testDatabase(); //works
     	//testUserFetch(); //works
         //testUserDelete(); //works 
-        //testUserPut(); //works
+        testUserPut(); //works
         //testUserPost(); //works
     }
 
@@ -60,7 +60,7 @@ public class Test_Main {
     } 
 
     public static void testUserPut(){
-        User testUser = new User("6","666","Lucifer","Morningstar","webmaster@aol.com","3");
+        User testUser = new User("1000","Anthony","Gentile","mrsmiley381@gmail.com","DaisyChain","3");
         
         try{
             testUser.put();
@@ -70,7 +70,7 @@ public class Test_Main {
         
         testUser = null;
          
-        testUser = new User("6");
+        testUser = new User("1000");
         try{ 
             testUser.fetch();
         } catch (Exception e){
