@@ -6,6 +6,7 @@ package PresentationLayer;
 
 import DataLayer.DLException;
 import DataLayer.User;
+import DataLayer.JEncryption;
 /**
  *
  * @author Black Tony
@@ -99,13 +100,17 @@ public class Login extends javax.swing.JFrame {
 
     private void loginButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButtonMouseClicked
         //Make a default user object and bind the input data
-        User loginUser = new User(emailField.getText(), passwordField.getPassword().toString());
+        User loginUser;
+        loginUser = new User(emailField.getText(), passwordField.getPassword().toString());
         //Check hashed credentials against database
+        JEncryption encrypter = new JEncryption();
+        loginUser.setPswd(new String(encrypter.encrypt(loginUser.getPswd())));
         try
         {
             if(loginUser.fetch())
             {
                 //If successful load the view
+                System.out.println(loginUser.toString());
                 View v = new View(loginUser.getRole());
             }
             //If not, pop out a login failed message
