@@ -2,8 +2,11 @@ package DataLayer;
 
 import java.util.*;
 
-public class Pub
-{
+/**
+ * 
+ * @author owen
+ */
+public class Pub {
 	// Provide	attributes	that	mirror	the	Pubs	table.
 	private String userId;
 	private String pubId;
@@ -14,18 +17,34 @@ public class Pub
         private MySQLDatabase myDB;
 	
 	// Provide	a	default	constructor.
-	public Pub()
+        /**
+         * 
+         */
+        public Pub()
 	{
 	}
 	
 	// Provide	a	constructor	that	accepts	and	sets	the	pubId.
-	public Pub(String pubId)
+	/**
+         * 
+         * @param pubId 
+         */
+        public Pub(String pubId)
 	{
 		this.pubId = pubId;
 	}
 	
 	// Provide	a	constructor	that	accepts	and	sets	all	attributes.
-	public Pub(String userId, String pubId, String year, String citation, String tease, String status)
+	/**
+         * 
+         * @param userId
+         * @param pubId
+         * @param year
+         * @param citation
+         * @param tease
+         * @param status 
+         */
+        public Pub(String userId, String pubId, String year, String citation, String tease, String status)
 	{
 		this.userId = userId;
 		this.pubId = pubId;
@@ -40,7 +59,13 @@ public class Pub
 	// fetch	uses	the	object�s	pubId	attribute	and	the	Database	class
 	//getData	method	to	retrieve	the	database	values	for	that	particular	pubId	
 	//and	updates	the	object�s	attributes.
-	public boolean fetch() throws DLException {
+	
+        /**
+         * 
+         * @return
+         * @throws DLException 
+         */
+        public boolean fetch() throws DLException {
              try{    
             	ArrayList<String> values = new ArrayList<String>(0);
 		values.add(pubId);
@@ -63,7 +88,12 @@ public class Pub
 	
 	// post updates the database values, for that object�s pubId, using the	
 	//object�s attribute values.
-	public boolean post() throws DLException {
+	/**
+         * 
+         * @return
+         * @throws DLException 
+         */
+        public boolean post() throws DLException {
              try{
 		ArrayList<String> values = new ArrayList<>(0);
 		values.add(userId); 
@@ -80,7 +110,12 @@ public class Pub
         }
 	
 	// put	inserts	the	object�s	attribute	values	into	the	database	as	a	new	record.
-	public boolean put() throws DLException	{
+	/**
+         * 
+         * @return
+         * @throws DLException 
+         */
+        public boolean put() throws DLException	{
             try {
                 ArrayList<String> values = new ArrayList<>(0);
 		values.add(userId);
@@ -98,7 +133,12 @@ public class Pub
             
 	
 	// delete removes	from	the	database	any	data	corresponding	to	the	object�s pubId.
-	public boolean delete() throws DLException {
+	/**
+         * 
+         * @return
+         * @throws DLException 
+         */
+        public boolean delete() throws DLException {
             try {
 		ArrayList<String> values = new ArrayList<>(0);
 		values.add(pubId);
@@ -110,21 +150,79 @@ public class Pub
         }
         
         // Provide	accessors	and	mutators	for	all	attributes.
-	public void setPubId(String pubId){this.pubId = pubId;}
-	public String getPubId(){return pubId;}
 	
+        /**
+         * 
+         * @param pubId 
+         */
+        public void setPubId(String pubId){this.pubId = pubId;}
+	
+        /**
+         * 
+         * @return 
+         */
+        public String getPubId(){return pubId;}
+	
+        
+        /**
+         * 
+         * @param userId 
+         */
 	public void setUserId(String userId){this.userId = userId;}
-	public String getUserId(){return userId;}
 	
+        /**
+         * 
+         * @return 
+         */
+        public String getUserId(){return userId;}
+	
+        /**
+         * 
+         * @param year 
+         */
 	public void setYear(String year){this.year = year;}
-	public String getYear(){return year;}
 	
+        /**
+         * 
+         * @return 
+         */
+        public String getYear(){return year;}
+	
+        /**
+         * 
+         * @param citation 
+         */
 	public void setCitation(String citation){this.citation = citation;}
-	public String getCitation(){return citation;}
 	
+        
+        /**
+         * 
+         * @return 
+         */
+        public String getCitation(){return citation;}
+	
+        
+        /**
+         * 
+         * @param tease 
+         */
 	public void setTease(String tease){this.tease = tease;}
-	public String getTease(){return tease;}
 	
+        /**
+         * 
+         * @return 
+         */
+        public String getTease(){return tease;}
+	
+        /**
+         * 
+         * @param status 
+         */
 	public void setStatus(String status){this.status = status;}
-	public String getStatus(){return status;}
+	
+        /**
+         * 
+         * @return 
+         */
+        public String getStatus(){return status;}
 }
