@@ -81,7 +81,7 @@ public class User {
                     fName = dataList.get(1).get(1).toString();
                     lName = dataList.get(1).get(2).toString();
                     email = dataList.get(1).get(3).toString();
-                    pswd = dataList.get(1).get(4).toString();
+                    //pswd = dataList.get(1).get(4).toString();
                     role = dataList.get(1).get(5).toString();
                     return true;
             } else {
@@ -110,7 +110,10 @@ public class User {
             values.add(fName); 
             values.add(lName);
             values.add(email);
-            values.add(pswd);
+            JEncryption encrypter = new JEncryption();
+            //Adam's comment
+            String encryptedPassword = new  String(encrypter.encrypt(pswd.toCharArray().toString()));
+            values.add(encryptedPassword);
             values.add(role);
             myDB.setData("UPDATE users FName = ?, LName = ?, Email = ?, Pswd = ?, Role = ? WHERE UserId = ?", values);
             return true;
@@ -138,7 +141,10 @@ public class User {
             values.add(fName);
             values.add(lName);
             values.add(email);
-            values.add(pswd);
+            JEncryption encrypter = new JEncryption();
+            //Adam's comment
+            String encryptedPassword = new  String(encrypter.encrypt(pswd.toCharArray().toString()));
+            values.add(encryptedPassword);
             values.add(role);
             myDB.setData("INSERT INTO users (UserId,FName,LName,Email,Pswd,Role) VALUES(?,?,?,?,?,?)", values);
             return true;
