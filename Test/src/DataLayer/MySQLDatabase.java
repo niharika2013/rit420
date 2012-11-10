@@ -57,10 +57,13 @@ public class MySQLDatabase{
     //Calls the database with a prepared statement and accepts rows of data
     protected ArrayList<ArrayList<String>> getData(String sql, ArrayList<String> values) throws DLException   {
         try {
+            connect();
+
             PreparedStatement statement = prepare(sql, values);
             ResultSet data = statement.executeQuery();
-            
+           
             ArrayList<ArrayList<String>> dataList = new ArrayList<>(0);
+           
             ResultSetMetaData rsmd = data.getMetaData();
             int numCols = rsmd.getColumnCount();
             
@@ -78,6 +81,9 @@ public class MySQLDatabase{
                 }
                 dataList.add(row);
             }
+
+            close();
+            
             return dataList;
         } catch(SQLException e){
             throw new DLException(e);
@@ -90,8 +96,10 @@ public class MySQLDatabase{
         PreparedStatement statement = null;
         
         try {
+            connect();
             statement = this.prepare(sql, values);
             statement.execute();
+            close();
             return true;
         } catch(SQLException e){
             //System.err.print(e);
