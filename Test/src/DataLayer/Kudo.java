@@ -91,17 +91,17 @@ public class Kudo {
         }
 
         
-    //paired getters and setters follow    
-    public void setKudoId(String kudoId){this.kudoId = kudoId;}
-    public String getKudoId(){return kudoId;}
+        //paired getters and setters follow    
+        public void setKudoId(String kudoId){this.kudoId = kudoId;}
+        public String getKudoId(){return kudoId;}
 
-    public void setUserId(String userId){this.userId = userId;}
-    public String getUserId(){return userId;}
+        public void setUserId(String userId){this.userId = userId;}
+        public String getUserId(){return userId;}
 
-    public void setYear(String year){this.year = year;}
-    public String getYear(){return year;}
+        public void setYear(String year){this.year = year;}
+        public String getYear(){return year;}
 
-    public void setKudo(String kudo){this.kudo = kudo;}
-    public String getKudo(){return kudo;}
+        public void setKudo(String kudo){this.kudo = kudo;}
+        public String getKudo(){return kudo;}
 
 }
