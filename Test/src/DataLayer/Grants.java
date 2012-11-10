@@ -17,19 +17,23 @@ public class Grants {
     private MySQLDatabase myDB = new MySQLDatabase();
 
    /**
-    * 
+    * Explicit default constructor for grants does nothing.
     */
     public Grants() {}
     
     /**
+     * This method returns an arrayList containing the values from this
+     * data object's grants field.
      * 
-     * @return 
+     * @return arraylist of Grant objects 
      */
     public ArrayList<Grant> getGrants() {
         return grants;
     }
-    
+   
     /**
+     * This method accepts an arrayList of Grant objects and sets this
+     * data object's value.
      * 
      * @param grantsList 
      */
@@ -38,8 +42,11 @@ public class Grants {
     }
     
     /**
+     * This method retrieves all entries from the grants table of the faculty
+     * activity database, and stores those rows in this data object's 'grants'
+     * field.
      * 
-     * @return
+     * @return boolean indicating presence of data.
      * @throws DLException 
      */
     public boolean fetch() throws DLException {
