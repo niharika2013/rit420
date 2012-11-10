@@ -77,7 +77,7 @@ public class User {
         try{
             ArrayList<String> values = new ArrayList<>(0);
             values.add(userId);
-            ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM users WHERE UserId = ?", values);
+            ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT userId, fName, lName, email, pswd, role FROM users WHERE UserId = ?", values);
             System.out.println();
             if(dataList.size() > 1){                
                     fName = dataList.get(1).get(1).toString();
@@ -120,9 +120,7 @@ public class User {
              e.printStackTrace();
              throw new DLException(e);
         }
-    }
-
-    
+    } 
     
     /**
      * updates the given user ID with new values according to the
@@ -149,10 +147,6 @@ public class User {
             throw new DLException(e);
         }
     }
-
-
-    
-    
     
     /**
      * takes all the fields of the data object and inserts them into the 
@@ -179,8 +173,6 @@ public class User {
             throw new DLException(e);
         }
     }
-
-
     
     /**
      * deletes the user with this Object UID from the database.
@@ -204,7 +196,6 @@ public class User {
      * 
      * @return String
      */
-
     @Override
     public String toString(){
         return "userId: " + userId + "\nfname: " + fName + "\nlname: " + lName + "\npswd: " + pswd + "\nemail: " + email + "\nrole: " + role;

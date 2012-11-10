@@ -71,12 +71,12 @@ public class Kudo {
             try{    
                   ArrayList<String> values = new ArrayList<>(0);
                   values.add(kudoId);
-                  ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM kudos WHERE KudoId = ?", values);
+                  ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT userId, kudoId, year, kudo FROM kudos WHERE KudoId = ?", values);
                   if(dataList.size() > 1) {
-                          userId = dataList.get(1).get(1).toString();
-                          kudoId = dataList.get(1).get(2).toString();
-                          year = dataList.get(1).get(3).toString();
-                          kudo = dataList.get(1).get(4).toString();
+                          userId    = dataList.get(1).get(1).toString();
+                          kudoId    = dataList.get(1).get(2).toString();
+                          year      = dataList.get(1).get(3).toString();
+                          kudo      = dataList.get(1).get(4).toString();
                           return true;
                   } else {
                           return false;

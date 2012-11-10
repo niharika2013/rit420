@@ -55,7 +55,7 @@ public class Users {
      * @throws DLException 
      */
     public boolean fetch() throws DLException {
-        ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM users", null);
+        ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT userId, fName, lName, email, pswd, role FROM users", null);
         if(dataList.size() > 1) {
             for (int i = 1; i <= dataList.size(); i++) {
                 User e = new User(dataList.get(i).get(1).toString());

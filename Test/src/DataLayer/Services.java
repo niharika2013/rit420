@@ -55,14 +55,14 @@ public class Services {
      * @throws DLException 
      */
     public boolean fetch() throws DLException {
-        ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM services", null);
+        ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT userId, serviceId, year, description, role FROM services", null);
         if(dataList.size() > 1) {
             for (int i = 1; i <= dataList.size(); i++){
                 Service e = new Service(dataList.get(i).get(2).toString());
-                e.setUserId(dataList.get(i).get(1).toString());
-                e.setYear(dataList.get(i).get(3).toString());
+                e.setUserId(     dataList.get(i).get(1).toString());
+                e.setYear(       dataList.get(i).get(3).toString());
                 e.setDescription(dataList.get(i).get(4).toString());
-                e.setRole(dataList.get(i).get(5).toString());
+                e.setRole(       dataList.get(i).get(5).toString());
                 services.add(e);
             }
             return true;
