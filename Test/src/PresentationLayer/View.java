@@ -527,7 +527,10 @@ public class View extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(viewPane)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .add(viewPane)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -637,6 +640,7 @@ public class View extends javax.swing.JFrame {
         n.setVisible(true);
         setEnabled(false);
     }//GEN-LAST:event_UpdateUserMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CoursesPanel;
     private javax.swing.JButton UpdateUser;
