@@ -66,8 +66,7 @@ public class User {
             values.add(role);
             myDB.setData("UPDATE users FName = ?, LName = ?, Email = ?, Pswd = ?, Role = ? WHERE UserId = ?", values);
             return true;
-        }
-        catch(Exception e){
+        } catch(Exception e){
             throw new DLException(e);
         }
     }
