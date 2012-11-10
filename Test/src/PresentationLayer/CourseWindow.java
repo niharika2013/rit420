@@ -4,6 +4,11 @@
  */
 package PresentationLayer;
 
+import DataLayer.*;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Black Tony
@@ -12,20 +17,33 @@ public class CourseWindow extends javax.swing.JFrame {
 
     View parentView = null;
     String courseId = null;
+    String option;
     
     /**
      * Creates new form CourseWindow with ability to get back to 
      */
-    public CourseWindow(View v) {
+    public CourseWindow(View v, String option) {
         initComponents();
+        this.option = option;
         parentView = v;
+        setCourseWindow();
     }
     
     // This is the constructor for doing edits on a Course
-    public CourseWindow(View v, String courseId){
+    public CourseWindow(View v, String courseId, String option){
         initComponents();
         parentView = v;
         this.courseId = courseId;
+        this.option = option;
+        setCourseWindow();
+    }
+    
+    public void setCourseWindow(){
+        Users faculty = new Users();
+        ArrayList<User> facultyArrayList = faculty.getUsers();
+        User[] userArray = new User[facultyArrayList.size()];
+        facultyArrayList.toArray(userArray);
+        facultyList.setListData(userArray);
     }
 
     /**
@@ -165,8 +183,20 @@ public class CourseWindow extends javax.swing.JFrame {
         //To Do
         //Do database insertions
         //If successful, update parent view's table
-        this.setVisible(false);
-        parentView.setEnabled(true);
+        if(courseNameField.getText() != null && courseNumberField.getText() != null && yearField.getText() != null && !facultyList.isSelectionEmpty()){
+            if("Update".equals(option)){
+                try {
+                    User selectedUser =(User) facultyList.getSelectedValue();
+                    Course updateCourse = new Course(selectedUser.getUserId(), courseId, yearField.getText(), courseNumberField.getText(), courseNameField.getText());
+                    updateCourse.post();
+                    this.setVisible(false);
+                    parentView.setEnabled(true);
+                } catch (DLException ex) {
+                    //Create Error dialog
+                }
+            }
+        }
+        
         //If not, pop a message out
     }//GEN-LAST:event_submitCourseMouseClicked
 
