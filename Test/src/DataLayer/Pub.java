@@ -14,7 +14,6 @@ import java.util.*;
  * @author Owen O'Connell
  */
 public class Pub {
-	// Provide	attributes	that	mirror	the	Pubs	table.
 	private String userId;
 	private String pubId;
 	private String year;
@@ -23,26 +22,22 @@ public class Pub {
 	private String status;
         private MySQLDatabase myDB;
 	
-	// Provide	a	default	constructor.
-        /**
-         * 
+	/**
+         * Explicit default constructor for Pub does nothing! 
          */
-        public Pub()
-	{
+        public Pub(){
 	}
 	
-	// Provide	a	constructor	that	accepts	and	sets	the	pubId.
 	/**
-         * 
+         * Constructor accepts pubId only.
          * @param pubId 
          */
-        public Pub(String pubId)
-	{
+        public Pub(String pubId) {
 		this.pubId = pubId;
 	}
 	
-	// Provide	a	constructor	that	accepts	and	sets	all	attributes.
 	/**
+         * Constructor accepts parameters for all fields of this data object.
          * 
          * @param userId
          * @param pubId
@@ -51,8 +46,7 @@ public class Pub {
          * @param tease
          * @param status 
          */
-        public Pub(String userId, String pubId, String year, String citation, String tease, String status)
-	{
+        public Pub(String userId, String pubId, String year, String citation, String tease, String status){
 		this.userId = userId;
 		this.pubId = pubId;
 		this.year = year;
@@ -61,15 +55,11 @@ public class Pub {
 		this.status = status;
 	}
 	
-
-	
-	// fetch	uses	the	object�s	pubId	attribute	and	the	Database	class
-	//getData	method	to	retrieve	the	database	values	for	that	particular	pubId	
-	//and	updates	the	object�s	attributes.
-	
         /**
+         * This method retrieves the row corresponding to this data object's
+         * pubId field and sets this data object's attributes accordingly.
          * 
-         * @return
+         * @return boolean indicating data exists.
          * @throws DLException 
          */
         public boolean fetch() throws DLException {
@@ -93,11 +83,11 @@ public class Pub {
             }
 	}
 	
-	// post updates the database values, for that object�s pubId, using the	
-	//object�s attribute values.
 	/**
-         * 
-         * @return
+         * This method updates the database with values equal to this data 
+         * object's attributes.
+         *
+         * @return boolean indicating success.
          * @throws DLException 
          */
         public boolean post() throws DLException {
@@ -116,10 +106,9 @@ public class Pub {
             }
         }
 	
-	// put	inserts	the	object�s	attribute	values	into	the	database	as	a	new	record.
 	/**
-         * 
-         * @return
+         * This method inserts this data object's values into the database.
+         * @return boolean indicating success
          * @throws DLException 
          */
         public boolean put() throws DLException	{
@@ -139,10 +128,11 @@ public class Pub {
         }
             
 	
-	// delete removes	from	the	database	any	data	corresponding	to	the	object�s pubId.
 	/**
+         * This method removes from the database all values corresponding to
+         * this data object's pubId.
          * 
-         * @return
+         * @return boolean indicating success.
          * @throws DLException 
          */
         public boolean delete() throws DLException {
@@ -156,80 +146,81 @@ public class Pub {
             }
         }
         
-        // Provide	accessors	and	mutators	for	all	attributes.
-	
+        
+        
+        
         /**
-         * 
+         * Mutator method for pubId
          * @param pubId 
          */
         public void setPubId(String pubId){this.pubId = pubId;}
 	
         /**
-         * 
-         * @return 
+         * Accessor method for pubId
+         * @return String value of pubId
          */
         public String getPubId(){return pubId;}
 	
         
         /**
-         * 
+         * Mutator method for userId
          * @param userId 
          */
 	public void setUserId(String userId){this.userId = userId;}
 	
         /**
-         * 
-         * @return 
+         * Accessor method for userId
+         * @return String value for userId
          */
         public String getUserId(){return userId;}
 	
         /**
-         * 
+         * Mutator method for year
          * @param year 
          */
 	public void setYear(String year){this.year = year;}
 	
         /**
-         * 
-         * @return 
+         * Accessor method for year
+         * @return String value for year
          */
         public String getYear(){return year;}
 	
         /**
-         * 
+         * Mutator method for citation
          * @param citation 
          */
 	public void setCitation(String citation){this.citation = citation;}
 	
         
         /**
-         * 
-         * @return 
+         * Accessor method for citation
+         * @return String value for citation
          */
         public String getCitation(){return citation;}
 	
         
         /**
-         * 
+         * Mutator method for tease
          * @param tease 
          */
 	public void setTease(String tease){this.tease = tease;}
 	
         /**
-         * 
-         * @return 
+         * Accessor method for tease
+         * @return String value for tease
          */
         public String getTease(){return tease;}
 	
         /**
-         * 
+         * Mutator method for status
          * @param status 
          */
 	public void setStatus(String status){this.status = status;}
 	
         /**
-         * 
-         * @return 
+         * Accessor method for status
+         * @return String value for status
          */
         public String getStatus(){return status;}
 }
