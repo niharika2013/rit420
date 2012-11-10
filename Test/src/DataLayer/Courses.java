@@ -17,20 +17,23 @@ public class Courses {
     private MySQLDatabase myDB = new MySQLDatabase();
    
     /**
-     * 
+     * Explicit default constructor for Courses does nothing.
      */
     public Courses(){
     }
     
     /**
+     * This method returns an arraylist representing multiple course objects.
      * 
-     * @return 
+     * @return arrayList of course objects.
      */
     public ArrayList<Course> getCourses(){
         return courses;
     }
     
     /**
+     * This method accepts an arraylist of courses and populates this data 
+     * object's courses field with that arraylist.
      * 
      * @param coursesList 
      */
@@ -39,8 +42,10 @@ public class Courses {
     }
     
     /**
+     * This method retrieves all the rows from the courses table and stores them
+     * in a 2D array list in the courses field of this data object.
      * 
-     * @return
+     * @return boolean indicating data was present.
      * @throws DLException 
      */
     public boolean fetch() throws DLException {
