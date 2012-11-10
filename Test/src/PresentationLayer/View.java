@@ -545,6 +545,7 @@ public class View extends javax.swing.JFrame {
     private void logoutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseClicked
         // TODO add your handling code here:
         //System.out.println("test");
+        System.exit(0);
     }//GEN-LAST:event_logoutButtonMouseClicked
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
@@ -552,7 +553,7 @@ public class View extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutButtonActionPerformed
 
     private void newCourseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newCourseMouseClicked
-        n = new CourseWindow(this);
+        n = new CourseWindow(this, "Create");
         n.setVisible(true);
         setEnabled(false);
     }//GEN-LAST:event_newCourseMouseClicked
@@ -565,7 +566,7 @@ public class View extends javax.swing.JFrame {
     private void editCoursesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editCoursesMouseClicked
         //This would normally pull data from the table on the page, but this
         //functionality is pending
-        n = new CourseWindow(this, "777");
+        n = new CourseWindow(this, "484", "Update");
         n.setVisible(true);
         setEnabled(false);
     }//GEN-LAST:event_editCoursesMouseClicked
