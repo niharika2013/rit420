@@ -8,7 +8,7 @@ public class Test_Main {
     	//testUserFetch(); //works
         //testUserDelete(); //works 
         //testUserPut(); //works
-        testUserPost(); //works
+        //testUserPost(); //works
     }
 
     public static void testDatabase(){
@@ -20,9 +20,6 @@ public class Test_Main {
     	} catch (DLException DLE){
     		System.out.println(DLE);
     	}
-    	
-    	
-    	
     } 
     
     public static void testUserPost(){
