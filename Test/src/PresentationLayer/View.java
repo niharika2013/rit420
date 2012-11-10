@@ -15,8 +15,10 @@ public class View extends javax.swing.JFrame {
     /**
      * Creates new form View
      */
-    public View() {
+    public View(String role) {
         initComponents();
+        
+        //Depending on the user logged in certain tabs must be obliterated
     }
 
     /**
@@ -66,6 +68,7 @@ public class View extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("The Educational Editor");
+        setResizable(false);
 
         logoutButton.setActionCommand("logoutButton");
         logoutButton.setLabel("Logout");
@@ -665,7 +668,7 @@ public class View extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new View().setVisible(true);
+                //new View().setVisible(true);
             }
         });
     }

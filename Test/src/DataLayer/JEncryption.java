@@ -98,16 +98,4 @@ public class JEncryption
                     return null;
                 }
         }
-        
-        
-        
-        /**
-         * 
-         * @param argv 
-         */
-	public static void main(String[] argv) {
-            JEncryption encrypter = new JEncryption();
-            byte[] encryptedText = encrypter.encrypt("Mike is a whore");
-            String decryptedText = encrypter.decrypt(encryptedText);
-	}
 }

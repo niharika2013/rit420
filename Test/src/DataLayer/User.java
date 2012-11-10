@@ -25,9 +25,14 @@ public class User {
      */
     
     public User(String userId) {  
-            this.userId = userId; 
+        this.userId = userId; 
     }
 
+    //User ID only constuctor
+    public User(String email, String pswd) {  
+        this.email = email;
+        this.pswd = pswd;
+    }
     
     
      
@@ -63,11 +68,11 @@ public class User {
      */
     
     public boolean fetch() throws DLException {
-        try{    
+        try{
             ArrayList<String> values = new ArrayList<>(0);
             values.add(userId);
             ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM users WHERE UserId = ?", values);
-            if(dataList != null){                
+            if(dataList.size() > 1){                
                     fName = dataList.get(1).get(1).toString();
                     lName = dataList.get(1).get(2).toString();
                     email = dataList.get(1).get(3).toString();
