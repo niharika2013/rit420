@@ -9,7 +9,7 @@ public class User {
     private String email;
     private String pswd;
     private String role;
-    private MySQLDatabase myDB;//db object instantiated as needed in methods below
+    private MySQLDatabase myDB = new MySQLDatabase();
 
     //User ID only constuctor
     public User(String userId) {  
@@ -32,13 +32,10 @@ public class User {
     // fields of this data object with those values.
     public boolean fetch() throws DLException {
         try{    
-            myDB = new MySQLDatabase();
 
             ArrayList<String> values = new ArrayList<>(0);
             values.add(userId);
-            myDB.connect();
             ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT * FROM users WHERE UserId = ?", values);
-            myDB.close();
             if(dataList != null){
                     fName = dataList.get(1).get(1).toString();
                     lName = dataList.get(1).get(2).toString();
@@ -58,7 +55,6 @@ public class User {
     //updates the given user ID with new values according to the
     //fields of the present object
     public boolean post() throws DLException {
-            myDB = new MySQLDatabase();
 
             try{
                 ArrayList<String> values = new ArrayList<>(0);
@@ -69,9 +65,7 @@ public class User {
                 values.add(email);
                 values.add(pswd);
                 values.add(role);
-                myDB.connect();
                 myDB.setData("UPDATE users FName = ?, LName = ?, Email = ?, Pswd = ?, Role = ? WHERE UserId = ?", values);
-                myDB.close();
                 return true;
             }
             catch(DLException e){
@@ -83,7 +77,6 @@ public class User {
     //takes all the fields of the data object and inserts them into the 
     //database under the given UID
     public boolean put(){
-        myDB = new MySQLDatabase();
 
             try {
                     ArrayList<String> values = new ArrayList<>(0);
@@ -106,7 +99,6 @@ public class User {
 
     //deletes the user with this Object UID from the database.
     public boolean delete(){
-        myDB = new MySQLDatabase();
     	try {
             ArrayList<String> values = new ArrayList<>(0);
             values.add(userId);
@@ -118,6 +110,8 @@ public class User {
             return false;
         }
     }
+    
+    
 
     
     //paired getters and setters follow

@@ -4,7 +4,7 @@ public class Test_Main {
 
     public static void main(String[] args){
         
-    	testDatabase(); //works
+    	//testDatabase(); //works
     	//testUserFetch(); //works
         //testUserDelete(); //works 
         //testUserPut(); //works
