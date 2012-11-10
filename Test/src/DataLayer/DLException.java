@@ -1,13 +1,13 @@
 package DataLayer;
 
 import java.io.*;
-import java.util.*;
 import java.sql.Timestamp;
+import java.util.*;
 
 public class DLException extends Exception {
 
 	private static final long serialVersionUID = 1L;	
-	ArrayList<ArrayList<String>> eList = new ArrayList<ArrayList<String>>();
+	ArrayList<ArrayList<String>> eList = new ArrayList<>();
 	Exception ex;
 	
 	public DLException(Exception e){
@@ -24,7 +24,7 @@ public class DLException extends Exception {
 	private void populateList(){
 		if(ex.getStackTrace() != null){
 			StackTraceElement[] trace = ex.getStackTrace();
-			ArrayList<String> traceList = new ArrayList<String>();
+			ArrayList<String> traceList = new ArrayList<>();
 			for (StackTraceElement element: trace){
 				traceList.add(element.toString());
 			}//end for
