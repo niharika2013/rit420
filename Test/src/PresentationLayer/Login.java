@@ -107,23 +107,20 @@ public class Login extends javax.swing.JFrame {
         //Check hashed credentials against database
         //JEncryption encrypter = new JEncryption();
         //loginUser.setPswd(new String(encrypter.encrypt(loginUser.getPswd())));
-        try {
-            loginUser.login();
-            System.out.println(loginUser.toString());
-        } catch (DLException ex) {
-            ex.printStackTrace();
-        }
         try
         {
             if(loginUser.login())
             {
                 //If successful load the view
-                System.out.println(loginUser.toString());
+                //System.out.println(loginUser.toString());
                 View v = new View(loginUser.getRole());
+                v.setVisible(true);
+                this.setVisible(false);
             }
             //If not, pop out a login failed message
             else
             {
+                //new jOutputBox();
             }
         }
         catch(DLException d)
