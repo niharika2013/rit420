@@ -166,9 +166,6 @@ public class User {
             values.add(fName);
             values.add(lName);
             values.add(email);
-            //JEncryption encrypter = new JEncryption();
-            //Adam's comment
-            //String encryptedPassword = new  String(encrypter.encrypt(pswd.toCharArray().toString()));
             values.add(pswd);
             values.add(role);
             myDB.setData("INSERT INTO users (UserId,FName,LName,Email,Pswd,Role) VALUES(?,?,?,?,?,?)", values);
@@ -211,8 +208,9 @@ public class User {
      * @return 
      */
     public String saltHash(String pass){
-        String salt = "Where's_Mike?";
-        String hashed = generateHash(pass+salt);
+        String salt = "_fake_hash";
+        String hashed = pswd+salt;
+        //String hashed = generateHash(pass+salt);
         return hashed;
     }
 
@@ -302,7 +300,7 @@ public class User {
      * Accessor method for pswd
      * @return String value of pswd
      */
-    public String getPswd(){return pswd;} //ORLY?
+    public String getPswd(){return pswd;} 
 
     /**
      * Mutator method for role
