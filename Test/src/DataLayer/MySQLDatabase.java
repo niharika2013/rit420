@@ -120,6 +120,47 @@ public class MySQLDatabase{
             throw new DLException(e);
         }
     }
+    
+    /**
+     * 
+     * @param sql
+     * @return
+     * @throws DLException 
+     */
+    protected ArrayList<ArrayList<String>> getData(String sql) throws DLException   {
+        try {
+            connect();
+
+            Statement statement = connection.createStatement();
+            ResultSet data = statement.executeQuery(sql);
+           
+            ArrayList<ArrayList<String>> dataList = new ArrayList<>(0);
+           
+            ResultSetMetaData rsmd = data.getMetaData();
+            int numCols = rsmd.getColumnCount();
+            
+            ArrayList<String> row = new ArrayList<>(numCols);
+            for (int j = 0; j < numCols; j++) {
+                row.add(j, rsmd.getColumnName(j+1));
+            }
+            
+            dataList.add(row);
+            while (data.next()) {
+                row = new ArrayList<>(numCols);
+                for (int i = 1; i <= numCols; i++) {
+                    //System.out.println(data.getString(i));
+                    row.add(data.getString(i)); 
+                }
+                dataList.add(row);
+            }
+
+            close();
+            
+            return dataList;
+        } catch(SQLException e){
+            throw new DLException(e);
+        }
+    }
 
     
     //sends an update or insert statement to the database and returns a boolean 
