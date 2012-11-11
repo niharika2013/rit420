@@ -59,7 +59,25 @@ public class Courses {
             for (int i = 1; i <= dataList.size(); i++) {
                 Course e = new Course(dataList.get(i).get(2).toString());
                 e.setUserId(        dataList.get(i).get(1).toString());
-                //e.setCourseId(      dataList.get(i).get(2).toString());
+                e.setYear(          dataList.get(i).get(3).toString());
+                e.setCourseNumber(  dataList.get(i).get(4).toString());
+                e.setCourseName(    dataList.get(i).get(5).toString());
+                courses.add(e);
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public boolean fetchByUserId(String userId) throws DLException {
+        ArrayList<String> values = new ArrayList<>(0);
+        values.add(userId);
+        ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT userId, courseId, year, courseNumber, courseName FROM courses WHERE UserId = ?", values);
+        if(dataList.size() > 1) {
+            for (int i = 1; i <= dataList.size(); i++) {
+                Course e = new Course(dataList.get(i).get(2).toString());
+                e.setUserId(        dataList.get(i).get(1).toString());
                 e.setYear(          dataList.get(i).get(3).toString());
                 e.setCourseNumber(  dataList.get(i).get(4).toString());
                 e.setCourseName(    dataList.get(i).get(5).toString());
