@@ -106,7 +106,7 @@ public class Course {
 		values.add(courseNumber);
 		values.add(courseName);
 		values.add(courseId);
-                String sql = "UPDATE course SET UserId = ?, Year = ?, CourseNumber = ?, CourseName = ? "+
+                String sql = "UPDATE courses SET UserId = ?, Year = ?, CourseNumber = ?, CourseName = ? "+
                              "WHERE CourseId = ?";
                 myDB.setData(sql, values);
                 return true; 
