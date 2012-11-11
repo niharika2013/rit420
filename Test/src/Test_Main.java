@@ -1,4 +1,6 @@
 import DataLayer.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * This test class contains methods to test the methods of 
@@ -17,10 +19,36 @@ public class Test_Main {
     	//testDatabase(); //works
     	//testUserFetch(); //works
         //testUserDelete(); //works 
-        testUserPut(); //works
+        //testUserPut(); //works
         //testUserPost(); //works
+        setNewPasswords();
     }
 
+    public static void setNewPasswords(){
+        User u = new User("12");
+        User i = new User("13");
+        User d = new User("14");
+        
+
+        try {          
+            u.fetch();
+            i.fetch();
+            d.fetch();
+
+            u.setPswd(u.saltHash( u.getPswd()) );
+            i.setPswd(i.saltHash( i.getPswd()) );
+            d.setPswd(d.saltHash( d.getPswd()) );
+
+            u.post();
+            i.post();
+            d.post();
+        } catch (DLException ex) {
+            Logger.getLogger(Test_Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+
+    }
+    
     public static void testDatabase(){
     	MySQLDatabase db = new MySQLDatabase();
     	

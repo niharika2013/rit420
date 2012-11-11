@@ -1,5 +1,7 @@
 package DataLayer;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
 /**
@@ -62,9 +64,9 @@ public class User {
             this.fName = fName;
             this.lName = lName;
             this.email = email;
-            JEncryption encrypter = new JEncryption();
+            //JEncryption encrypter = new JEncryption();
             //Adam's comment
-            this.pswd = new String(encrypter.encrypt(pswd.toCharArray().toString()));
+            this.pswd = pswd;
             this.role = role;
     }
 
@@ -88,7 +90,7 @@ public class User {
                     fName = dataList.get(1).get(1).toString();
                     lName = dataList.get(1).get(2).toString();
                     email = dataList.get(1).get(3).toString();
-                    //pswd = dataList.get(1).get(4).toString();
+                    pswd = dataList.get(1).get(4).toString();
                     role = dataList.get(1).get(5).toString();
                     return true;
             } else {
@@ -110,7 +112,7 @@ public class User {
         try{
             ArrayList<String> values = new ArrayList<>(0);
             values.add(email);
-            values.add(fakeHash(pswd));
+            values.add(saltHash(pswd));
             ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT UserId, FName, LName, Role FROM users WHERE Email = ? AND Pswd = ?", values);
             if(dataList.size() > 1){
                     userId = dataList.get(1).get(0).toString(); 
@@ -164,10 +166,10 @@ public class User {
             values.add(fName);
             values.add(lName);
             values.add(email);
-            JEncryption encrypter = new JEncryption();
+            //JEncryption encrypter = new JEncryption();
             //Adam's comment
-            String encryptedPassword = new  String(encrypter.encrypt(pswd.toCharArray().toString()));
-            values.add(encryptedPassword);
+            //String encryptedPassword = new  String(encrypter.encrypt(pswd.toCharArray().toString()));
+            values.add(pswd);
             values.add(role);
             myDB.setData("INSERT INTO users (UserId,FName,LName,Email,Pswd,Role) VALUES(?,?,?,?,?,?)", values);
             return true;
@@ -204,17 +206,41 @@ public class User {
     }
 
     /**
-     * This is a BAAAD hash function standing in for a proper hash function.
-     * 
-     * We could scramble it up much better than this, consider it a proof of 
-     * concept.
-     * 
+     * Here we salt the password, hash it, and return the hashed result.
      * @param pswd
      * @return 
      */
-    private String fakeHash(String pswd){
-        String hash = pswd+"_fake_hash";
-        return hash;
+    public String saltHash(String pass){
+        String salt = "Where's_Mike?";
+        String hashed = generateHash(pass+salt);
+        return hashed;
+    }
+
+    /**
+     * This is NOT our hash function. We got it from 
+     * http://veerasundar.com/blog/2010/09/storing-passwords-in-java-web-application/
+     * 
+     * @param input
+     * @return The Hashed String
+     */
+     private static String generateHash(String input) {
+        StringBuilder hash = new StringBuilder();
+
+        try {
+                MessageDigest sha = MessageDigest.getInstance("SHA-1");
+                byte[] hashedBytes = sha.digest(input.getBytes());
+                char[] digits = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+                                'a', 'b', 'c', 'd', 'e', 'f' };
+                for (int idx = 0; idx < hashedBytes.length; ++idx) {
+                        byte b = hashedBytes[idx];
+                        hash.append(digits[(b & 0xf0) >> 4]);
+                        hash.append(digits[b & 0x0f]);
+                }
+        } catch (NoSuchAlgorithmException e) {
+                // handle error here.
+        }
+
+        return hash.toString();
     }
     
     /**
