@@ -77,9 +77,10 @@ public class MySQLDatabase{
         }
     }
 
-    
-    //Calls the database with a prepared statement and accepts rows of data
+       
+ 
     /**
+     * Calls the database with a prepared statement and accepts rows of data
      * 
      * @param sql
      * @param values
@@ -122,6 +123,7 @@ public class MySQLDatabase{
     }
     
     /**
+     * gets the data utilizing a non-prepared statement
      * 
      * @param sql
      * @return

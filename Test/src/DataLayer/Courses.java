@@ -19,7 +19,7 @@ public class Courses {
     /**
      * Explicit default constructor for Courses does nothing.
      */
-    public Courses(){
+    public Courses() {
         try {
             fetch();
         } catch (DLException ex) {
