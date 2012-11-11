@@ -27,6 +27,7 @@ public class Users {
         try {
             fetch();
         } catch (DLException ex) {
+            System.err.println(ex);
         }
     }
     
@@ -64,13 +65,13 @@ public class Users {
     public boolean fetch() throws DLException {
         ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT userId, fName, lName, email, pswd, role FROM users");
         if(dataList.size() > 1) {
-            for (int i = 1; i <= dataList.size(); i++) {                
-                User e = new User(dataList.get(i).get(1).toString());
-                e.setFName( dataList.get(i).get(2).toString());
-                e.setLName( dataList.get(i).get(3).toString());
-                e.setEmail( dataList.get(i).get(4).toString());
-                e.setPswd(  dataList.get(i).get(5).toString());
-                e.setRole(  dataList.get(i).get(6).toString());
+            for (int i = 1; i <= dataList.size() - 1; i++) {                
+                User e = new User(dataList.get(i).get(0).toString());
+                e.setFName( dataList.get(i).get(1).toString());
+                e.setLName( dataList.get(i).get(2).toString());
+                e.setEmail( dataList.get(i).get(3).toString());
+                e.setPswd(  dataList.get(i).get(4).toString());
+                e.setRole(  dataList.get(i).get(5).toString());
                 users.add(e);
                 System.out.println(e.toString());
             }
