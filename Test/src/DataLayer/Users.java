@@ -27,7 +27,7 @@ public class Users {
         try {
             fetch();
         } catch (DLException ex) {
-            System.err.println(ex);
+            //System.err.println(ex);
         }
     }
     
@@ -73,7 +73,7 @@ public class Users {
                 e.setPswd(  dataList.get(i).get(4).toString());
                 e.setRole(  dataList.get(i).get(5).toString());
                 users.add(e);
-                System.out.println(e.toString());
+                //System.out.println(e.toString());
             }
             return true;
          } else {

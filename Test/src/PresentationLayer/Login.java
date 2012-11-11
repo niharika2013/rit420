@@ -5,10 +5,10 @@
 package PresentationLayer;
 
 import DataLayer.DLException;
-import DataLayer.JEncryption;
+//import DataLayer.JEncryption;
 import DataLayer.User;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+//import java.util.logging.Level;
+//import java.util.logging.Logger;
 import javax.swing.*;
 /**
  *
@@ -101,7 +101,10 @@ public class Login extends javax.swing.JFrame {
     private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordFieldActionPerformed
-
+/**
+ * Attempts to login based on user input
+ * @param evt 
+ */
     private void loginButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButtonMouseClicked
         //Make a default user object and bind the input data
         User loginUser;
@@ -133,6 +136,7 @@ public class Login extends javax.swing.JFrame {
 
     /**
      * @param args the command line arguments
+     * Main class.  Opens a login view and goes from there
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

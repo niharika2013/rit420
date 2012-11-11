@@ -13,7 +13,7 @@ public class TODO {
      * 
      * Validate email
      * 
-     * 
+     * SQL Incorrect?  Whoops!  Too bad!
      */
 
 /*

@@ -1,12 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package PresentationLayer;
 
 /**
  *
- * @author Black Tony
+ * @author Group 6
  */
 public class PublicationWindow extends javax.swing.JFrame {
 
@@ -21,7 +17,11 @@ public class PublicationWindow extends javax.swing.JFrame {
         parentView = v;
     }
     
-    // This is the constructor for doing edits on a Publication
+    /**
+     * This is the constructor for doing edits on a Publication
+     * @param v
+     * @param courseId 
+     */
     public PublicationWindow(View v, String courseId){
         initComponents();
         parentView = v;
@@ -168,6 +168,10 @@ public class PublicationWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_courseNumberFieldActionPerformed
 
+    /**
+     * Submit a new publication
+     * @param evt 
+     */
     private void submitPublicationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitPublicationMouseClicked
         //To Do
         //Do database insertions
@@ -177,6 +181,10 @@ public class PublicationWindow extends javax.swing.JFrame {
         //If not, pop a message out
     }//GEN-LAST:event_submitPublicationMouseClicked
 
+    /**
+     * Cancels publication input
+     * @param evt 
+     */
     private void cancelPublicationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelPublicationMouseClicked
         //The user wanted to cancel out of the operation?  Easy.
         this.setVisible(false);

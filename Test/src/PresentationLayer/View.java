@@ -579,6 +579,10 @@ public class View extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Logout
+     * @param evt 
+     */
     private void logoutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseClicked
         // TODO add your handling code here:
         //System.out.println("test");
@@ -589,6 +593,10 @@ public class View extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_logoutButtonActionPerformed
 
+    /**
+     * Opens up the Course Window to make a new Course
+     * @param evt 
+     */
     private void newCourseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newCourseMouseClicked
         n = new CourseWindow(this, "Create");
         n.setVisible(true);
@@ -599,7 +607,10 @@ public class View extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_UpdateUserActionPerformed
 
-    // Editing a Course
+    /**
+     * Opens up the Course Window to edit a Course
+     * @param evt 
+     */
     private void editCourseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editCourseMouseClicked
         //This would normally pull data from the table on the page, but this
         //functionality is pending
@@ -608,13 +619,20 @@ public class View extends javax.swing.JFrame {
         setEnabled(false);
     }//GEN-LAST:event_editCourseMouseClicked
 
-    //New Service
+    /**
+     * Opens up the Service Window to make a new Service
+     * @param evt 
+     */
     private void newServiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newServiceMouseClicked
         n = new ServiceWindow(this);
         n.setVisible(true);
         setEnabled(false);
     }//GEN-LAST:event_newServiceMouseClicked
 
+    /**
+     * Opens up the Service Window to edit a Service
+     * @param evt 
+     */
     private void editServiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editServiceMouseClicked
         //This would normally pull data from the table on the page, but this
         //functionality is pending
@@ -623,12 +641,20 @@ public class View extends javax.swing.JFrame {
         setEnabled(false);
     }//GEN-LAST:event_editServiceMouseClicked
 
+    /**
+     * Opens up the Grant Window to make a new Grant
+     * @param evt 
+     */
     private void newGrantMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGrantMouseClicked
         n = new ScholarshipWindow(this);
         n.setVisible(true);
         setEnabled(false);
     }//GEN-LAST:event_newGrantMouseClicked
 
+    /**
+     * Opens up the Grant Window to edit a Course
+     * @param evt 
+     */
     private void editGrantMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editGrantMouseClicked
         //This would normally pull data from the table on the page, but this
         //functionality is pending
@@ -637,12 +663,20 @@ public class View extends javax.swing.JFrame {
         setEnabled(false);
     }//GEN-LAST:event_editGrantMouseClicked
 
+    /**
+     * Opens up the Publication Window to make a new Publication
+     * @param evt 
+     */
     private void newPublicationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newPublicationMouseClicked
         n = new PublicationWindow(this);
         n.setVisible(true);
         setEnabled(false);
     }//GEN-LAST:event_newPublicationMouseClicked
 
+    /**
+     * Opens up the Publication Window to make a new Course
+     * @param evt 
+     */
     private void editPublicationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editPublicationMouseClicked
         //This would normally pull data from the table on the page, but this
         //functionality is pending
@@ -650,13 +684,20 @@ public class View extends javax.swing.JFrame {
         n.setVisible(true);
         setEnabled(false);
     }//GEN-LAST:event_editPublicationMouseClicked
-
+    /**
+     * Opens up the Kudo Window to make a new Kudo
+     * @param evt 
+     */
     private void newKudoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newKudoMouseClicked
         n = new KudoWindow(this);
         n.setVisible(true);
         setEnabled(false);
     }//GEN-LAST:event_newKudoMouseClicked
 
+    /**
+     * Opens up the Kudo Window to edit a Course
+     * @param evt 
+     */
     private void updateKudoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateKudoMouseClicked
         //This would normally pull data from the table on the page, but this
         //functionality is pending
@@ -665,12 +706,20 @@ public class View extends javax.swing.JFrame {
         setEnabled(false);
     }//GEN-LAST:event_updateKudoMouseClicked
 
+    /**
+     * Opens up the User Window to make a new User
+     * @param evt 
+     */
     private void newUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newUserMouseClicked
         n = new UserWindow(this);
         n.setVisible(true);
         setEnabled(false);
     }//GEN-LAST:event_newUserMouseClicked
-
+    
+    /**
+     * Opens up the User Window to edit a User
+     * @param evt 
+     */
     private void UpdateUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UpdateUserMouseClicked
         //This would normally pull data from the table on the page, but this
         //functionality is pending
@@ -683,6 +732,12 @@ public class View extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_viewPaneComponentShown
 
+    /**
+     * Excellent demo of dynamic table updates
+     * Specifically, updates the course table every time it's seen
+     * Also factors in that faculty shouldn't see other courses
+     * @param evt 
+     */
     private void coursesPanelComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_coursesPanelComponentShown
         //Clear old data
         DefaultTableModel coursesModel = (DefaultTableModel)coursesTable.getModel();

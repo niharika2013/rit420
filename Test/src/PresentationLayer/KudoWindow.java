@@ -1,12 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package PresentationLayer;
 
 /**
  *
- * @author Black Tony
+ * @author Group 6
  */
 public class KudoWindow extends javax.swing.JFrame {
 
@@ -21,7 +17,11 @@ public class KudoWindow extends javax.swing.JFrame {
         parentView = v;
     }
     
-    // This is the constructor for doing edits on a Kudo
+    /**
+     * This is the constructor for doing edits on a Kudo
+     * @param v
+     * @param kudoId 
+     */
     public KudoWindow(View v, String kudoId){
         initComponents();
         parentView = v;
@@ -153,6 +153,10 @@ public class KudoWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_kudoFieldActionPerformed
 
+    /**
+     * This is the constructor for doing edits on a Kudo
+     * @param evt 
+     */
     private void submitKudoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitKudoMouseClicked
         //To Do
         //Do database insertions
@@ -162,6 +166,10 @@ public class KudoWindow extends javax.swing.JFrame {
         //If not, pop a message out
     }//GEN-LAST:event_submitKudoMouseClicked
 
+    /**
+    * Close a kudo window without submitting
+    * @param evt 
+    */
     private void cancelKudoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelKudoMouseClicked
         //The user wanted to cancel out of the operation?  Easy.
         this.setVisible(false);

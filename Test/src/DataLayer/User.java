@@ -85,7 +85,7 @@ public class User {
             ArrayList<String> values = new ArrayList<>(0);
             values.add(userId);
             ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT userId, fName, lName, email, pswd, role FROM users WHERE UserId = ?", values);
-            System.out.println();
+            //System.out.println();
             if(dataList.size() > 1){                
                     fName = dataList.get(1).get(1).toString();
                     lName = dataList.get(1).get(2).toString();

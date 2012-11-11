@@ -1,12 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package PresentationLayer;
 
 /**
  *
- * @author Black Tony
+ * @author Group 6
  */
 public class UserWindow extends javax.swing.JFrame {
 
@@ -21,7 +17,11 @@ public class UserWindow extends javax.swing.JFrame {
         parentView = v;
     }
     
-    // This is the constructor for doing edits on a User
+    /**
+     * This is the constructor for doing edits on a User
+     * @param v
+     * @param courseId 
+     */
     public UserWindow(View v, String courseId){
         initComponents();
         parentView = v;
@@ -148,6 +148,10 @@ public class UserWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_lastNameFieldActionPerformed
 
+    /**
+     * Submits a new user or update
+     * @param evt 
+     */
     private void submitUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitUserMouseClicked
         //To Do
         //Do database insertions
@@ -157,6 +161,10 @@ public class UserWindow extends javax.swing.JFrame {
         //If not, pop a message out
     }//GEN-LAST:event_submitUserMouseClicked
 
+    /**
+     * Closes the new User Window
+     * @param evt 
+     */
     private void cancelUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelUserMouseClicked
         //The user wanted to cancel out of the operation?  Easy.
         this.setVisible(false);

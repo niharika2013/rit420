@@ -72,7 +72,7 @@ public class MySQLDatabase{
 
             return statement;
         } catch(SQLException e) {
-                e.printStackTrace();
+                //e.printStackTrace();
             return null;
         }
     }
@@ -183,7 +183,7 @@ public class MySQLDatabase{
             close();
             return true;
         } catch(SQLException e){
-            System.err.print(e);
+            //System.err.print(e);
             return false;
         }
     }

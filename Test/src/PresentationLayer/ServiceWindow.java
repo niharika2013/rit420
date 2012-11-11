@@ -1,12 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package PresentationLayer;
 
 /**
  *
- * @author Black Tony
+ * @author Group 6
  */
 public class ServiceWindow extends javax.swing.JFrame {
 
@@ -21,7 +17,11 @@ public class ServiceWindow extends javax.swing.JFrame {
         parentView = v;
     }
     
-    // This is the constructor for doing edits on a Course
+    /**
+     * This is the constructor for doing edits on a Course
+     * @param v
+     * @param courseId 
+     */
     public ServiceWindow(View v, String courseId){
         initComponents();
         parentView = v;
@@ -158,6 +158,10 @@ public class ServiceWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_courseNumberFieldActionPerformed
 
+    /**
+     * Submits a new/edited Service
+     * @param evt 
+     */
     private void submitServiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitServiceMouseClicked
         //To Do
         //Do database insertions
@@ -167,6 +171,10 @@ public class ServiceWindow extends javax.swing.JFrame {
         //If not, pop a message out
     }//GEN-LAST:event_submitServiceMouseClicked
 
+    /**
+     * Cancels 
+     * @param evt 
+     */
     private void cancelWindowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelWindowMouseClicked
         //The user wanted to cancel out of the operation?  Easy.
         this.setVisible(false);

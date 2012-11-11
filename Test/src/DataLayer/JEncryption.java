@@ -40,7 +40,7 @@ public class JEncryption
 		// Initialize the cipher for encryption
 		desCipher.init(Cipher.ENCRYPT_MODE, myDesKey);
             }catch(  NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException e){
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
         }
         
@@ -60,13 +60,13 @@ public class JEncryption
 		    // Encrypt the text
 		    byte[] byteEncrypted = desCipher.doFinal(byteText);
  
-		    System.out.println("Text Encrypted : " + byteEncrypted);
+		    //System.out.println("Text Encrypted : " + byteEncrypted);
                     String textEncrypted = new String(byteEncrypted);
-                    System.out.println(textEncrypted);
+                    //System.out.println(textEncrypted);
                     return byteEncrypted;
 		    
             }catch(IllegalBlockSizeException | BadPaddingException e){
-                e.printStackTrace();
+                //e.printStackTrace();
                 return null;
             }
                     
@@ -91,12 +91,12 @@ public class JEncryption
 		    // Decrypt the text
 		    byte[] textDecrypted = desCipher.doFinal(text);
  
-		    System.out.println("Text Decryted : " + new String(textDecrypted));
+		    //System.out.println("Text Decryted : " + new String(textDecrypted));
                     
                     return new String(textDecrypted);
  
 		}catch(InvalidKeyException | IllegalBlockSizeException | BadPaddingException e){
-                    e.printStackTrace();
+                    //e.printStackTrace();
                     return null;
                 }
         }
