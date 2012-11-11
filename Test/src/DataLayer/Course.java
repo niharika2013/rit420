@@ -111,7 +111,7 @@ public class Course {
                 myDB.setData(sql, values);
                 return true; 
             }catch(Exception e){
-                System.err.println(e);
+                //System.err.println(e);
                 throw new DLException(e);
             }
         }

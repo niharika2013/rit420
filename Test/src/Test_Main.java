@@ -22,7 +22,7 @@ public class Test_Main {
         //testUserPut(); //works
         //testUserPost(); //works
         //System.out.println("runing");
-        setNewPasswords();
+        //setNewPasswords();
     }
 
     public static void setNewPasswords(){
