@@ -1,6 +1,8 @@
 package DataLayer;
 
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * The Users class creates a data object representing multiple rows/tuples
@@ -21,7 +23,12 @@ public class Users {
     /**
      * Explicit default constructor does nothing.
      */
-    public Users() {}
+    public Users() {
+        try {
+            fetch();
+        } catch (DLException ex) {
+        }
+    }
     
 
     /**
@@ -55,9 +62,9 @@ public class Users {
      * @throws DLException 
      */
     public boolean fetch() throws DLException {
-        ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT userId, fName, lName, email, pswd, role FROM users", null);
+        ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT userId, fName, lName, email, pswd, role FROM users");
         if(dataList.size() > 1) {
-            for (int i = 1; i <= dataList.size(); i++) {
+            for (int i = 1; i <= dataList.size(); i++) {                
                 User e = new User(dataList.get(i).get(1).toString());
                 e.setFName( dataList.get(i).get(2).toString());
                 e.setLName( dataList.get(i).get(3).toString());
@@ -65,6 +72,7 @@ public class Users {
                 e.setPswd(  dataList.get(i).get(5).toString());
                 e.setRole(  dataList.get(i).get(6).toString());
                 users.add(e);
+                System.out.println(e.toString());
             }
             return true;
          } else {
