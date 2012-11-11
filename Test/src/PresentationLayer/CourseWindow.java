@@ -6,10 +6,12 @@ package PresentationLayer;
 
 import DataLayer.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,10 +22,13 @@ public class CourseWindow extends javax.swing.JFrame {
     View parentView = null;
     String courseId = null;
     String option;
+    ArrayList<User> facultyArrayList;
     
     
     /**
-     * Creates new form CourseWindow with ability to get back to 
+     * Creates a new course window with the proper option settings
+     * @param v
+     * @param option 
      */
     public CourseWindow(View v, String option) {
         initComponents();
@@ -32,7 +37,12 @@ public class CourseWindow extends javax.swing.JFrame {
         setCourseWindow();
     }
     
-    // This is the constructor for doing edits on a Course
+    /**
+     * Creates a new course window with proper option settings and a given courseId
+     * @param v
+     * @param courseId
+     * @param option 
+     */
     public CourseWindow(View v, String courseId, String option){
         initComponents();
         parentView = v;
@@ -41,14 +51,21 @@ public class CourseWindow extends javax.swing.JFrame {
         setCourseWindow();
     }
     
+    /**
+     * 
+     */
     public void setCourseWindow(){
         Users faculty = new Users();
-        //ArrayList<User> facultyArrayList = faculty.getUsers();
-        String[] userNames = {"a", "b", "c"};//new String[facultyArrayList.size()];
-        /*for (int i = 0; i<= userNames.length -1; i++){
-            //System.out.println(facultyArrayList.get(i).getLName());
+        facultyArrayList = faculty.getUsers();
+        for (Iterator<User> it = facultyArrayList.iterator(); it.hasNext();) {
+            User user = it.next();
+            System.out.println(user);
+        }
+        String[] userNames = new String[facultyArrayList.size()];
+        for (int i = 0; i<= facultyArrayList.size() -1; i++){
+            System.out.println(facultyArrayList.get(i).getLName());
             userNames[i] = facultyArrayList.get(i).getLName();
-        }*/
+        }
         facultyList.setListData(userNames);
         //lModel.addElement(facultyArrayList.get(1));
     }
@@ -185,18 +202,45 @@ public class CourseWindow extends javax.swing.JFrame {
         //To Do
         //Do database insertions
         //If successful, update parent view's table
-        if(courseNameField.getText() != null && courseNumberField.getText() != null && yearField.getText() != null && !facultyList.isSelectionEmpty()){
+        if(courseNameField.getText().length() != 0 && courseNumberField.getText().length() != 0 && yearField.getText().length() != 0 && !facultyList.isSelectionEmpty()){
             if("Update".equals(option)){
                 try {
-                    User selectedUser =(User) facultyList.getSelectedValue();
+                    User selectedUser = null;
+                    for (User user: facultyArrayList){
+                        if(user.getLName().equals(facultyList.getSelectedValue())){
+                            System.out.println("Found user");
+                            selectedUser = user;
+                        } 
+                    }
                     Course updateCourse = new Course(selectedUser.getUserId(), courseId, yearField.getText(), courseNumberField.getText(), courseNameField.getText());
+                    System.out.println("Updating Course");
                     updateCourse.post();
+                    System.out.println(updateCourse.toString());
                     this.setVisible(false);
                     parentView.setEnabled(true);
                 } catch (DLException ex) {
-                    //Create Error dialog
+                    System.out.println(ex);
                 }
             }
+            else if("Create".equals(option)){
+                try {
+                    User selectedUser = null;
+                        for (User user: facultyArrayList){
+                            if(user.getLName().equals(facultyList.getSelectedValue())){
+                                System.out.println("Found user");
+                                selectedUser = user;
+                            } 
+                        }
+                        Course newCourse = new Course(selectedUser.getUserId(), courseId, yearField.getText(), courseNumberField.getText(), courseNameField.getText());
+                        System.out.println("Inserting Course");
+                        newCourse.put();
+                } catch (DLException ex) {
+                    System.err.println(ex);
+                }
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Must select a Last Name, and enter all relevant values.");
         }
         
         //If not, pop a message out
