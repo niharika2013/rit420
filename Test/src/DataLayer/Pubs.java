@@ -20,7 +20,13 @@ public class Pubs {
     /**
      * Explicit default constructor for Pubs doesn't serve any purpose really.
      */
-    public Pubs() {}
+    public Pubs() {
+        try {
+            fetch();
+        } catch (DLException ex) {
+            
+        }
+    }
     
     /**
      * This method returns and arraylist of Pub objects from the pubs attribute
@@ -48,15 +54,15 @@ public class Pubs {
      * @throws DLException 
      */
     public boolean fetch() throws DLException {
-	ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT userId, pubId, year, citation, tease, status FROM pubs", null);
+	ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT userId, pubId, year, citation, tease, status FROM pubs");
 	if(dataList.size() > 1){
-            for (int i = 1; i <= dataList.size(); i++){
-                Pub e = new Pub(dataList.get(i).get(2).toString());
-                e.setUserId(    dataList.get(i).get(1).toString());
-                e.setYear(      dataList.get(i).get(3).toString());
-                e.setCitation(  dataList.get(i).get(4).toString());
-                e.setTease(     dataList.get(i).get(5).toString());
-                e.setStatus(    dataList.get(i).get(6).toString());
+            for (int i = 1; i <= dataList.size() - 1; i++){
+                Pub e = new Pub(dataList.get(i).get(1).toString());
+                e.setUserId(    dataList.get(i).get(0).toString());
+                e.setYear(      dataList.get(i).get(2).toString());
+                e.setCitation(  dataList.get(i).get(3).toString());
+                e.setTease(     dataList.get(i).get(4).toString());
+                e.setStatus(    dataList.get(i).get(5).toString());
                 pubs.add(e);
             }
             return true;

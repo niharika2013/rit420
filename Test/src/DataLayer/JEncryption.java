@@ -57,17 +57,16 @@ public class JEncryption
             try{
                     byte[] byteText = text.getBytes();
  
-		    System.out.println("Text [Byte Format] : " + text);
-		    System.out.println("Text : " + new String(text));
- 
 		    // Encrypt the text
 		    byte[] byteEncrypted = desCipher.doFinal(byteText);
  
-		    System.out.println("Text Encryted : " + byteEncrypted);
+		    System.out.println("Text Encrypted : " + byteEncrypted);
                     String textEncrypted = new String(byteEncrypted);
+                    System.out.println(textEncrypted);
                     return byteEncrypted;
 		    
             }catch(IllegalBlockSizeException | BadPaddingException e){
+                e.printStackTrace();
                 return null;
             }
                     

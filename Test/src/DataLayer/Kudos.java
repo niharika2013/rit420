@@ -20,6 +20,11 @@ public class Kudos {
      * Explicit default constructor for Kudos, does nothing!
      */
     public Kudos(){
+        try {
+            fetch();
+        } catch (DLException ex) {
+            
+        }
     }
     
     /**
@@ -51,13 +56,13 @@ public class Kudos {
      * @throws DLException 
      */
     public boolean fetch() throws DLException {
-        ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT userId, kudoId, year, kudo FROM kudos", null);
+        ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT userId, kudoId, year, kudo FROM kudos");
 	if(dataList.size() > 1) {
-            for (int i = 1; i <= dataList.size(); i++) {
-         	Kudo e = new Kudo(dataList.get(i).get(2).toString());
-                e.setUserId(dataList.get(i).get(1).toString());
-                e.setYear(dataList.get(i).get(3).toString());
-                e.setKudo(dataList.get(i).get(4).toString());
+            for (int i = 1; i <= dataList.size() - 1; i++) {
+         	Kudo e = new Kudo(dataList.get(i).get(1).toString());
+                e.setUserId(dataList.get(i).get(0).toString());
+                e.setYear(dataList.get(i).get(2).toString());
+                e.setKudo(dataList.get(i).get(3).toString());
                 kudos.add(e);
             }
             return true;

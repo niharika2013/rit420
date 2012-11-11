@@ -22,6 +22,11 @@ public class Services {
      * Explicit default constructor for Services don't do nuthin.
      */
     public Services(){
+        try {
+            fetch();
+        } catch (DLException ex) {
+            
+        }
     }
     
     
@@ -55,14 +60,14 @@ public class Services {
      * @throws DLException 
      */
     public boolean fetch() throws DLException {
-        ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT userId, serviceId, year, description, role FROM services", null);
+        ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT userId, serviceId, year, description, role FROM services");
         if(dataList.size() > 1) {
-            for (int i = 1; i <= dataList.size(); i++){
-                Service e = new Service(dataList.get(i).get(2).toString());
-                e.setUserId(     dataList.get(i).get(1).toString());
-                e.setYear(       dataList.get(i).get(3).toString());
-                e.setDescription(dataList.get(i).get(4).toString());
-                e.setRole(       dataList.get(i).get(5).toString());
+            for (int i = 1; i <= dataList.size() - 1; i++){
+                Service e = new Service(dataList.get(i).get(1).toString());
+                e.setUserId(     dataList.get(i).get(0).toString());
+                e.setYear(       dataList.get(i).get(2).toString());
+                e.setDescription(dataList.get(i).get(3).toString());
+                e.setRole(       dataList.get(i).get(4).toString());
                 services.add(e);
             }
             return true;
