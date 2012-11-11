@@ -105,7 +105,7 @@ public class User {
         try{
             ArrayList<String> values = new ArrayList<>(0);
             values.add(email);
-            values.add(pswd);
+            values.add(fakeHash(pswd));
             ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT UserId, FName, LName, Role FROM users WHERE Email = ? AND Pswd = ?", values);
             if(dataList.size() > 1){
                     userId = dataList.get(1).get(0).toString(); 
@@ -201,6 +201,19 @@ public class User {
         return "userId: " + userId + "\nfname: " + fName + "\nlname: " + lName + "\npswd: " + pswd + "\nemail: " + email + "\nrole: " + role;
     }
 
+    /**
+     * This is a BAAAD hash function standing in for a proper hash function.
+     * 
+     * We could scramble it up much better than this, consider it a proof of 
+     * concept.
+     * 
+     * @param pswd
+     * @return 
+     */
+    private String fakeHash(String pswd){
+        String hash = pswd+"_fake_hash";
+        return hash;
+    }
     
     /**
      * Mutator method for userId

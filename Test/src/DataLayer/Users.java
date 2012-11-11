@@ -59,11 +59,11 @@ public class Users {
         if(dataList.size() > 1) {
             for (int i = 1; i <= dataList.size(); i++) {
                 User e = new User(dataList.get(i).get(1).toString());
-                e.setFName(dataList.get(i).get(2).toString());
-                e.setLName(dataList.get(i).get(3).toString());
-                e.setEmail(dataList.get(i).get(4).toString());
-                e.setPswd(dataList.get(i).get(5).toString());
-                e.setRole(dataList.get(i).get(6).toString());
+                e.setFName( dataList.get(i).get(2).toString());
+                e.setLName( dataList.get(i).get(3).toString());
+                e.setEmail( dataList.get(i).get(4).toString());
+                e.setPswd(  dataList.get(i).get(5).toString());
+                e.setRole(  dataList.get(i).get(6).toString());
                 users.add(e);
             }
             return true;
