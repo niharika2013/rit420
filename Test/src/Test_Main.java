@@ -22,37 +22,33 @@ public class Test_Main {
         //testUserPut(); //works
         //testUserPost(); //works
         //System.out.println("runing");
-        //setNewPasswords();
+        setNewPasswords();
     }
 
     public static void setNewPasswords(){
-        User u = new User("12");
-        User i = new User("13");
-        User d = new User("14");
+        User u = new User("999");
+  
         
 
         try {          
             u.fetch();
-            i.fetch();
-            d.fetch();
 
-            
-            u.setPswd(u.saltHash( u.getPswd()) );
+
+            String pwd = u.getPswd();
+            u.setPswd(u.saltHash( pwd) );
             System.out.println(u.getPswd() );
 
-            i.setPswd(i.saltHash( i.getPswd()) );
-            d.setPswd(d.saltHash( d.getPswd()) );
 
             u.post();
-            i.post();
-            d.post();
+            
+            
+
         } catch (DLException ex) {
             Logger.getLogger(Test_Main.class.getName()).log(Level.SEVERE, null, ex);
        
             System.out.println("hey!");
         }
-        
-
+       
     }
     
     public static void testDatabase(){
@@ -68,11 +64,11 @@ public class Test_Main {
     
     public static void testUserPost(){
         
-        User testUser = new User("","xxx","Lucifer","Morningstar","webmaster@aol.com","3");
+        User testUser = new User("12","a","a","new","a","1");
         
         try{
             testUser.post();
-            testUser = new User("6");
+            testUser = new User("12");
             testUser.fetch();
         } catch (Exception e){
             System.err.print(e);
@@ -92,7 +88,7 @@ public class Test_Main {
         try{
             testUser.fetch();
         } catch (Exception e){
-            System.err.print(e);
+            //System.err.print(e);
         }
         
         System.out.println("UserId: "+testUser.getUserId());

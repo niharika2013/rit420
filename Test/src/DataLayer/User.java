@@ -112,7 +112,7 @@ public class User {
         try{
             ArrayList<String> values = new ArrayList<>(0);
             values.add(email);
-            values.add(saltHash(pswd));
+            values.add(pswd);
             ArrayList<ArrayList<String>> dataList = myDB.getData("SELECT UserId, FName, LName, Role FROM users WHERE Email = ? AND Pswd = ?", values);
             if(dataList.size() > 1){
                     userId = dataList.get(1).get(0).toString(); 
