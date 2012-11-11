@@ -44,6 +44,8 @@ public class Test_Main {
             d.post();
         } catch (DLException ex) {
             Logger.getLogger(Test_Main.class.getName()).log(Level.SEVERE, null, ex);
+       
+            System.out.println("hey!");
         }
         
 
