@@ -102,7 +102,7 @@ public class Service {
 		values.add(description);
 		values.add(role);
 		values.add(serviceId);
-		return myDB.setData("UPDATE service UserId = ?, Year = ?, Description = ?, Role = ? WHERE ServiceId = ?", values);
+		return myDB.setData("UPDATE services UserId = ?, Year = ?, Description = ?, Role = ? WHERE ServiceId = ?", values);
             } catch(Exception e) {
                 throw new DLException(e);
             }
@@ -122,7 +122,7 @@ public class Service {
 		values.add(year);
 		values.add(description);
 		values.add(role);
-        	myDB.setData("INSERT INTO service (UserId,ServiceId,Year,Description,Role) VALUES(?,?,?,?,?)", values);
+        	myDB.setData("INSERT INTO services (UserId,ServiceId,Year,Description,Role) VALUES(?,?,?,?,?)", values);
                 return true;
             } catch(Exception e) {
                 throw new DLException(e);
@@ -140,7 +140,7 @@ public class Service {
             try {
                 ArrayList<String> values = new ArrayList<>(0);
                 values.add(serviceId);
-                myDB.setData("DELETE FROM service WHERE serviceID = ?", values);
+                myDB.setData("DELETE FROM services WHERE serviceID = ?", values);
                 return true;
             } catch(Exception e) {
                 throw new DLException(e);

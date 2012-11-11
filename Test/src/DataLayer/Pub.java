@@ -103,7 +103,7 @@ public class Pub {
 		values.add(tease);
 		values.add(status);
 		values.add(pubId);
-                myDB.setData("UPDATE pub UserId = ?, Year = ?, Citation = ?, Tease = ?, Status = ? WHERE PubId = ?", values);
+                myDB.setData("UPDATE pubs UserId = ?, Year = ?, Citation = ?, Tease = ?, Status = ? WHERE PubId = ?", values);
                 return true; 	
             } catch(Exception e){
                 throw new DLException(e);
@@ -124,7 +124,7 @@ public class Pub {
 		values.add(citation);
 		values.add(tease);
 		values.add(status);
-		myDB.setData("INSERT INTO pub (UserId,PubId,Year,Citation,Tease,Status) VALUES(?,?,?,?,?,?)", values);
+		myDB.setData("INSERT INTO pubs (UserId,PubId,Year,Citation,Tease,Status) VALUES(?,?,?,?,?,?)", values);
 	        return true;
              } catch(Exception e) {
                 throw new DLException(e);
@@ -142,7 +142,7 @@ public class Pub {
             try {
 		ArrayList<String> values = new ArrayList<>(0);
 		values.add(pubId);
-                myDB.setData("DELETE FROM pub WHERE pubID = ?", values);
+                myDB.setData("DELETE FROM pubs WHERE pubID = ?", values);
                 return true;
             } catch(Exception e) {
                throw new DLException(e);
