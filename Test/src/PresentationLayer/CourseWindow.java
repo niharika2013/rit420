@@ -8,6 +8,8 @@ import DataLayer.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 
 /**
  *
@@ -18,6 +20,7 @@ public class CourseWindow extends javax.swing.JFrame {
     View parentView = null;
     String courseId = null;
     String option;
+    
     
     /**
      * Creates new form CourseWindow with ability to get back to 
@@ -41,9 +44,14 @@ public class CourseWindow extends javax.swing.JFrame {
     public void setCourseWindow(){
         Users faculty = new Users();
         ArrayList<User> facultyArrayList = faculty.getUsers();
-        User[] userArray = new User[facultyArrayList.size()];
-        facultyArrayList.toArray(userArray);
-        facultyList.setListData(userArray);
+        //User[] userArray = new User[facultyArrayList.size()];
+        //facultyArrayList.toArray(userArray);
+        DefaultListModel lModel = new DefaultListModel();
+        for (int i = 0; i<= facultyArrayList.size() -1; i++){
+            lModel.addElement(facultyArrayList.get(i).getEmail());
+            
+        }
+        facultyList = new JList(lModel);
     }
 
     /**
@@ -86,6 +94,11 @@ public class CourseWindow extends javax.swing.JFrame {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
+        });
+        facultyList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                facultyListValueChanged(evt);
+            }
         });
         facultyPane.setViewportView(facultyList);
 
@@ -205,6 +218,12 @@ public class CourseWindow extends javax.swing.JFrame {
         this.setVisible(false);
         parentView.setEnabled(true);
     }//GEN-LAST:event_cancelUserMouseClicked
+
+    private void facultyListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_facultyListValueChanged
+        // TODO add your handling code here:
+        User selectedUser = (User) facultyList.getSelectedValue();
+        
+    }//GEN-LAST:event_facultyListValueChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelUser;
