@@ -60,12 +60,10 @@ public class CourseWindow extends javax.swing.JFrame {
         //Get users from database
         for (Iterator<User> it = facultyArrayList.iterator(); it.hasNext();) {
             User user = it.next();
-            System.out.println(user);
         }
         String[] userNames = new String[facultyArrayList.size()];
         //Set the users' names in the list
         for (int i = 0; i<= facultyArrayList.size() -1; i++){
-            System.out.println(facultyArrayList.get(i).getLName());
             userNames[i] = facultyArrayList.get(i).getLName();
         }
         facultyList.setListData(userNames);
