@@ -20,6 +20,8 @@ public class TODO {
  * 
  * PRESENTATIONSES
  * 
+ * SHOULD have used php.
+ * 
  * Nuked the business layer
  * 
  * Subversion check out system
@@ -30,9 +32,9 @@ public class TODO {
  * 
  * Using Netbeans IDE for presentation layer
  * 
- * PHP myadmin, setting up a single production DB
+ * PHP myadmin, setting up a single production DB, Liz is DBA
  * 
- * 
+ * TABLE/LIST MODELS... ug
  * 
  * 
  */

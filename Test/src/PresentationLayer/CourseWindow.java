@@ -43,12 +43,12 @@ public class CourseWindow extends javax.swing.JFrame {
     
     public void setCourseWindow(){
         Users faculty = new Users();
-        ArrayList<User> facultyArrayList = faculty.getUsers();
-        String[] userNames = new String[facultyArrayList.size()];
-        for (int i = 0; i<= facultyArrayList.size() -1; i++){
-            System.out.println(facultyArrayList.get(i).getLName());
+        //ArrayList<User> facultyArrayList = faculty.getUsers();
+        String[] userNames = {"a", "b", "c"};//new String[facultyArrayList.size()];
+        /*for (int i = 0; i<= userNames.length -1; i++){
+            //System.out.println(facultyArrayList.get(i).getLName());
             userNames[i] = facultyArrayList.get(i).getLName();
-        }
+        }*/
         facultyList.setListData(userNames);
         //lModel.addElement(facultyArrayList.get(1));
     }

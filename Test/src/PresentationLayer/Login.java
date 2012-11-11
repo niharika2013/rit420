@@ -20,7 +20,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
-        emailField.setText("mrsmiley381@gmail.com");
+        //emailField.setText("mrsmiley381@gmail.com");
     }
 
     /**
