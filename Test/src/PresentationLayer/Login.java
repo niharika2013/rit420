@@ -9,6 +9,7 @@ import DataLayer.JEncryption;
 import DataLayer.User;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.*;
 /**
  *
  * @author Black Tony
@@ -114,19 +115,19 @@ public class Login extends javax.swing.JFrame {
             {
                 //If successful load the view
                 //System.out.println(loginUser.toString());
-                View v = new View(loginUser.getRole());
+                View v = new View(loginUser.getRole(), loginUser.getUserId());
                 v.setVisible(true);
                 this.setVisible(false);
             }
             //If not, pop out a login failed message
             else
             {
-                //new jOutputBox();
+                JOptionPane.showMessageDialog(null, "No user with that e-mail/password combination found.");
             }
         }
         catch(DLException d)
         {
-            //Print out connection error
+            JOptionPane.showMessageDialog(null, "Connection Error.  Please contact an administrator if the problem persists.");
         }
     }//GEN-LAST:event_loginButtonMouseClicked
 

@@ -34,7 +34,7 @@ public class Test_Main {
     
     public static void testUserPost(){
         
-        User testUser = new User("6","xxx","Lucifer","Morningstar","webmaster@aol.com","3");
+        User testUser = new User("","xxx","Lucifer","Morningstar","webmaster@aol.com","3");
         
         try{
             testUser.post();

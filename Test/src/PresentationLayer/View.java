@@ -1,24 +1,45 @@
 package PresentationLayer;
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+import DataLayer.Course;
+import DataLayer.Courses;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Black Tony
+ * @author Anthony Gentile
  */
 public class View extends javax.swing.JFrame {
 
+    String role;
+    String userId;
+    
     private javax.swing.JFrame n;
     /**
      * Creates new form View
      */
-    public View(String role) {
+    public View(String role, String userId) {
         initComponents();
         
+        this.role = role;
+        this.userId = userId;
+        
         //Depending on the user logged in certain tabs must be obliterated
+        if(!role.equals("3"))
+        {
+            viewPane.remove(kudosPanel);
+            viewPane.remove(usersPanel);
+        }
+        if(role.equals("1"))
+        {
+            newCourse.setVisible(false);
+            editCourse.setVisible(false);
+            newService.setVisible(false);
+            editService.setVisible(false);
+            newGrant.setVisible(false);
+            editGrant.setVisible(false);
+            newPublication.setVisible(false);
+            editPublication.setVisible(false);
+        }
     }
 
     /**
@@ -35,24 +56,24 @@ public class View extends javax.swing.JFrame {
         logoutButton = new java.awt.Button();
         loginPane = new javax.swing.JScrollPane();
         loginText = new javax.swing.JTextArea();
-        CoursesPanel = new javax.swing.JPanel();
+        coursesPanel = new javax.swing.JPanel();
         coursesPane = new javax.swing.JScrollPane();
         coursesTable = new javax.swing.JTable();
         newCourse = new javax.swing.JButton();
-        editCourses = new javax.swing.JButton();
+        editCourse = new javax.swing.JButton();
         servicesPanel = new javax.swing.JPanel();
         newService = new javax.swing.JButton();
         editService = new javax.swing.JButton();
         servicesPane = new javax.swing.JScrollPane();
         servicesTable = new javax.swing.JTable();
-        scholarshipPanel = new javax.swing.JPanel();
-        newScholarship = new javax.swing.JButton();
-        editScholarship = new javax.swing.JButton();
-        scholarshipsPane = new javax.swing.JScrollPane();
-        scholarshipsTable = new javax.swing.JTable();
+        grantsPanel = new javax.swing.JPanel();
+        newGrant = new javax.swing.JButton();
+        editGrant = new javax.swing.JButton();
+        grantsPane = new javax.swing.JScrollPane();
+        grantsTable = new javax.swing.JTable();
         publicationsPanel = new javax.swing.JPanel();
         newPublication = new javax.swing.JButton();
-        updatePublication = new javax.swing.JButton();
+        editPublication = new javax.swing.JButton();
         publicationsPane = new javax.swing.JScrollPane();
         publicationsTable = new javax.swing.JTable();
         kudosPanel = new javax.swing.JPanel();
@@ -69,6 +90,12 @@ public class View extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("The Educational Editor");
         setResizable(false);
+
+        viewPane.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                viewPaneComponentShown(evt);
+            }
+        });
 
         logoutButton.setActionCommand("logoutButton");
         logoutButton.setLabel("Logout");
@@ -119,6 +146,12 @@ public class View extends javax.swing.JFrame {
 
         viewPane.addTab("Welcome", welcomePanel);
 
+        coursesPanel.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                coursesPanelComponentShown(evt);
+            }
+        });
+
         coursesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null}
@@ -149,41 +182,41 @@ public class View extends javax.swing.JFrame {
             }
         });
 
-        editCourses.setText("Update Selected");
-        editCourses.addMouseListener(new java.awt.event.MouseAdapter() {
+        editCourse.setText("Update Selected");
+        editCourse.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                editCoursesMouseClicked(evt);
+                editCourseMouseClicked(evt);
             }
         });
 
-        org.jdesktop.layout.GroupLayout CoursesPanelLayout = new org.jdesktop.layout.GroupLayout(CoursesPanel);
-        CoursesPanel.setLayout(CoursesPanelLayout);
-        CoursesPanelLayout.setHorizontalGroup(
-            CoursesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(CoursesPanelLayout.createSequentialGroup()
+        org.jdesktop.layout.GroupLayout coursesPanelLayout = new org.jdesktop.layout.GroupLayout(coursesPanel);
+        coursesPanel.setLayout(coursesPanelLayout);
+        coursesPanelLayout.setHorizontalGroup(
+            coursesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(coursesPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .add(coursesPane, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 392, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, CoursesPanelLayout.createSequentialGroup()
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, coursesPanelLayout.createSequentialGroup()
                 .add(22, 22, 22)
-                .add(editCourses)
+                .add(editCourse)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .add(newCourse)
                 .addContainerGap())
         );
-        CoursesPanelLayout.setVerticalGroup(
-            CoursesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, CoursesPanelLayout.createSequentialGroup()
+        coursesPanelLayout.setVerticalGroup(
+            coursesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, coursesPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .add(coursesPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
                 .add(18, 18, 18)
-                .add(CoursesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                .add(coursesPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(newCourse)
-                    .add(editCourses))
+                    .add(editCourse))
                 .addContainerGap())
         );
 
-        viewPane.addTab("Courses", CoursesPanel);
+        viewPane.addTab("Courses", coursesPanel);
 
         newService.setText("Create New");
         newService.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -218,9 +251,13 @@ public class View extends javax.swing.JFrame {
         servicesTable.getTableHeader().setReorderingAllowed(false);
         servicesPane.setViewportView(servicesTable);
         servicesTable.getColumnModel().getColumn(0).setResizable(false);
+        servicesTable.getColumnModel().getColumn(0).setHeaderValue("Faculty");
         servicesTable.getColumnModel().getColumn(1).setResizable(false);
+        servicesTable.getColumnModel().getColumn(1).setHeaderValue("Year");
         servicesTable.getColumnModel().getColumn(2).setResizable(false);
+        servicesTable.getColumnModel().getColumn(2).setHeaderValue("Description");
         servicesTable.getColumnModel().getColumn(3).setResizable(false);
+        servicesTable.getColumnModel().getColumn(3).setHeaderValue("Role");
 
         org.jdesktop.layout.GroupLayout servicesPanelLayout = new org.jdesktop.layout.GroupLayout(servicesPanel);
         servicesPanel.setLayout(servicesPanelLayout);
@@ -251,21 +288,21 @@ public class View extends javax.swing.JFrame {
 
         viewPane.addTab("Services", servicesPanel);
 
-        newScholarship.setText("Create New");
-        newScholarship.addMouseListener(new java.awt.event.MouseAdapter() {
+        newGrant.setText("Create New");
+        newGrant.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                newScholarshipMouseClicked(evt);
+                newGrantMouseClicked(evt);
             }
         });
 
-        editScholarship.setText("Update Selected");
-        editScholarship.addMouseListener(new java.awt.event.MouseAdapter() {
+        editGrant.setText("Update Selected");
+        editGrant.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                editScholarshipMouseClicked(evt);
+                editGrantMouseClicked(evt);
             }
         });
 
-        scholarshipsTable.setModel(new javax.swing.table.DefaultTableModel(
+        grantsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null}
             },
@@ -281,42 +318,42 @@ public class View extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        scholarshipsTable.getTableHeader().setReorderingAllowed(false);
-        scholarshipsPane.setViewportView(scholarshipsTable);
-        scholarshipsTable.getColumnModel().getColumn(0).setResizable(false);
-        scholarshipsTable.getColumnModel().getColumn(1).setResizable(false);
-        scholarshipsTable.getColumnModel().getColumn(2).setResizable(false);
-        scholarshipsTable.getColumnModel().getColumn(3).setResizable(false);
-        scholarshipsTable.getColumnModel().getColumn(5).setResizable(false);
+        grantsTable.getTableHeader().setReorderingAllowed(false);
+        grantsPane.setViewportView(grantsTable);
+        grantsTable.getColumnModel().getColumn(0).setResizable(false);
+        grantsTable.getColumnModel().getColumn(1).setResizable(false);
+        grantsTable.getColumnModel().getColumn(2).setResizable(false);
+        grantsTable.getColumnModel().getColumn(3).setResizable(false);
+        grantsTable.getColumnModel().getColumn(5).setResizable(false);
 
-        org.jdesktop.layout.GroupLayout scholarshipPanelLayout = new org.jdesktop.layout.GroupLayout(scholarshipPanel);
-        scholarshipPanel.setLayout(scholarshipPanelLayout);
-        scholarshipPanelLayout.setHorizontalGroup(
-            scholarshipPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(scholarshipPanelLayout.createSequentialGroup()
+        org.jdesktop.layout.GroupLayout grantsPanelLayout = new org.jdesktop.layout.GroupLayout(grantsPanel);
+        grantsPanel.setLayout(grantsPanelLayout);
+        grantsPanelLayout.setHorizontalGroup(
+            grantsPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(grantsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .add(scholarshipsPane, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 392, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(grantsPane, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 392, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, scholarshipPanelLayout.createSequentialGroup()
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, grantsPanelLayout.createSequentialGroup()
                 .add(22, 22, 22)
-                .add(editScholarship)
+                .add(editGrant)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(newScholarship)
+                .add(newGrant)
                 .addContainerGap())
         );
-        scholarshipPanelLayout.setVerticalGroup(
-            scholarshipPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, scholarshipPanelLayout.createSequentialGroup()
+        grantsPanelLayout.setVerticalGroup(
+            grantsPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, grantsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .add(scholarshipsPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+                .add(grantsPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
                 .add(18, 18, 18)
-                .add(scholarshipPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(newScholarship)
-                    .add(editScholarship))
+                .add(grantsPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(newGrant)
+                    .add(editGrant))
                 .addContainerGap())
         );
 
-        viewPane.addTab("Scholarship", scholarshipPanel);
+        viewPane.addTab("Grants", grantsPanel);
 
         newPublication.setText("Create New");
         newPublication.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -325,10 +362,10 @@ public class View extends javax.swing.JFrame {
             }
         });
 
-        updatePublication.setText("Update Selected");
-        updatePublication.addMouseListener(new java.awt.event.MouseAdapter() {
+        editPublication.setText("Update Selected");
+        editPublication.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                updatePublicationMouseClicked(evt);
+                editPublicationMouseClicked(evt);
             }
         });
 
@@ -366,7 +403,7 @@ public class View extends javax.swing.JFrame {
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .add(org.jdesktop.layout.GroupLayout.TRAILING, publicationsPanelLayout.createSequentialGroup()
                 .add(22, 22, 22)
-                .add(updatePublication)
+                .add(editPublication)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .add(newPublication)
                 .addContainerGap())
@@ -379,7 +416,7 @@ public class View extends javax.swing.JFrame {
                 .add(18, 18, 18)
                 .add(publicationsPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(newPublication)
-                    .add(updatePublication))
+                    .add(editPublication))
                 .addContainerGap())
         );
 
@@ -563,13 +600,13 @@ public class View extends javax.swing.JFrame {
     }//GEN-LAST:event_UpdateUserActionPerformed
 
     // Editing a Course
-    private void editCoursesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editCoursesMouseClicked
+    private void editCourseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editCourseMouseClicked
         //This would normally pull data from the table on the page, but this
         //functionality is pending
         n = new CourseWindow(this, "484", "Update");
         n.setVisible(true);
         setEnabled(false);
-    }//GEN-LAST:event_editCoursesMouseClicked
+    }//GEN-LAST:event_editCourseMouseClicked
 
     //New Service
     private void newServiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newServiceMouseClicked
@@ -586,19 +623,19 @@ public class View extends javax.swing.JFrame {
         setEnabled(false);
     }//GEN-LAST:event_editServiceMouseClicked
 
-    private void newScholarshipMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newScholarshipMouseClicked
+    private void newGrantMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGrantMouseClicked
         n = new ScholarshipWindow(this);
         n.setVisible(true);
         setEnabled(false);
-    }//GEN-LAST:event_newScholarshipMouseClicked
+    }//GEN-LAST:event_newGrantMouseClicked
 
-    private void editScholarshipMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editScholarshipMouseClicked
+    private void editGrantMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editGrantMouseClicked
         //This would normally pull data from the table on the page, but this
         //functionality is pending
         n = new ScholarshipWindow(this, "777");
         n.setVisible(true);
         setEnabled(false);
-    }//GEN-LAST:event_editScholarshipMouseClicked
+    }//GEN-LAST:event_editGrantMouseClicked
 
     private void newPublicationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newPublicationMouseClicked
         n = new PublicationWindow(this);
@@ -606,13 +643,13 @@ public class View extends javax.swing.JFrame {
         setEnabled(false);
     }//GEN-LAST:event_newPublicationMouseClicked
 
-    private void updatePublicationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updatePublicationMouseClicked
+    private void editPublicationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editPublicationMouseClicked
         //This would normally pull data from the table on the page, but this
         //functionality is pending
         n = new PublicationWindow(this, "777");
         n.setVisible(true);
         setEnabled(false);
-    }//GEN-LAST:event_updatePublicationMouseClicked
+    }//GEN-LAST:event_editPublicationMouseClicked
 
     private void newKudoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newKudoMouseClicked
         n = new KudoWindow(this);
@@ -642,14 +679,53 @@ public class View extends javax.swing.JFrame {
         setEnabled(false);
     }//GEN-LAST:event_UpdateUserMouseClicked
 
+    private void viewPaneComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_viewPaneComponentShown
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewPaneComponentShown
+
+    private void coursesPanelComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_coursesPanelComponentShown
+        //Clear old data
+        DefaultTableModel coursesModel = (DefaultTableModel)coursesTable.getModel();
+        for(int i = 0; i < coursesModel.getRowCount(); i++)
+        {
+            coursesModel.removeRow(i);
+        }
+        
+        //Refresh with accurate data
+        
+        Courses courses;
+        if(role.equals("1"))
+        {
+            courses = new Courses(userId);
+        }
+        else
+        {
+            courses = new Courses();
+        }
+        Course rowCourse;
+        for(int j = 0; j < courses.getCourses().size(); j++)
+        {
+            rowCourse = courses.getCourses().get(j);
+            String[] newRow = {rowCourse.getUserId(),
+                               rowCourse.getYear(),
+                               rowCourse.getCourseNumber(),
+                               rowCourse.getCourseName()};
+            coursesModel.insertRow(j,newRow);
+        }
+    }//GEN-LAST:event_coursesPanelComponentShown
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel CoursesPanel;
     private javax.swing.JButton UpdateUser;
     private javax.swing.JScrollPane coursesPane;
+    private javax.swing.JPanel coursesPanel;
     private javax.swing.JTable coursesTable;
-    private javax.swing.JButton editCourses;
-    private javax.swing.JButton editScholarship;
+    private javax.swing.JButton editCourse;
+    private javax.swing.JButton editGrant;
+    private javax.swing.JButton editPublication;
     private javax.swing.JButton editService;
+    private javax.swing.JScrollPane grantsPane;
+    private javax.swing.JPanel grantsPanel;
+    private javax.swing.JTable grantsTable;
     private javax.swing.JScrollPane kudosPane;
     private javax.swing.JPanel kudosPanel;
     private javax.swing.JTable kudosTable;
@@ -657,22 +733,18 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JTextArea loginText;
     private java.awt.Button logoutButton;
     private javax.swing.JButton newCourse;
+    private javax.swing.JButton newGrant;
     private javax.swing.JButton newKudo;
     private javax.swing.JButton newPublication;
-    private javax.swing.JButton newScholarship;
     private javax.swing.JButton newService;
     private javax.swing.JButton newUser;
     private javax.swing.JScrollPane publicationsPane;
     private javax.swing.JPanel publicationsPanel;
     private javax.swing.JTable publicationsTable;
-    private javax.swing.JPanel scholarshipPanel;
-    private javax.swing.JScrollPane scholarshipsPane;
-    private javax.swing.JTable scholarshipsTable;
     private javax.swing.JScrollPane servicesPane;
     private javax.swing.JPanel servicesPanel;
     private javax.swing.JTable servicesTable;
     private javax.swing.JButton updateKudo;
-    private javax.swing.JButton updatePublication;
     private javax.swing.JScrollPane usersPane;
     private javax.swing.JPanel usersPanel;
     private javax.swing.JTable usersTable;

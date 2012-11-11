@@ -42,6 +42,9 @@
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="User"/>
       </AccessibilityProperties>
+      <Events>
+        <EventHandler event="componentShown" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="viewPaneComponentShown"/>
+      </Events>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
@@ -117,7 +120,10 @@
             </Container>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="CoursesPanel">
+        <Container class="javax.swing.JPanel" name="coursesPanel">
+          <Events>
+            <EventHandler event="componentShown" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="coursesPanelComponentShown"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="Courses">
@@ -136,7 +142,7 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                      <Component id="editCourses" min="-2" max="-2" attributes="0"/>
+                      <Component id="editCourse" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="newCourse" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -151,7 +157,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="newCourse" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="editCourses" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="editCourse" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -215,12 +221,12 @@
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="newCourseMouseClicked"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="editCourses">
+            <Component class="javax.swing.JButton" name="editCourse">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Update Selected"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="editCoursesMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="editCourseMouseClicked"/>
               </Events>
             </Component>
           </SubComponents>
@@ -303,22 +309,22 @@
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                          <Title/>
+                          <Title value="Faculty"/>
                           <Editor/>
                           <Renderer/>
                         </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                          <Title/>
+                          <Title value="Year"/>
                           <Editor/>
                           <Renderer/>
                         </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                          <Title/>
+                          <Title value="Description"/>
                           <Editor/>
                           <Renderer/>
                         </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                          <Title/>
+                          <Title value="Role"/>
                           <Editor/>
                           <Renderer/>
                         </Column>
@@ -333,11 +339,11 @@
             </Container>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="scholarshipPanel">
+        <Container class="javax.swing.JPanel" name="grantsPanel">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Scholarship">
-                <Property name="tabTitle" type="java.lang.String" value="Scholarship"/>
+              <JTabbedPaneConstraints tabName="Grants">
+                <Property name="tabTitle" type="java.lang.String" value="Grants"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -347,14 +353,14 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="scholarshipsPane" min="-2" pref="392" max="-2" attributes="0"/>
+                      <Component id="grantsPane" min="-2" pref="392" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                      <Component id="editScholarship" min="-2" max="-2" attributes="0"/>
+                      <Component id="editGrant" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="newScholarship" min="-2" max="-2" attributes="0"/>
+                      <Component id="newGrant" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -363,11 +369,11 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="scholarshipsPane" pref="234" max="32767" attributes="0"/>
+                      <Component id="grantsPane" pref="234" max="32767" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="newScholarship" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="editScholarship" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="newGrant" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="editGrant" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -375,30 +381,30 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="newScholarship">
+            <Component class="javax.swing.JButton" name="newGrant">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Create New"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="newScholarshipMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="newGrantMouseClicked"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="editScholarship">
+            <Component class="javax.swing.JButton" name="editGrant">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Update Selected"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="editScholarshipMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="editGrantMouseClicked"/>
               </Events>
             </Component>
-            <Container class="javax.swing.JScrollPane" name="scholarshipsPane">
+            <Container class="javax.swing.JScrollPane" name="grantsPane">
               <AuxValues>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
               </AuxValues>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="scholarshipsTable">
+                <Component class="javax.swing.JTable" name="grantsTable">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="6" rowCount="1">
@@ -472,7 +478,7 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                      <Component id="updatePublication" min="-2" max="-2" attributes="0"/>
+                      <Component id="editPublication" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="newPublication" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -487,7 +493,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="newPublication" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="updatePublication" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="editPublication" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -503,12 +509,12 @@
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="newPublicationMouseClicked"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="updatePublication">
+            <Component class="javax.swing.JButton" name="editPublication">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Update Selected"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="updatePublicationMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="editPublicationMouseClicked"/>
               </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="publicationsPane">
