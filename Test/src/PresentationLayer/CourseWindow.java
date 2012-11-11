@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Black Tony
+ * @author Group 6
  */
 public class CourseWindow extends javax.swing.JFrame {
 
@@ -52,22 +52,23 @@ public class CourseWindow extends javax.swing.JFrame {
     }
     
     /**
-     * 
+     * Sets up the course window
      */
     public void setCourseWindow(){
         Users faculty = new Users();
         facultyArrayList = faculty.getUsers();
+        //Get users from database
         for (Iterator<User> it = facultyArrayList.iterator(); it.hasNext();) {
             User user = it.next();
             System.out.println(user);
         }
         String[] userNames = new String[facultyArrayList.size()];
+        //Set the users' names in the list
         for (int i = 0; i<= facultyArrayList.size() -1; i++){
             System.out.println(facultyArrayList.get(i).getLName());
             userNames[i] = facultyArrayList.get(i).getLName();
         }
         facultyList.setListData(userNames);
-        //lModel.addElement(facultyArrayList.get(1));
     }
 
     /**
@@ -198,44 +199,49 @@ public class CourseWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_courseNumberFieldActionPerformed
 
+    /**
+     * Handles functions with the submit button on the coursewindow
+     * @param evt 
+     */
     private void submitCourseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitCourseMouseClicked
         //To Do
         //Do database insertions
         //If successful, update parent view's table
         if(courseNameField.getText().length() != 0 && courseNumberField.getText().length() != 0 && yearField.getText().length() != 0 && !facultyList.isSelectionEmpty()){
+            //Go here if doing an update
             if("Update".equals(option)){
                 try {
                     User selectedUser = null;
+                    //Pull all data from the list of users
                     for (User user: facultyArrayList){
                         if(user.getLName().equals(facultyList.getSelectedValue())){
-                            System.out.println("Found user");
                             selectedUser = user;
                         } 
                     }
+                    //Make a new course an post
                     Course updateCourse = new Course(selectedUser.getUserId(), courseId, yearField.getText(), courseNumberField.getText(), courseNameField.getText());
-                    System.out.println("Updating Course");
                     updateCourse.post();
-                    System.out.println(updateCourse.toString());
+                    //Go back to main window
                     this.setVisible(false);
                     parentView.setEnabled(true);
                 } catch (DLException ex) {
-                    System.out.println(ex);
+
                 }
             }
+            //Go here if doing a create
             else if("Create".equals(option)){
                 try {
                     User selectedUser = null;
+                        //Pull all data from the list of users
                         for (User user: facultyArrayList){
                             if(user.getLName().equals(facultyList.getSelectedValue())){
-                                System.out.println("Found user");
                                 selectedUser = user;
                             } 
                         }
+                        //Make a new course and put
                         Course newCourse = new Course(selectedUser.getUserId(), courseId, yearField.getText(), courseNumberField.getText(), courseNameField.getText());
-                        System.out.println("Inserting Course");
                         newCourse.put();
                 } catch (DLException ex) {
-                    System.err.println(ex);
                 }
             }
         }
@@ -246,6 +252,10 @@ public class CourseWindow extends javax.swing.JFrame {
         //If not, pop a message out
     }//GEN-LAST:event_submitCourseMouseClicked
 
+    /**
+     * Closes the current window and goes back to mean
+     * @param evt 
+     */
     private void cancelUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelUserMouseClicked
         //The user wanted to cancel out of the operation?  Easy.
         this.setVisible(false);
