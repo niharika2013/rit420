@@ -109,7 +109,7 @@ public class Grant {
 		values.add(amount);
 		values.add(status);
 		values.add(grantId);
-		myDB.setData("UPDATE grant UserId = ?, Year = ?, Citation = ?, Tease = ?, Amount = ?, Status = ? WHERE GrantId = ?", values);
+		myDB.setData("UPDATE grants UserId = ?, Year = ?, Citation = ?, Tease = ?, Amount = ?, Status = ? WHERE GrantId = ?", values);
                 return true;
             } catch(Exception e){
                 throw new DLException(e);
@@ -133,7 +133,7 @@ public class Grant {
 		values.add(tease);
 		values.add(amount);
 		values.add(status);
-		myDB.setData("INSERT INTO grant (UserId,GrantId,Year,Citation,Tease,Amount,Status) VALUES(?,?,?,?,?,?,?)", values);      
+		myDB.setData("INSERT INTO grants (UserId,GrantId,Year,Citation,Tease,Amount,Status) VALUES(?,?,?,?,?,?,?)", values);      
                 return true;
 	    } catch(Exception e) {
                 throw new DLException(e);
@@ -151,7 +151,7 @@ public class Grant {
             try {
         	ArrayList<String> values = new ArrayList<>(0);
                 values.add(grantId);
-		myDB.setData("DELETE FROM grant WHERE grantID = ?", values);
+		myDB.setData("DELETE FROM grants WHERE grantID = ?", values);
                 return true;
             } catch(Exception e) {
                 throw new DLException(e);

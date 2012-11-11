@@ -106,11 +106,12 @@ public class Course {
 		values.add(courseNumber);
 		values.add(courseName);
 		values.add(courseId);
-                String sql = "UPDATE course UserId = ?, Year = ?, CourseNumber = ?, CourseName = ? "+
+                String sql = "UPDATE courses UserId = ?, Year = ?, CourseNumber = ?, CourseName = ? "+
                              "WHERE CourseId = ?";
                 myDB.setData(sql, values);
                 return true; 
             }catch(Exception e){
+                System.err.println(e);
                 throw new DLException(e);
             }
         }
@@ -231,4 +232,12 @@ public class Course {
          */
         public String getCourseName(){return courseName;}
 	
+        /**
+         * Override with custom toString()
+         * 
+         * @return String
+         */
+          @Override
+        public String toString(){
+            return "userId: " + userId + "\ncourseId: " + courseId + "\nyear: " + year + "\ncourseNumber: " + courseNumber + "\ncourseName : " + courseName;}
 }
