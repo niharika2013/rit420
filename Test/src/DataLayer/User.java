@@ -39,6 +39,9 @@ public class User {
      */
     public User(String email, String pswd) {  
         this.email = email;
+        //Adam's comment
+        //JEncryption encrypter = new JEncryption();
+        //this.pswd = new String(encrypter.encrypt(pswd.toCharArray().toString()));
         this.pswd = pswd;
     }
     
@@ -59,7 +62,9 @@ public class User {
             this.fName = fName;
             this.lName = lName;
             this.email = email;
-            this.pswd = pswd;
+            JEncryption encrypter = new JEncryption();
+            //Adam's comment
+            this.pswd = new String(encrypter.encrypt(pswd.toCharArray().toString()));
             this.role = role;
     }
 
@@ -136,10 +141,7 @@ public class User {
             values.add(fName); 
             values.add(lName);
             values.add(email);
-            JEncryption encrypter = new JEncryption();
-            //Adam's comment
-            String encryptedPassword = new  String(encrypter.encrypt(pswd.toCharArray().toString()));
-            values.add(encryptedPassword);
+            values.add(pswd);
             values.add(role);
             myDB.setData("UPDATE users FName = ?, LName = ?, Email = ?, Pswd = ?, Role = ? WHERE UserId = ?", values);
             return true;
