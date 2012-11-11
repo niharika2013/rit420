@@ -102,7 +102,7 @@ public class Service {
 		values.add(description);
 		values.add(role);
 		values.add(serviceId);
-		return myDB.setData("UPDATE services UserId = ?, Year = ?, Description = ?, Role = ? WHERE ServiceId = ?", values);
+		return myDB.setData("UPDATE services SET UserId = ?, Year = ?, Description = ?, Role = ? WHERE ServiceId = ?", values);
             } catch(Exception e) {
                 throw new DLException(e);
             }

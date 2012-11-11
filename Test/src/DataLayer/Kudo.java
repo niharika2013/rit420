@@ -101,7 +101,7 @@ public class Kudo {
 		values.add(year);
 		values.add(kudo);
 		values.add(kudoId);
-                myDB.setData("UPDATE kudos UserId = ?, year = ?, Kudo = ? WHERE KudoId = ?", values);
+                myDB.setData("UPDATE kudos SET UserId = ?, year = ?, Kudo = ? WHERE KudoId = ?", values);
 		return true;
             }catch(Exception e){
                 throw new DLException(e);

@@ -139,13 +139,13 @@ public class User {
     public boolean post() throws DLException {
         try{
             ArrayList<String> values = new ArrayList<>(0);
-            values.add(userId);
             values.add(fName); 
             values.add(lName);
             values.add(email);
             values.add(pswd);
             values.add(role);
-            myDB.setData("UPDATE users FName = ?, LName = ?, Email = ?, Pswd = ?, Role = ? WHERE UserId = ?", values);
+            values.add(userId);
+            myDB.setData("UPDATE users SET FName = ?, LName = ?, Email = ?, Pswd = ?, Role = ? WHERE UserId = ?", values);
             return true;
         } catch(Exception e){
             throw new DLException(e);

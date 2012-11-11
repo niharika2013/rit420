@@ -109,7 +109,7 @@ public class Grant {
 		values.add(amount);
 		values.add(status);
 		values.add(grantId);
-		myDB.setData("UPDATE grants UserId = ?, Year = ?, Citation = ?, Tease = ?, Amount = ?, Status = ? WHERE GrantId = ?", values);
+		myDB.setData("UPDATE grants SET UserId = ?, Year = ?, Citation = ?, Tease = ?, Amount = ?, Status = ? WHERE GrantId = ?", values);
                 return true;
             } catch(Exception e){
                 throw new DLException(e);
