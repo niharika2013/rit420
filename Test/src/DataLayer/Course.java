@@ -106,7 +106,7 @@ public class Course {
 		values.add(courseNumber);
 		values.add(courseName);
 		values.add(courseId);
-                String sql = "UPDATE courses UserId = ?, Year = ?, CourseNumber = ?, CourseName = ? "+
+                String sql = "UPDATE course SET UserId = ?, Year = ?, CourseNumber = ?, CourseName = ? "+
                              "WHERE CourseId = ?";
                 myDB.setData(sql, values);
                 return true; 
@@ -127,11 +127,11 @@ public class Course {
         public boolean put() throws DLException	{
            try {
 		ArrayList<String> values = new ArrayList<>();
-                values.add(this.getUserId());
-		values.add(this.getCourseId());
-		values.add(this.getYear());
-		values.add(this.getCourseNumber());
-		values.add(this.getCourseName());
+                values.add(userId);
+		values.add(courseId);
+		values.add(year);
+		values.add(courseNumber);
+		values.add(courseName);
                 myDB.setData("INSERT INTO courses (UserId,CourseId,Year,CourseNumber,CourseName) VALUES(?,?,?,?,?)", values);                
 		return true;      
             }catch (Exception e){

@@ -103,7 +103,7 @@ public class Pub {
 		values.add(tease);
 		values.add(status);
 		values.add(pubId);
-                myDB.setData("UPDATE pubs UserId = ?, Year = ?, Citation = ?, Tease = ?, Status = ? WHERE PubId = ?", values);
+                myDB.setData("UPDATE pubs SET UserId = ?, Year = ?, Citation = ?, Tease = ?, Status = ? WHERE PubId = ?", values);
                 return true; 	
             } catch(Exception e){
                 throw new DLException(e);
