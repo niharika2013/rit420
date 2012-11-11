@@ -21,7 +21,8 @@ public class Test_Main {
         //testUserDelete(); //works 
         //testUserPut(); //works
         //testUserPost(); //works
-        setNewPasswords();
+        //System.out.println("runing");
+        //setNewPasswords();
     }
 
     public static void setNewPasswords(){
@@ -35,7 +36,10 @@ public class Test_Main {
             i.fetch();
             d.fetch();
 
+            
             u.setPswd(u.saltHash( u.getPswd()) );
+            System.out.println(u.getPswd() );
+
             i.setPswd(i.saltHash( i.getPswd()) );
             d.setPswd(d.saltHash( d.getPswd()) );
 
