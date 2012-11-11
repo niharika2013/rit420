@@ -36,7 +36,7 @@ public class Test_Main {
 
             String pwd = u.getPswd();
             u.setPswd(u.saltHash( pwd) );
-            System.out.println(u.getPswd() );
+            //System.out.println(u.getPswd() );
 
 
             u.post();
@@ -46,20 +46,20 @@ public class Test_Main {
         } catch (DLException ex) {
             Logger.getLogger(Test_Main.class.getName()).log(Level.SEVERE, null, ex);
        
-            System.out.println("hey!");
+            //System.out.println("hey!");
         }
        
     }
     
     public static void testDatabase(){
     	MySQLDatabase db = new MySQLDatabase();
-    	
+    	/*
     	try {
-    		System.out.println("Connection: "+ db.connect()) ;
-    		System.out.println("Closed: "+ db.close()) ;
+    		//System.out.println("Connection: "+ db.connect()) ;
+    		//System.out.println("Closed: "+ db.close()) ;
     	} catch (DLException DLE){
-    		System.out.println(DLE);
-    	}
+    		//System.out.println(DLE);
+    	}*/
     } 
     
     public static void testUserPost(){
@@ -71,15 +71,15 @@ public class Test_Main {
             testUser = new User("12");
             testUser.fetch();
         } catch (Exception e){
-            System.err.print(e);
+            //System.err.print(e);
         }
         
-        System.out.println("UserId: "+testUser.getUserId());
-        System.out.println("FirstName: "+testUser.getFName());
-        System.out.println("LastName: "+testUser.getLName());
-        System.out.println("Email: "+testUser.getEmail());
-        System.out.println("Password: "+testUser.getPswd());
-        System.out.println("Role: "+testUser.getRole());  
+        //System.out.println("UserId: "+testUser.getUserId());
+        //System.out.println("FirstName: "+testUser.getFName());
+        //System.out.println("LastName: "+testUser.getLName());
+        //System.out.println("Email: "+testUser.getEmail());
+        //System.out.println("Password: "+testUser.getPswd());
+        //System.out.println("Role: "+testUser.getRole());  
     } 
     
     public static void testUserFetch(){
@@ -91,12 +91,12 @@ public class Test_Main {
             //System.err.print(e);
         }
         
-        System.out.println("UserId: "+testUser.getUserId());
-        System.out.println("FirstName: "+testUser.getFName());
-        System.out.println("LastName: "+testUser.getLName());
-        System.out.println("Email: "+testUser.getEmail());
-        System.out.println("Password: "+testUser.getPswd());
-        System.out.println("Role: "+testUser.getRole());  
+        //System.out.println("UserId: "+testUser.getUserId());
+        //System.out.println("FirstName: "+testUser.getFName());
+        //System.out.println("LastName: "+testUser.getLName());
+        //System.out.println("Email: "+testUser.getEmail());
+        //System.out.println("Password: "+testUser.getPswd());
+        //System.out.println("Role: "+testUser.getRole());  
     } 
 
     public static void testUserPut(){
