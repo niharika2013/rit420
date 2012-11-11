@@ -97,7 +97,7 @@ public class User {
                     return false;
             }
         } catch (Exception e){
-             e.printStackTrace();
+             //e.printStackTrace();
              throw new DLException(e);
         }
     }
@@ -124,7 +124,7 @@ public class User {
                     return false;
             }
         } catch (Exception e){
-             e.printStackTrace();
+             //e.printStackTrace();
              throw new DLException(e);
         }
     } 
