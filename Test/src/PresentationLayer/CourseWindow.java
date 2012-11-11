@@ -44,14 +44,13 @@ public class CourseWindow extends javax.swing.JFrame {
     public void setCourseWindow(){
         Users faculty = new Users();
         ArrayList<User> facultyArrayList = faculty.getUsers();
-        //User[] userArray = new User[facultyArrayList.size()];
-        //facultyArrayList.toArray(userArray);
-        DefaultListModel lModel = new DefaultListModel();
+        String[] userNames = new String[facultyArrayList.size()];
         for (int i = 0; i<= facultyArrayList.size() -1; i++){
-            lModel.addElement(facultyArrayList.get(i).getEmail());
-            
+            System.out.println(facultyArrayList.get(i).getLName());
+            userNames[i] = facultyArrayList.get(i).getLName();
         }
-        facultyList = new JList(lModel);
+        facultyList.setListData(userNames);
+        //lModel.addElement(facultyArrayList.get(1));
     }
 
     /**
@@ -67,7 +66,7 @@ public class CourseWindow extends javax.swing.JFrame {
         courseNumberField = new javax.swing.JTextField();
         courseNameField = new javax.swing.JTextField();
         facultyPane = new javax.swing.JScrollPane();
-        facultyList = new javax.swing.JList();
+        facultyList = new javax.swing.JList(new DefaultListModel<String>());
         submitCourse = new javax.swing.JButton();
         cancelUser = new javax.swing.JButton();
         yearLabel = new javax.swing.JLabel();
@@ -90,16 +89,6 @@ public class CourseWindow extends javax.swing.JFrame {
             }
         });
 
-        facultyList.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        facultyList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                facultyListValueChanged(evt);
-            }
-        });
         facultyPane.setViewportView(facultyList);
 
         submitCourse.setText("Submit");
@@ -218,12 +207,6 @@ public class CourseWindow extends javax.swing.JFrame {
         this.setVisible(false);
         parentView.setEnabled(true);
     }//GEN-LAST:event_cancelUserMouseClicked
-
-    private void facultyListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_facultyListValueChanged
-        // TODO add your handling code here:
-        User selectedUser = (User) facultyList.getSelectedValue();
-        
-    }//GEN-LAST:event_facultyListValueChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelUser;
