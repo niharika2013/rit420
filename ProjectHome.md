@@ -1,0 +1,4 @@
+The basic functionality of this application would be to manage, report on and review classes, who is teaching them, associated scholarships, services and commendations. The application would have different levels of functionality based on the role of the employee. These distinctions need to be in place for security purposes.
+
+> Faculty members will only be able view their courses, their services and their associated scholarships. This is the lowest level of clearance. Administrative assistants will be able to see all courses and edit entries for teaching, services and scholarship, as well as inserting new ones. Chairpersons will have all available functionality that the application has to offer.
+All of the code for the application will be written in Java with the Connector/J drivers for a MySQL database
